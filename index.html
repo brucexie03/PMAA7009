@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💹 投资大富翁 Investment Tycoon</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold:#F5C842;--gold-d:#C9962A;
+  --blue:#3B82F6;--blue-l:#93C5FD;
+  --red:#EF4444;--green:#22C55E;
+  --purple:#A855F7;--purple-l:#D8B4FE;
+  --orange:#F97316;--pink:#EC4899;--teal:#14B8A6;
+  --bg:#12082A;--card:#1E1040;--card2:#2A1760;--card3:#1a0d38;
+  --text:#F0EAFF;--text2:#9B8EC4;--border:rgba(255,255,255,0.08);
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;font-size:13px;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--card2);border-radius:4px;}
+
+.wrap{padding:12px;max-width:960px;margin:0 auto;}
+
+/* ── TOP BAR ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.game-logo{font-size:22px;font-weight:900;color:var(--gold);letter-spacing:1px;}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.pill{background:var(--card2);border:1.5px solid var(--gold);border-radius:20px;padding:3px 13px;font-size:12px;font-weight:800;color:var(--gold); cursor:pointer;}
+.lang-btn{background:var(--card3); border-color:var(--blue-l); color:var(--blue-l); transition:all .2s;}
+.lang-btn:hover{background:var(--blue); color:#fff;}
+.next-btn{background:var(--gold);color:#1A1035;border:none;border-radius:16px;padding:8px 20px;font-size:12px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;transition:transform .12s,box-shadow .12s;}
+.next-btn:hover{transform:scale(1.05);}
+.next-btn:active{transform:scale(.96);}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:4px;margin-bottom:10px;background:var(--card);border-radius:14px;padding:4px; overflow-x:auto;}
+.tab{flex:1;text-align:center;padding:8px 4px;border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;color:var(--text2);transition:all .15s;user-select:none; white-space:nowrap; min-width:60px;}
+.tab:hover{color:var(--text);}
+.tab.active{background:var(--card2);color:var(--gold);}
+
+/* ── SCREENS ── */
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── ASSET BAR ── */
+.asset-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:10px;}
+.acard{background:var(--card);border-radius:13px;padding:9px 11px;border:1.5px solid var(--border);transition:border-color .15s;}
+.acard.g{border-color:var(--gold);}
+.acard.gr{border-color:var(--green);}
+.acard.re{border-color:var(--red);}
+.acard.bl{border-color:var(--blue);}
+.alabel{font-size:9px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;}
+.aval{font-size:17px;font-weight:900;}
+.aval.up{color:var(--green);}
+.aval.dn{color:var(--red);}
+.achg{font-size:10px;font-weight:800;}
+.achg.up{color:var(--green);}
+.achg.dn{color:var(--red);}
+.achg.neu{color:var(--text2);}
+
+/* ── EVENT BOX ── */
+.event-box{background:linear-gradient(135deg,#2D1B69,#1E3A8A);border-radius:14px;padding:13px 15px;border:1.5px solid var(--gold);margin-bottom:10px;position:relative;overflow:hidden;}
+.event-box::after{content:'★';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:48px;opacity:.06;pointer-events:none;}
+.event-tag{display:inline-block;background:var(--gold);color:#1A1035;font-size:9px;font-weight:900;padding:2px 9px;border-radius:8px;margin-bottom:5px;}
+.event-hl{font-size:13px;font-weight:800;color:#fff;margin-bottom:5px;line-height:1.4;}
+.event-edu{font-size:11px;font-weight:700;color:#93C5FD;padding:5px 9px;background:rgba(59,130,246,.2);border-radius:7px;border-left:3px solid var(--blue-l);}
+
+/* ── MAIN GRID ── */
+.mgrid{display:grid;grid-template-columns:1fr 245px;gap:10px;}
+.lcol,.rcol{display:flex;flex-direction:column;gap:10px;}
+.sec{background:var(--card);border-radius:14px;padding:11px 13px;}
+.stitle{font-size:10px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+
+/* ── STOCKS ── */
+.stock-item{display:flex;align-items:center;gap:8px;padding:7px 5px;border-radius:10px;cursor:pointer;transition:background .12s;border:1.5px solid transparent;}
+.stock-item:hover{background:var(--card2);}
+.stock-item.sel{background:var(--card2);border-color:var(--gold);}
+.s-emoji{width:33px;height:33px;background:var(--card2);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.s-name{font-size:12px;font-weight:800;}
+.s-code{font-size:9px;color:var(--text2);font-weight:700;}
+.sparkline{width:48px;height:22px;}
+.s-price{font-size:12px;font-weight:900;}
+.s-pct{font-size:10px;font-weight:800;padding:1px 6px;border-radius:6px;}
+.s-pct.up{background:rgba(34,197,94,.15);color:var(--green);}
+.s-pct.dn{background:rgba(239,68,68,.15);color:var(--red);}
+
+/* ── HOLDINGS ── */
+.h-item{display:flex;justify-content:space-between;align-items:center;padding:7px 3px;border-bottom:1px solid var(--border);}
+.h-item:last-child{border:none;}
+.h-name{font-size:11px;font-weight:800;}
+.h-qty{font-size:9px;color:var(--text2);font-weight:700;}
+
+/* ── AI CHARS ── */
+.char-item{display:flex;align-items:center;gap:9px;padding:9px;background:var(--card2);border-radius:11px;border:1.5px solid transparent;margin-bottom:6px;}
+.char-item.me{border-color:var(--gold);}
+.char-avatar{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.char-name{font-size:11px;font-weight:900;}
+.char-type{font-size:9px;color:var(--text2);font-weight:700;margin-bottom:3px;}
+.char-bar-bg{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;}
+.char-bar-fill{height:100%;border-radius:2px;transition:width .6s;}
+.char-ret{font-size:11px;font-weight:900;min-width:40px;text-align:right;}
+
+/* ── TRADE ── */
+.sel-display{background:var(--card2);border-radius:9px;padding:7px 10px;margin-bottom:7px;min-height:36px;display:flex;align-items:center;gap:7px;}
+.qty-wrap{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.qty-inp{flex:1;background:var(--card2);border:1.5px solid rgba(255,255,255,.15);border-radius:8px;padding:5px 9px;font-size:12px;font-weight:800;color:var(--text);font-family:'Nunito',sans-serif;outline:none;transition:border-color .15s;}
+.qty-inp:focus{border-color:var(--gold);}
+.tbtns{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.tbtn{border:none;border-radius:10px;padding:9px;font-size:12px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;transition:transform .1s,filter .1s;}
+.tbtn:hover{filter:brightness(1.1);}
+.tbtn:active{transform:scale(.95);}
+.buy-btn{background:var(--green);color:#052e16;}
+.sell-btn{background:var(--red);color:#fff;}
+.t-result{font-size:10px;font-weight:800;text-align:center;margin-top:5px;min-height:18px;padding:3px 6px;border-radius:7px;}
+.t-result.ok{background:rgba(34,197,94,.15);color:var(--green);}
+.t-result.err{background:rgba(239,68,68,.15);color:var(--red);}
+
+/* ── XP ── */
+.xp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.xp-lv{font-size:12px;font-weight:900;color:var(--gold);}
+.xp-track{height:7px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;margin-bottom:7px;}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--gold));border-radius:4px;transition:width .6s;}
+.badge-row{display:flex;gap:5px;flex-wrap:wrap;}
+.bdg{background:rgba(168,85,247,.18);border:1.5px solid var(--purple);border-radius:7px;padding:2px 7px;font-size:9px;font-weight:800;color:var(--purple-l);}
+.bdg.locked{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:var(--text2);}
+
+/* ════ BOARD ════ */
+.board-wrap{padding:4px 0;}
+.board-title{font-size:14px;font-weight:900;color:var(--gold);margin-bottom:10px;text-align:center;}
+.board-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:700;color:var(--text2);}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.board-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;margin-bottom:10px;}
+.tile{border-radius:8px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8px;font-weight:800;text-align:center;cursor:pointer;border:1.5px solid rgba(255,255,255,.06);position:relative;transition:border-color .12s;}
+.tile:hover{border-color:rgba(255,255,255,.25);}
+.tile .t-icon{font-size:13px;line-height:1;}
+.tile .t-label{font-size:6.5px;font-weight:800;line-height:1.1;margin-top:1px;color:rgba(255,255,255,.75);}
+.tile.corner{background:#2A1760;border-color:var(--gold) !important;}
+.tile.stock-t{background:#142814;}
+.tile.event-t{background:#111a3a;}
+.tile.chance-t{background:#2e1010;}
+.tile.bank-t{background:#0d2030;}
+.tile.tax-t{background:#251505;}
+.tile.rest-t{background:#062018;}
+.tile.player-here{border:2px solid var(--gold) !important;}
+.tile .player-marker{position:absolute;top:-5px;right:-5px;font-size:10px;background:var(--bg);border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--gold);}
+.board-center{grid-column:2/9;grid-row:2/9;background:var(--card);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;gap:8px;border:1.5px solid var(--card2);}
+.player-tokens{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.token{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.token-icon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;border:2px solid transparent;}
+.token-icon.me{border-color:var(--gold);}
+.token-name{font-size:8px;font-weight:800;color:var(--text2);}
+.token-pos{font-size:9px;font-weight:900;color:var(--green);}
+.roll-btn{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;border:none;border-radius:12px;padding:8px 22px;font-size:12px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;transition:transform .1s,filter .1s;}
+.roll-btn:hover{filter:brightness(1.1);}
+.roll-btn:active{transform:scale(.96);}
+.dice-result{font-size:12px;font-weight:900;color:var(--gold);margin-top:6px;min-height:20px;text-align:center;transition:all .2s;}
+.tile-event-popup{background:var(--card2);border:1.5px solid var(--gold);border-radius:10px;padding:8px 12px;font-size:10px;font-weight:700;color:var(--text);text-align:center;max-width:260px;margin:0 auto;}
+
+/* ════ SKILLS ════ */
+.skill-intro{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:10px;text-align:center;}
+.skill-points{text-align:center;margin-bottom:9px;}
+.sp-pill{display:inline-block;background:rgba(168,85,247,.2);border:1.5px solid var(--purple);border-radius:10px;padding:4px 14px;font-size:11px;font-weight:900;color:var(--purple-l);}
+.skill-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.skill-branch{background:var(--card);border-radius:14px;padding:11px;}
+.branch-title{font-size:10px;font-weight:900;text-align:center;margin-bottom:10px;padding:4px 8px;border-radius:8px;}
+.skill-node{background:var(--card2);border-radius:10px;padding:9px;margin-bottom:4px;border:1.5px solid transparent;cursor:pointer;transition:all .15s;text-align:center;position:relative;}
+.skill-node.unlocked{border-color:var(--green);background:rgba(34,197,94,.06);}
+.skill-node.available{border-color:var(--gold);animation:pulse-gold 1.6s infinite;}
+.skill-node.locked{opacity:.4;cursor:not-allowed;}
+.skill-node:not(.locked):hover{transform:translateY(-1px);}
+@keyframes pulse-gold{0%,100%{border-color:var(--gold);}50%{border-color:rgba(245,200,66,.25);}}
+.sk-icon{font-size:22px;margin-bottom:3px;}
+.sk-name{font-size:10px;font-weight:900;}
+.sk-desc{font-size:8px;color:var(--text2);font-weight:700;line-height:1.3;margin-top:2px;}
+.sk-cost{font-size:9px;font-weight:900;margin-top:4px;}
+.sk-cost.green{color:var(--green);}
+.sk-cost.gold{color:var(--gold);}
+.sk-cost.gray{color:var(--text2);}
+.skill-connector{height:8px;display:flex;align-items:center;justify-content:center;margin:-1px 0;}
+.skill-connector::before{content:'';width:2px;height:100%;background:var(--card2);}
+
+/* ════ SETTLEMENT & ADS ════ */
+.settle-center{text-align:center;padding:8px 0;}
+.confetti-wrap{position:relative;height:44px;margin-bottom:4px;overflow:hidden;}
+.confetti{position:absolute;width:7px;height:7px;border-radius:2px;animation:fall 1.8s ease-in infinite;}
+@keyframes fall{0%{opacity:1;transform:translateY(-5px) rotate(0deg);}100%{opacity:0;transform:translateY(44px) rotate(400deg);}}
+.settle-trophy{font-size:52px;margin-bottom:5px;}
+.settle-rank{font-size:22px;font-weight:900;color:var(--gold);margin-bottom:3px;}
+.settle-sub{font-size:12px;font-weight:700;color:var(--text2);margin-bottom:14px;}
+.result-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;}
+.r-card{background:var(--card);border-radius:12px;padding:11px;text-align:center;}
+.r-label{font-size:9px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.r-val{font-size:18px;font-weight:900;}
+.leaderboard{background:var(--card);border-radius:14px;padding:10px 13px;margin-bottom:12px;}
+.lb-row{display:flex;align-items:center;gap:8px;padding:7px 4px;border-bottom:1px solid var(--border);}
+.lb-row:last-child{border:none;}
+.lb-row.me-row{background:rgba(245,200,66,.05);border-radius:8px;padding:7px 6px;}
+.lb-rank{width:22px;font-size:13px;font-weight:900;text-align:center;}
+.lb-avatar{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.lb-name{flex:1;font-size:12px;font-weight:800;}
+.lb-ret{font-size:12px;font-weight:900;}
+.lb-chg{font-size:9px;font-weight:800;}
+.knowledge-row{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.know-item{background:var(--card);border-radius:9px;padding:7px 11px;font-size:10px;font-weight:700;line-height:1.4;}
+.replay-btn{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;border:none;border-radius:14px;padding:11px 36px;font-size:13px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;transition:transform .1s,filter .1s;display:inline-block;margin:5px;}
+.replay-btn:hover{filter:brightness(1.1);}
+.replay-btn:active{transform:scale(.97);}
+.ad-btn{background:linear-gradient(135deg,#F97316,#EF4444);}
+
+/* ════ STORE / MONETIZATION ════ */
+.store-item{background:var(--card2);border-radius:12px;padding:12px;margin-bottom:10px;border:1.5px solid transparent;transition:all .2s;}
+.store-item:hover{border-color:var(--gold);}
+.store-item.premium{background:linear-gradient(135deg, rgba(245,200,66,0.1), rgba(168,85,247,0.1)); border-color:var(--gold);}
+.s-item-title{font-size:14px;font-weight:900;margin-bottom:4px;color:var(--gold);}
+.s-item-desc{font-size:10px;font-weight:700;color:var(--text2);margin-bottom:8px;line-height:1.4;}
+.s-buy-btn{background:var(--gold);color:#1A1035;border:none;border-radius:8px;padding:6px 14px;font-size:11px;font-weight:900;cursor:pointer; transition:transform .1s;}
+.s-buy-btn:active{transform:scale(.95);}
+.iap-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+
+/* ── FLOATING ANIM ── */
+.float-anim{position:fixed;pointer-events:none;font-size:14px;font-weight:900;color:var(--gold);animation:floatup 1s ease-out forwards;z-index:9999;}
+@keyframes floatup{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-55px);}}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--card2);border:1.5px solid var(--gold);border-radius:12px;padding:8px 18px;font-size:12px;font-weight:800;color:var(--text);z-index:9999;opacity:0;transition:all .3s;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.err-toast{border-color:var(--red);color:var(--red);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .mgrid{grid-template-columns:1fr;}
+  .asset-bar{grid-template-columns:repeat(2,1fr);}
+  .skill-cols{grid-template-columns:1fr;}
+  .result-cards{grid-template-columns:1fr;}
+  .board-grid{grid-template-columns:repeat(9,1fr);}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="game-logo" data-zh="💹 投资大富翁" data-en="💹 Investment Tycoon">💹 投资大富翁</div>
+    <div class="topbar-right">
+      <button class="pill lang-btn" onclick="toggleLang()">🌐 中/EN</button>
+      <div class="pill" id="day-pill">第 7 天 / 30</div>
+      <button class="next-btn" id="next-btn" onclick="nextRound(false)" data-zh="下一回合 ▶" data-en="Next Round ▶">下一回合 ▶</button>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('market')" data-zh="📈 市场" data-en="📈 Market">📈 市场</div>
+    <div class="tab" onclick="switchTab('board')" data-zh="🎲 棋盘" data-en="🎲 Board">🎲 棋盘</div>
+    <div class="tab" onclick="switchTab('skills')" data-zh="🌳 技能树" data-en="🌳 Skills">🌳 技能树</div>
+    <div class="tab" onclick="switchTab('store')" data-zh="💎 商店" data-en="💎 Store">💎 商店</div>
+    <div class="tab" onclick="switchTab('settle')" data-zh="🏆 结算" data-en="🏆 Settle">🏆 结算</div>
+  </div>
+
+  <!-- ════ MARKET ════ -->
+  <div class="screen active" id="screen-market">
+    <div class="asset-bar">
+      <div class="acard g"><div class="alabel" data-zh="💰 总资产" data-en="💰 Total Asset">💰 总资产</div><div class="aval up" id="total-val">¥108,420</div><div class="achg up" id="total-pct">+8.42%</div></div>
+      <div class="acard gr"><div class="alabel" data-zh="💵 可用现金" data-en="💵 Cash">💵 可用现金</div><div class="aval" id="cash-val">¥32,600</div><div class="achg neu" data-zh="随时可用" data-en="Available">随时可用</div></div>
+      <div class="acard gr"><div class="alabel" data-zh="📈 今日盈亏" data-en="📈 Today P&L">📈 今日盈亏</div><div class="aval up" id="today-pnl">+¥1,240</div><div class="achg up">+1.16%</div></div>
+      <div class="acard bl"><div class="alabel" data-zh="🏆 排名" data-en="🏆 Rank">🏆 排名</div><div class="aval" id="rank-val">#2 <span style="font-size:12px;color:var(--text2);">/ 4</span></div><div class="achg neu" id="rank-sub" data-zh="落后¥3k" data-en="Behind ¥3k">落后¥3k</div></div>
+    </div>
+
+    <div class="event-box">
+      <div class="event-tag" id="event-round">⚡ 回合 7 事件</div>
+      <div class="event-hl" id="event-hl">美联储宣布暂停加息！科技股全线大涨 🚀</div>
+      <div class="event-edu" id="event-edu">📚 利率下降 → 未来现金流折现率降低 → 科技股估值上升</div>
+    </div>
+
+    <div class="mgrid">
+      <div class="lcol">
+        <!-- Market -->
+        <div class="sec">
+          <div class="stitle" data-zh="🌏 市场行情" data-en="🌏 Market Quotes">🌏 市场行情</div>
+          <div id="stock-list">
+            <!-- Stock elements store multi-language data in attributes -->
+            <div class="stock-item" onclick="pickStock(this, '贵州茅台', 'Moutai', '¥1,820', 'up', '+2.3%', '🍾', 1820)">
+              <div class="s-emoji">🍾</div>
+              <div style="flex:1;min-width:0;"><div class="s-name" data-zh="贵州茅台" data-en="Moutai">贵州茅台</div><div class="s-code" data-zh="600519 · 消费白马" data-en="600519 · Consumer">600519 · 消费白马</div></div>
+              <svg class="sparkline" viewBox="0 0 48 22"><polyline points="0,17 8,14 16,17 24,10 32,7 40,5 48,2" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <div style="text-align:right;"><div class="s-price">¥1,820</div><div class="s-pct up">+2.3%</div></div>
+            </div>
+            <div class="stock-item" onclick="pickStock(this, '宁德时代', 'CATL', '¥178', 'up', '+3.8%', '🔋', 178)">
+              <div class="s-emoji">🔋</div>
+              <div style="flex:1;min-width:0;"><div class="s-name" data-zh="宁德时代" data-en="CATL">宁德时代</div><div class="s-code" data-zh="300750 · 新能源" data-en="300750 · EV Battery">300750 · 新能源</div></div>
+              <svg class="sparkline" viewBox="0 0 48 22"><polyline points="0,19 8,16 16,12 24,9 32,6 40,4 48,1" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <div style="text-align:right;"><div class="s-price">¥178</div><div class="s-pct up">+3.8%</div></div>
+            </div>
+            <div class="stock-item" onclick="pickStock(this, '中国平安', 'Ping An', '¥42', 'dn', '-1.2%', '🛡️', 42)">
+              <div class="s-emoji">🛡️</div>
+              <div style="flex:1;min-width:0;"><div class="s-name" data-zh="中国平安" data-en="Ping An">中国平安</div><div class="s-code" data-zh="601318 · 金融保险" data-en="601318 · Finance">601318 · 金融保险</div></div>
+              <svg class="sparkline" viewBox="0 0 48 22"><polyline points="0,4 8,6 16,7 24,11 32,14 40,17 48,20" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <div style="text-align:right;"><div class="s-price">¥42</div><div class="s-pct dn">-1.2%</div></div>
+            </div>
+            <div class="stock-item" onclick="pickStock(this, '沪深300 ETF', 'CSI 300 ETF', '¥4.12', 'up', '+1.5%', '📊', 4.12)">
+              <div class="s-emoji">📊</div>
+              <div style="flex:1;min-width:0;"><div class="s-name" data-zh="沪深300 ETF" data-en="CSI 300 ETF">沪深300 ETF</div><div class="s-code" data-zh="510300 · 指数基金" data-en="510300 · Index Fund">510300 · 指数基金</div></div>
+              <svg class="sparkline" viewBox="0 0 48 22"><polyline points="0,16 8,14 16,13 24,11 32,9 40,7 48,5" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <div style="text-align:right;"><div class="s-price">¥4.12</div><div class="s-pct up">+1.5%</div></div>
+            </div>
+            <div class="stock-item" onclick="pickStock(this, '比亚迪', 'BYD', '¥235', 'up', '+4.1%', '🚗', 235)">
+              <div class="s-emoji">🚗</div>
+              <div style="flex:1;min-width:0;"><div class="s-name" data-zh="比亚迪" data-en="BYD">比亚迪</div><div class="s-code" data-zh="002594 · 新能源车" data-en="002594 · EV Maker">002594 · 新能源车</div></div>
+              <svg class="sparkline" viewBox="0 0 48 22"><polyline points="0,18 8,15 16,11 24,8 32,5 40,3 48,1" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <div style="text-align:right;"><div class="s-price">¥235</div><div class="s-pct up">+4.1%</div></div>
+            </div>
+            <div class="stock-item" onclick="pickStock(this, '中芯国际', 'SMIC', '¥58', 'dn', '-0.8%', '💻', 58)">
+              <div class="s-emoji">💻</div>
+              <div style="flex:1;min-width:0;"><div class="s-name" data-zh="中芯国际" data-en="SMIC">中芯国际</div><div class="s-code" data-zh="688981 · 半导体" data-en="688981 · Chip">688981 · 半导体</div></div>
+              <svg class="sparkline" viewBox="0 0 48 22"><polyline points="0,8 8,9 16,8 24,12 32,13 40,15 48,18" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <div style="text-align:right;"><div class="s-price">¥58</div><div class="s-pct dn">-0.8%</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Holdings -->
+        <div class="sec">
+          <div class="stitle" data-zh="🎒 我的持仓" data-en="🎒 My Portfolio">🎒 我的持仓</div>
+          <div id="holdings-list">
+            <div class="h-item"><div><div class="h-name" data-zh="🔋 宁德时代" data-en="🔋 CATL">🔋 宁德时代</div><div class="h-qty" data-zh="50股 · 成本¥155" data-en="50 Shares · Cost ¥155">50股 · 成本¥155</div></div><div style="font-size:12px;font-weight:900;color:var(--green);" id="h-catl-pnl">+¥1,150</div></div>
+            <div class="h-item"><div><div class="h-name" data-zh="📊 沪深300 ETF" data-en="📊 CSI 300 ETF">📊 沪深300 ETF</div><div class="h-qty" data-zh="5000份 · 成本¥4.0" data-en="5000 Shares · Cost ¥4.0">5000份 · 成本¥4.0</div></div><div style="font-size:12px;font-weight:900;color:var(--green);">+¥600</div></div>
+            <div class="h-item"><div><div class="h-name" data-zh="🛡️ 中国平安" data-en="🛡️ Ping An">🛡️ 中国平安</div><div class="h-qty" data-zh="100股 · 成本¥43" data-en="100 Shares · Cost ¥43">100股 · 成本¥43</div></div><div style="font-size:12px;font-weight:900;color:var(--red);">-¥80</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcol">
+        <!-- XP -->
+        <div class="sec">
+          <div class="xp-top"><div class="xp-lv" id="xp-title">⭐ 散户 Lv.3</div><div style="font-size:9px;color:var(--text2);font-weight:700;"><span id="xp-num">620</span>/1000 XP</div></div>
+          <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:62%;"></div></div>
+          <div class="badge-row">
+            <div class="bdg" data-zh="🎯 抄底达人" data-en="🎯 Dip Buyer">🎯 抄底达人</div>
+            <div class="bdg" id="bdg2" data-zh="📰 新闻猎手" data-en="📰 News Hunter">📰 新闻猎手</div>
+            <div class="bdg locked" id="bdg3" data-zh="🔒 基金经理" data-en="🔒 Fund Manager">🔒 基金经理</div>
+            <div class="bdg locked" id="bdg4" data-zh="🔒 股神" data-en="🔒 Stock God">🔒 股神</div>
+          </div>
+        </div>
+
+        <!-- AI chars -->
+        <div class="sec">
+          <div class="stitle" data-zh="🤺 AI 对手" data-en="🤺 AI Opponents">🤺 AI 对手</div>
+          <div class="char-item">
+            <div class="char-avatar" style="background:#4C1D18;">🎰</div>
+            <div style="flex:1;min-width:0;"><div class="char-name" data-zh="赌徒王" data-en="Gambler King">赌徒王</div><div class="char-type" data-zh="激进·重仓单股" data-en="Aggressive·YOLO">激进·重仓单股</div><div class="char-bar-bg"><div class="char-bar-fill" id="cb1" style="width:78%;background:var(--orange);"></div></div></div>
+            <div class="char-ret" style="color:var(--green);" id="cr1">+18.2%</div>
+          </div>
+          <div class="char-item me">
+            <div class="char-avatar" style="background:#1E3A8A;">🧑‍💼</div>
+            <div style="flex:1;min-width:0;"><div class="char-name" data-zh="你（均衡型）" data-en="You (Balanced)">你（均衡型）</div><div class="char-type" data-zh="平衡配置" data-en="Diversified">平衡配置</div><div class="char-bar-bg"><div class="char-bar-fill" id="cb-me" style="width:62%;background:var(--blue);"></div></div></div>
+            <div class="char-ret" style="color:var(--green);" id="cr-me">+8.4%</div>
+          </div>
+          <div class="char-item">
+            <div class="char-avatar" style="background:#064E3B;">🐢</div>
+            <div style="flex:1;min-width:0;"><div class="char-name" data-zh="稳健叔" data-en="Uncle Safe">稳健叔</div><div class="char-type" data-zh="保守·ETF为主" data-en="Conservative·ETF">保守·ETF为主</div><div class="char-bar-bg"><div class="char-bar-fill" id="cb3" style="width:45%;background:var(--green);"></div></div></div>
+            <div class="char-ret" style="color:var(--green);" id="cr3">+5.1%</div>
+          </div>
+          <div class="char-item">
+            <div class="char-avatar" style="background:#3B0764;">🦊</div>
+            <div style="flex:1;min-width:0;"><div class="char-name" data-zh="量化狐" data-en="Quant Fox">量化狐</div><div class="char-type" data-zh="数据·分散投资" data-en="Data·Quants">数据·分散投资</div><div class="char-bar-bg"><div class="char-bar-fill" id="cb4" style="width:55%;background:var(--purple);"></div></div></div>
+            <div class="char-ret" style="color:var(--green);" id="cr4">+6.8%</div>
+          </div>
+        </div>
+
+        <!-- Trade -->
+        <div class="sec">
+          <div class="stitle" data-zh="⚡ 快速交易" data-en="⚡ Quick Trade">⚡ 快速交易</div>
+          <div class="sel-display" id="sel-display"><span style="font-size:11px;color:var(--text2);font-weight:700;" data-zh="← 点击左侧股票选择" data-en="← Select stock from left">← 点击左侧股票选择</span></div>
+          <div class="qty-wrap">
+            <span style="font-size:10px;font-weight:700;color:var(--text2);" data-zh="数量" data-en="Qty">数量</span>
+            <input class="qty-inp" type="number" id="qty" placeholder="100" min="1"/>
+          </div>
+          <div class="tbtns">
+            <button class="tbtn buy-btn" onclick="doTrade('buy')" data-zh="买入 📈" data-en="BUY 📈">买入 📈</button>
+            <button class="tbtn sell-btn" onclick="doTrade('sell')" data-zh="卖出 📉" data-en="SELL 📉">卖出 📉</button>
+          </div>
+          <div class="t-result" id="t-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ BOARD ════ -->
+  <div class="screen" id="screen-board">
+    <div class="board-wrap">
+      <div class="board-title" data-zh="🎲 投资大富翁 — 棋盘地图" data-en="🎲 Investment Tycoon — Board Map">🎲 投资大富翁 — 棋盘地图</div>
+      <div class="board-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:#142814;border:1px solid #22C55E;"></div><span data-zh="股票格" data-en="Stock">股票格</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#111a3a;border:1px solid #3B82F6;"></div><span data-zh="事件格" data-en="Event">事件格</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#2e1010;border:1px solid #EF4444;"></div><span data-zh="机会格" data-en="Chance">机会格</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#0d2030;border:1px solid #14B8A6;"></div><span data-zh="银行格" data-en="Bank">银行格</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#251505;border:1px solid #F97316;"></div><span data-zh="税务格" data-en="Tax">税务格</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#062018;border:1px solid #A855F7;"></div><span data-zh="休息格" data-en="Rest">休息格</span></div>
+      </div>
+      <div class="board-grid" id="board-grid"></div>
+      <div style="text-align:center;">
+        <button class="roll-btn" onclick="rollDice()" data-zh="🎲 掷骰子出发！" data-en="🎲 Roll Dice!">🎲 掷骰子出发！</button>
+        <div class="dice-result" id="dice-result"></div>
+        <div id="tile-event" style="margin-top:8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SKILLS ════ -->
+  <div class="screen" id="screen-skills">
+    <div class="skill-points"><div class="sp-pill"><span data-zh="✨ 可用技能点：" data-en="✨ Skill Points:">✨ 可用技能点：</span><span id="sp-count">3</span></div></div>
+    <div class="skill-intro" data-zh="升级技能解锁交易优势 · 每完成回合获得技能点" data-en="Upgrade skills for advantages · Earn points per round">升级技能解锁交易优势 · 每完成回合获得技能点</div>
+    <div class="skill-cols" id="skill-cols"></div>
+  </div>
+
+  <!-- ════ STORE (MONETIZATION) ════ -->
+  <div class="screen" id="screen-store">
+    <div class="mgrid">
+      <div class="lcol">
+        <!-- Tier 1: Subscription -->
+        <div class="sec">
+          <div class="stitle" data-zh="🌟 会员订阅 (核心增值)" data-en="🌟 PRO Subscription (Value-Added)">🌟 会员订阅 (核心增值)</div>
+          <div class="store-item premium">
+            <div class="s-item-title" data-zh="Tycoon PRO 月度会员" data-en="Tycoon PRO Monthly">Tycoon PRO 月度会员</div>
+            <div class="s-item-desc" data-zh="解锁高级市场数据面板<br>解锁「开启创业」独家玩法<br>永久移除所有广告" data-en="Unlock Advanced Market Data<br>Unlock 'Start a Business' Mode<br>Remove all ads permanently">解锁高级市场数据面板<br>解锁「开启创业」独家玩法<br>永久移除所有广告</div>
+            <button class="s-buy-btn" onclick="showToast(currentLang==='zh'?'✅ 成功订阅 PRO 会员！':'✅ Successfully Subscribed to PRO!')" data-zh="¥18 / 月 - 立即订阅" data-en="$2.99 / Mo - Subscribe">¥18 / 月 - 立即订阅</button>
+          </div>
+        </div>
+        <!-- Tier 4: Institutional -->
+        <div class="sec">
+          <div class="stitle" data-zh="🏫 机构合作版本" data-en="🏫 Institutional Co-op">🏫 机构合作版本</div>
+          <div class="store-item" style="border-color:var(--blue-l);">
+            <div class="s-item-title" style="color:var(--blue-l);" data-zh="教育授权课堂版" data-en="Classroom Edition">教育授权课堂版</div>
+            <div class="s-item-desc" data-zh="专为金融课堂打造。<br>包含专属教师控制仪表盘，及学生决策行为深度数据分析功能。" data-en="Built for Finance Classrooms.<br>Includes Teacher Dashboard and deep student decision behavior analysis.">专为金融课堂打造。<br>包含专属教师控制仪表盘，及学生决策行为深度数据分析功能。</div>
+            <button class="s-buy-btn" style="background:var(--blue-l);" onclick="showToast(currentLang==='zh'?'📧 已跳转至商务联络页面':'📧 Redirecting to Contact Sales...')" data-zh="联系商务洽谈" data-en="Contact Sales">联系商务洽谈</button>
+          </div>
+        </div>
+      </div>
+      <div class="rcol">
+        <!-- Tier 2: IAP -->
+        <div class="sec" style="flex:1;">
+          <div class="stitle" data-zh="🛍️ 道具内购 (不影响平衡)" data-en="🛍️ In-App Purchases (Cosmetics)">🛍️ 道具内购 (不影响平衡)</div>
+          <div class="iap-grid">
+            <div class="store-item">
+              <div class="s-item-title" style="font-size:12px;" data-zh="霓虹赛博棋盘" data-en="Cyberpunk Board">霓虹赛博棋盘</div>
+              <div class="s-item-desc" data-zh="改变棋盘外观" data-en="Change Board Skin">改变棋盘外观</div>
+              <button class="s-buy-btn" onclick="showToast(currentLang==='zh'?'✅ 购买成功！':'✅ Purchase Success!')">¥6.00</button>
+            </div>
+            <div class="store-item">
+              <div class="s-item-title" style="font-size:12px;" data-zh="巨鲸专属徽章" data-en="Whale Badge">巨鲸专属徽章</div>
+              <div class="s-item-desc" data-zh="聊天框炫酷展示" data-en="Cool chat display">聊天框炫酷展示</div>
+              <button class="s-buy-btn" onclick="showToast(currentLang==='zh'?'✅ 购买成功！':'✅ Purchase Success!')">¥3.00</button>
+            </div>
+            <div class="store-item" style="grid-column:1/3;">
+              <div class="s-item-title" style="font-size:12px;" data-zh="深度投资报告" data-en="Deep Invest Report">深度投资报告</div>
+              <div class="s-item-desc" data-zh="结算时提供详细的买卖点复盘与优化建议" data-en="Provides detailed trade review and tips upon game settle.">结算时提供详细的买卖点复盘与优化建议</div>
+              <button class="s-buy-btn" onclick="showToast(currentLang==='zh'?'✅ 购买成功！':'✅ Purchase Success!')">¥1.00 / 局</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SETTLE ════ -->
+  <div class="screen" id="screen-settle">
+    <div class="settle-center">
+      <div class="confetti-wrap" id="confetti-wrap"></div>
+      <div class="settle-trophy" id="settle-trophy">🥈</div>
+      <div class="settle-rank" id="settle-rank" data-zh="第 2 名 · 优秀投资者" data-en="2nd Place · Great Investor">第 2 名 · 优秀投资者</div>
+      <div class="settle-sub" data-zh="30回合结束 · 最终收益率 +21.4%" data-en="30 Rounds Done · Final P&L +21.4%">30回合结束 · 最终收益率 +21.4%</div>
+      <div class="result-cards">
+        <div class="r-card"><div class="r-label" data-zh="最终资产" data-en="Final Asset">最终资产</div><div class="r-val" style="color:var(--gold);">¥121,400</div></div>
+        <div class="r-card"><div class="r-label" data-zh="总收益率" data-en="Total Return">总收益率</div><div class="r-val" style="color:var(--green);">+21.4%</div></div>
+        <div class="r-card"><div class="r-label" data-zh="最佳持仓" data-en="Best Holding">最佳持仓</div><div class="r-val" style="font-size:13px;" data-zh="🔋 宁德时代" data-en="🔋 CATL">🔋 宁德时代</div></div>
+        <div class="r-card"><div class="r-label" data-zh="最差决策" data-en="Worst Call">最差决策</div><div class="r-val" style="font-size:13px;color:var(--red);" data-zh="🛡️ 平安亏损" data-en="🛡️ PingAn Loss">🛡️ 平安亏损</div></div>
+      </div>
+      
+      <!-- Tier 3: Ads (Incentive Video in Settlement) -->
+      <div style="margin-bottom:15px;">
+        <button class="replay-btn ad-btn" onclick="watchAd()" data-zh="📺 观看广告获取双倍经验结算" data-en="📺 Watch Ad for Double XP">📺 观看广告获取双倍经验结算</button>
+      </div>
+
+      <div class="leaderboard">
+        <div class="stitle" style="margin-bottom:6px;" data-zh="🏆 最终排行榜" data-en="🏆 Final Leaderboard">🏆 最终排行榜</div>
+        <div class="lb-row"><div class="lb-rank">🥇</div><div class="lb-avatar" style="background:#4C1D18;">🎰</div><div class="lb-name" data-zh="赌徒王" data-en="Gambler King">赌徒王</div><div style="text-align:right;"><div class="lb-ret" style="color:var(--green);">¥131,200</div><div class="lb-chg" style="color:var(--green);">+31.2%</div></div></div>
+        <div class="lb-row me-row"><div class="lb-rank">🥈</div><div class="lb-avatar" style="background:#1E3A8A;">🧑‍💼</div><div class="lb-name" style="color:var(--gold);" data-zh="你" data-en="You">你</div><div style="text-align:right;"><div class="lb-ret" style="color:var(--green);">¥121,400</div><div class="lb-chg" style="color:var(--green);">+21.4%</div></div></div>
+        <div class="lb-row"><div class="lb-rank">🥉</div><div class="lb-avatar" style="background:#3B0764;">🦊</div><div class="lb-name" data-zh="量化狐" data-en="Quant Fox">量化狐</div><div style="text-align:right;"><div class="lb-ret" style="color:var(--green);">¥116,800</div><div class="lb-chg" style="color:var(--green);">+16.8%</div></div></div>
+        <div class="lb-row"><div class="lb-rank">4️⃣</div><div class="lb-avatar" style="background:#064E3B;">🐢</div><div class="lb-name" data-zh="稳健叔" data-en="Uncle Safe">稳健叔</div><div style="text-align:right;"><div class="lb-ret" style="color:var(--green);">¥115,100</div><div class="lb-chg" style="color:var(--green);">+15.1%</div></div></div>
+      </div>
+      <div class="stitle" style="text-align:center;margin-bottom:6px;" data-zh="📚 本局学到的知识" data-en="📚 Lessons Learned">📚 本局学到的知识</div>
+      <div class="knowledge-row">
+        <div class="know-item" style="color:var(--blue-l);" data-zh="📉 利率与科技股估值呈反向关系，加息时科技股承压" data-en="📉 Rates & Tech stocks are inversely correlated.">📉 利率与科技股估值呈反向关系，加息时科技股承压</div>
+        <div class="know-item" style="color:var(--green);" data-zh="🌈 分散投资可降低单一股票的非系统性风险" data-en="🌈 Diversification reduces unsystematic risk.">🌈 分散投资可降低单一股票的非系统性风险</div>
+        <div class="know-item" style="color:var(--gold);" data-zh="📰 财报超预期通常是短期强买入信号" data-en="📰 Earnings beats are strong short-term buy signals.">📰 财报超预期通常是短期强买入信号</div>
+        <div class="know-item" style="color:var(--purple-l);" data-zh="🏛️ 政策风险是A股特有的系统性风险，需持续关注" data-en="🏛️ Policy shifts are key systemic risks to monitor.">🏛️ 政策风险是A股特有的系统性风险，需持续关注</div>
+      </div>
+      <button class="replay-btn" onclick="replayGame()" data-zh="🔄 再玩一局" data-en="🔄 Play Again">🔄 再玩一局</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══ LANGUAGE STATE ══ */
+let currentLang = 'zh';
+
+/* ══ STATE ══ */
+let roundIdx = 0;
+let day = 7;
+let spCount = 3;
+let playerPos = 2;
+let currentSel = null;
+let currentSelEl = null;
+let cash = 32600;
+let totalAsset = 108420;
+let tradeCount = 0;
+
+const xpLevels = [
+  {min:0,   zh:'🌱 韭菜 Lv.1', en:'🌱 Noob Lv.1'},
+  {min:200, zh:'📊 散户 Lv.2', en:'📊 Retail Lv.2'},
+  {min:500, zh:'⭐ 散户 Lv.3', en:'⭐ Trader Lv.3'},
+  {min:800, zh:'💼 基金经理 Lv.4', en:'💼 Pro Lv.4'},
+  {min:950, zh:'👑 股神 Lv.5', en:'👑 God Lv.5'},
+];
+let xp = 620;
+
+/* ══ EVENTS (Bilingual) ══ */
+const events = [
+  {round:8,  hl_zh:'🔋 新能源龙头财报爆发！营收+42%，机构疯狂加仓', hl_en:'🔋 EV Leader Earnings Beat! Rev +42%', edu_zh:'📚 财报超预期 → 机构大量买入 → 股价飙升。关注财报日历！', edu_en:'📚 Earnings beat → Inst. buying → Price surge.'},
+  {round:9,  hl_zh:'🌏 地缘冲突升级！大宗商品暴涨，能源股逆势飙升💥', hl_en:'🌏 Geopolitical tension! Commodities surge💥', edu_zh:'📚 市场动荡时，能源、黄金等避险资产往往是避风港。', edu_en:'📚 Energy/Gold act as safe havens during turmoil.'},
+  {round:10, hl_zh:'🚨 监管重拳出击！互联网金融新规落地，相关板块-5%', hl_en:'🚨 New Internet Finance Regulations! Sector -5%', edu_zh:'📚 政策风险是A股特有风险，分散行业配置是应对之道。', edu_en:'📚 Policy risk is real, diversify your sectors.'},
+  {round:11, hl_zh:'🏦 美联储加息25bp！成长股承压，价值股逆势走强', hl_en:'🏦 FED hikes 25bp! Growth stocks drop', edu_zh:'📚 加息 → 资金成本升高 → 高估值成长股最先受冲击。', edu_en:'📚 Rate hike → Cost of capital rises → High valuations drop.'},
+  {round:12, hl_zh:'🤖 AI芯片禁令解除！半导体集体涨停，情绪沸腾🎉', hl_en:'🤖 AI Chip Ban Lifted! Semi stocks soar🎉', edu_zh:'📚 政策利好释放 → 板块情绪升温 → 短期动量效应明显。', edu_en:'📚 Policy boost → Sentiment warms → Momentum trading.'},
+  {round:13, hl_zh:'🏠 房地产救市政策出台！金融地产板块集体拉升', hl_en:'🏠 Real Estate Bailout! Finance sector pumps', edu_zh:'📚 政策底往往先于市场底，关注政策转向的时间窗口。', edu_en:'📚 Policy bottom usually precedes market bottom.'},
+  {round:14, hl_zh:'💸 人民币汇率走强！外资大幅流入A股市场', hl_en:'💸 RMB Strengthens! Foreign capital flows in', edu_zh:'📚 汇率升值 → 外资成本降低 → 北向资金净流入增加。', edu_en:'📚 Strong currency attracts foreign institutional buying.'},
+  {round:15, hl_zh:'📉 美股大跌3%！全球风险偏好下降，A股跟跌', hl_en:'📉 US Markets drop 3%! Global risk-off', edu_zh:'📚 A股与美股的联动性近年来持续增强，全球化不可忽视。', edu_en:'📚 Global market correlations are increasing.'},
+];
+
+/* ══ TRANSLATION LOGIC ══ */
+function toggleLang() {
+  currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  applyLanguage();
+}
+
+function applyLanguage() {
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    if (el.getAttribute('data-' + currentLang)) {
+      el.innerHTML = el.getAttribute('data-' + currentLang);
+    }
+  });
+
+  // Re-render JS dynamic components
+  nextRound(true); 
+  buildBoard();
+  buildSkills();
+  updateTopBarLanguage();
+  
+  // Update Selection Display
+  if(currentSelEl) currentSelEl.click(); 
+  
+  // Update badges
+  if(xp >= 800) document.getElementById('bdg3').textContent = currentLang==='zh'?'💼 基金经理':'💼 Pro';
+  if(xp >= 950) document.getElementById('bdg4').textContent = currentLang==='zh'?'👑 股神':'👑 God';
+}
+
+function updateTopBarLanguage() {
+  document.getElementById('day-pill').textContent = currentLang === 'zh' ? `第 ${day} 天 / 30` : `Day ${day} / 30`;
+  const lvl = xpLevels.slice().reverse().find(l => xp >= l.min);
+  if (lvl) document.getElementById('xp-title').textContent = currentLang === 'zh' ? lvl.zh : lvl.en;
+}
+
+/* ══ TABS ══ */
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', ['market','board','skills','store','settle'][i] === name);
+  });
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  if (name === 'settle') spawnConfetti();
+}
+
+/* ══ NEXT ROUND ══ */
+function nextRound(isRefresh = false) {
+  if (roundIdx >= events.length) { 
+    if(!isRefresh) showToast(currentLang==='zh'?'🎉 游戏已进入最终阶段，前往结算页查看结果！':'🎉 Game over, go to Settle tab!'); 
+    return; 
+  }
+  
+  const idxToUse = isRefresh && roundIdx > 0 ? roundIdx - 1 : roundIdx;
+  const e = events[idxToUse];
+  
+  if(!isRefresh) {
+    roundIdx++;
+    day++;
+    
+    // xp gain
+    xp = Math.min(xp + 45, 999);
+    document.getElementById('xp-num').textContent = xp;
+    document.getElementById('xp-fill').style.width = Math.round(xp/10)+'%';
+    if (xp >= 800) { document.getElementById('bdg3').className='bdg'; }
+    if (xp >= 950) { document.getElementById('bdg4').className='bdg'; }
+
+    // sp
+    spCount = Math.min(spCount + 1, 9);
+    document.getElementById('sp-count').textContent = spCount;
+
+    // tweak AI bars
+    const r1 = 18.2 + (Math.random()-0.3)*4;
+    const r3 = 5.1  + (Math.random()-0.3)*2;
+    const r4 = 6.8  + (Math.random()-0.3)*2;
+    const rme= 8.4  + (Math.random()-0.2)*2;
+    document.getElementById('cb1').style.width  = Math.min(96,78+(roundIdx*2))+'%';
+    document.getElementById('cb-me').style.width= Math.min(90,62+(roundIdx*3))+'%';
+    document.getElementById('cr1').textContent  = '+'+r1.toFixed(1)+'%';
+    document.getElementById('cr-me').textContent= '+'+rme.toFixed(1)+'%';
+    document.getElementById('cr3').textContent  = '+'+r3.toFixed(1)+'%';
+    document.getElementById('cr4').textContent  = '+'+r4.toFixed(1)+'%';
+
+    spawnFloat('+45 XP', document.getElementById('next-btn'));
+    if (day >= 30) showToast(currentLang==='zh'?'📣 第30天到了！前往结算页查看最终排名！':'📣 Day 30 reached! Check settle tab.');
+  }
+
+  updateTopBarLanguage();
+  document.getElementById('event-round').textContent = currentLang==='zh' ? '⚡ 回合 '+(e.round)+' 事件' : '⚡ Round '+(e.round)+' Event';
+  document.getElementById('event-hl').textContent = currentLang==='zh' ? e.hl_zh : e.hl_en;
+  document.getElementById('event-edu').textContent = currentLang==='zh' ? e.edu_zh : e.edu_en;
+}
+
+/* ══ STOCK SELECT ══ */
+function pickStock(el, name_zh, name_en, price, dir, pct, emoji, priceNum) {
+  if (currentSelEl) currentSelEl.classList.remove('sel');
+  el.classList.add('sel');
+  currentSelEl = el;
+  const displayName = currentLang === 'zh' ? name_zh : name_en;
+  currentSel = {name_zh, name_en, displayName, price, dir, pct, emoji, priceNum};
+  document.getElementById('sel-display').innerHTML =
+    '<span style="font-size:18px;">'+emoji+'</span>'+
+    '<div><div style="font-size:12px;font-weight:800;">'+displayName+'</div>'+
+    '<div style="font-size:10px;font-weight:800;color:'+(dir==='up'?'var(--green)':'var(--red)')+'">'+price+'  '+pct+'</div></div>';
+  document.getElementById('t-result').textContent = '';
+  document.getElementById('t-result').className = 't-result';
+}
+
+/* ══ TRADE ══ */
+function doTrade(action) {
+  const res = document.getElementById('t-result');
+  if (!currentSel) { res.textContent=currentLang==='zh'?'❌ 请先选择股票！':'❌ Pick a stock first!'; res.className='t-result err'; return; }
+  const qty = parseInt(document.getElementById('qty').value);
+  if (!qty || qty < 1) { res.textContent=currentLang==='zh'?'❌ 请输入有效数量！':'❌ Invalid QTY!'; res.className='t-result err'; return; }
+  const cost = currentSel.priceNum * qty;
+  if (action === 'buy' && cost > cash) { res.textContent=(currentLang==='zh'?'❌ 现金不足！':'❌ No Cash!'); res.className='t-result err'; return; }
+
+  if (action === 'buy') {
+    cash -= cost;
+  } else {
+    cash += cost * 0.98; 
+  }
+  cash = Math.round(cash);
+  document.getElementById('cash-val').textContent = '¥'+cash.toLocaleString();
+
+  tradeCount++;
+  xp = Math.min(xp + 15, 999);
+  document.getElementById('xp-num').textContent = xp;
+  document.getElementById('xp-fill').style.width = Math.round(xp/10)+'%';
+
+  const verb = action==='buy'?(currentLang==='zh'?'买入':'Bought'):(currentLang==='zh'?'卖出':'Sold');
+  res.textContent = `✅ ${verb} ${currentSel.emoji} ${currentSel.displayName} ${qty} @ ${currentSel.price}`;
+  res.className = 't-result ok';
+  document.getElementById('qty').value = '';
+  spawnFloat(action==='buy'?'📈 '+(currentLang==='zh'?'买入':'BUY'):' 📉 '+(currentLang==='zh'?'卖出':'SELL'), document.querySelector('.tbtn.'+(action==='buy'?'buy':'sell')+'-btn'));
+}
+
+/* ══ BOARD ══ */
+const tileData = [
+  {type:'corner',  icon:'🏦', label_zh:'出发点', label_en:'START'},
+  {type:'stock-t', icon:'🍾', label_zh:'茅台格', label_en:'Moutai',  event_zh:'落地茅台格！茅台今日+2.3%，股价¥1820', event_en:'Landed on Moutai! +2.3%'},
+  {type:'event-t', icon:'⚡', label_zh:'新闻事件',label_en:'News',  event_zh:'突发！央行宣布降准0.5%，市场流动性改善', event_en:'Breaking: RRR cut 0.5%'},
+  {type:'stock-t', icon:'🔋', label_zh:'宁德格', label_en:'CATL',  event_zh:'宁德时代格！动力电池出货量创新高', event_en:'Battery shipments hit ATH!'},
+  {type:'chance-t',icon:'🎲', label_zh:'机会卡', label_en:'Chance',  event_zh:'🎊 获得机会卡：市场情绪爆棚，持仓浮盈+5%！', event_en:'Chance: Portfolio +5%!'},
+  {type:'stock-t', icon:'🚗', label_zh:'比亚迪', label_en:'BYD',  event_zh:'比亚迪格！新能源车销量同比+68%', event_en:'BYD Sales +68% YoY'},
+  {type:'event-t', icon:'📉', label_zh:'黑天鹅', label_en:'Swan',  event_zh:'⚠️ 黑天鹅！某银行爆雷，金融板块暴跌', event_en:'Black Swan! Bank defaults.'},
+  {type:'bank-t',  icon:'🏛️', label_zh:'银行借贷',label_en:'Loan', event_zh:'💰 银行格！可申请¥10,000融资额度', event_en:'Bank: ¥10k Credit Available.'},
+  {type:'corner',  icon:'🌴', label_zh:'休假区', label_en:'Vacation'},
+  {type:'stock-t', icon:'📊', label_zh:'ETF格',  label_en:'ETF',   event_zh:'ETF格！沪深300指数稳中向好', event_en:'Index going steady.'},
+  {type:'rest-t',  icon:'☕', label_zh:'休息站', label_en:'Rest',  event_zh:'☕ 休息一回合，获得+30 XP奖励', event_en:'Rest: +30 XP'},
+  {type:'stock-t', icon:'💊', label_zh:'医药格', label_en:'Pharma',  event_zh:'医药格！创新药出海获批，板块大涨', event_en:'Pharma breakthrough!'},
+  {type:'chance-t',icon:'🃏', label_zh:'命运卡', label_en:'Fate',  event_zh:'🃏 命运卡：随机市场波动，收益±8%', event_en:'Fate: Random ±8%'},
+  {type:'stock-t', icon:'🛡️', label_zh:'平安格', label_en:'PingAn',  event_zh:'平安格！保险行业回暖，股息率提升', event_en:'Insurance recovering.'},
+  {type:'tax-t',   icon:'💸', label_zh:'印花税', label_en:'Tax',  event_zh:'🏛️ 税务格！缴纳印花税，损失¥500', event_en:'Tax: Pay ¥500'},
+  {type:'corner',  icon:'⛔', label_zh:'监管局', label_en:'Jail'},
+  {type:'stock-t', icon:'🤖', label_zh:'AI科技', label_en:'AI Tech',  event_zh:'AI科技格！大模型商业化加速，算力需求爆炸', event_en:'AI boom! Hardware surges.'},
+  {type:'event-t', icon:'🌊', label_zh:'外资动向',label_en:'Foreign', event_zh:'📣 外资大幅扫货！北向资金单日净流入80亿', event_en:'Foreign capital flows in!'},
+  {type:'stock-t', icon:'⚡', label_zh:'电力格', label_en:'Power',  event_zh:'电力格！碳中和政策驱动，绿电需求激增', event_en:'Green energy demand rises.'},
+  {type:'bank-t',  icon:'💰', label_zh:'分红日', label_en:'Dividend',  event_zh:'🎉 股息分红日！持仓股票现金分红到账', event_en:'Dividend Day! Cash received.'},
+  {type:'corner',  icon:'🚀', label_zh:'IPO专区',label_en:'IPO'},
+  {type:'chance-t',icon:'🎯', label_zh:'精准机会',label_en:'Snipe', event_zh:'🎯 精准机会！某龙头股即将公布重大并购', event_en:'M&A Rumors coming.'},
+  {type:'stock-t', icon:'🥂', label_zh:'消费格', label_en:'Consumer',  event_zh:'消费复苏格！社零数据超预期，消费股集体走强', event_en:'Consumption data beats est.'},
+  {type:'event-t', icon:'🔔', label_zh:'财报季', label_en:'Earnings',  event_zh:'📊 财报季开启！多家蓝筹企业业绩超预期', event_en:'Earnings Season kicks off!'},
+  {type:'rest-t',  icon:'🧘', label_zh:'冥想充能',label_en:'Meditation', event_zh:'🧘 冥想充能！心态调整，获得+50 XP', event_en:'Meditation: +50 XP'},
+  {type:'tax-t',   icon:'🏦', label_zh:'资金税', label_en:'Capital Tax',  event_zh:'💸 税务格！资本利得税到期，缴纳¥800', event_en:'Tax: Pay ¥800'},
+  {type:'stock-t', icon:'🌐', label_zh:'互联网', label_en:'Internet',  event_zh:'互联网格！平台经济监管趋于稳定，估值修复', event_en:'Tech reg easing.'},
+  {type:'event-t', icon:'🔭', label_zh:'宏观数据',label_en:'Macro', event_zh:'📈 宏观数据超预期！GDP增速高于预测，指数暴涨', event_en:'Macro beats expectations!'},
+  {type:'stock-t', icon:'💎', label_zh:'蓝筹格', label_en:'Blue Chip',  event_zh:'蓝筹格！大盘股稳定分红，长期持有价值凸显', event_en:'Blue chips steady divs.'},
+  {type:'bank-t',  icon:'🏦', label_zh:'融资窗口',label_en:'Margin', event_zh:'💼 融资窗口开放！可申请低息贷款参与打新', event_en:'Margin available!'},
+];
+
+const playerPositions = {
+  '赌徒王': 6, '稳健叔': 4, '量化狐': 9, '你': 2
+};
+
+function buildBoard() {
+  const grid = document.getElementById('board-grid');
+  grid.innerHTML = '';
+  const size = 9;
+  const borderPositions = [];
+  for(let c=0;c<size;c++) borderPositions.push({r:0,c});
+  for(let r=1;r<size-1;r++) borderPositions.push({r,c:size-1});
+  for(let c=size-1;c>=0;c--) borderPositions.push({r:size-1,c});
+  for(let r=size-2;r>=1;r--) borderPositions.push({r,c:0});
+
+  const cells = Array.from({length:size}, ()=>Array(size).fill(null));
+  borderPositions.slice(0, tileData.length).forEach((pos,i) => {
+    cells[pos.r][pos.c] = {tile:tileData[i], idx:i};
+  });
+  for(let r=1;r<size-1;r++) for(let c=1;c<size-1;c++) cells[r][c]='center';
+
+  let centerPlaced = false;
+  for(let r=0;r<size;r++) {
+    for(let c=0;c<size;c++) {
+      if (cells[r][c]==='center') {
+        if (!centerPlaced) {
+          const div = document.createElement('div');
+          div.className = 'board-center';
+          div.style.gridColumn='2/9';
+          div.style.gridRow='2/9';
+          div.innerHTML = `
+            <div style="font-size:13px;font-weight:900;color:var(--gold);margin-bottom:4px;">${currentLang==='zh'?'🗺️ 投资之路':'🗺️ Tycoon Path'}</div>
+            <div class="player-tokens" id="player-tokens"></div>`;
+          grid.appendChild(div);
+          centerPlaced = true;
+        }
+      } else if (cells[r][c]) {
+        const t = cells[r][c].tile;
+        const idx = cells[r][c].idx;
+        const isMe = idx === playerPos;
+        const playersHere = Object.entries(playerPositions).filter(([n,p])=>p===idx&&n!=='你');
+        const div = document.createElement('div');
+        div.className = 'tile '+t.type+(isMe?' player-here':'');
+        const label = currentLang === 'zh' ? t.label_zh : t.label_en;
+        div.innerHTML = '<div class="t-icon">'+t.icon+'</div><div class="t-label">'+label+'</div>';
+        if(isMe) div.innerHTML += '<div class="player-marker">🧑‍💼</div>';
+        else if(playersHere.length) div.innerHTML += '<div class="player-marker" style="font-size:9px;">'+playersHere.map(([n])=>({赌徒王:'🎰',稳健叔:'🐢',量化狐:'🦊'}[n]||'?')).join('')+'</div>';
+        div.onclick = ()=>showTileEvent(t, idx);
+        grid.appendChild(div);
+      }
+    }
+  }
+  buildTokens();
+}
+
+function buildTokens() {
+  const wrap = document.getElementById('player-tokens');
+  if (!wrap) return;
+  const players = [
+    {name_zh:'你',     name_en:'You',   icon:'🧑‍💼', bg:'#1E3A8A', pos:playerPos, ret:'+8.4%', me:true},
+    {name_zh:'赌徒王', name_en:'Gambler', icon:'🎰',  bg:'#4C1D18', pos:playerPositions['赌徒王'], ret:'+18.2%'},
+    {name_zh:'稳健叔', name_en:'Safe',    icon:'🐢',  bg:'#064E3B', pos:playerPositions['稳健叔'], ret:'+5.1%'},
+    {name_zh:'量化狐', name_en:'Quant',   icon:'🦊',  bg:'#3B0764', pos:playerPositions['量化狐'], ret:'+6.8%'},
+  ];
+  wrap.innerHTML = players.map(p=>`
+    <div class="token">
+      <div class="token-icon${p.me?' me':''}" style="background:${p.bg};">${p.icon}</div>
+      <div class="token-name">${currentLang==='zh'?p.name_zh:p.name_en}</div>
+      <div class="token-pos">${p.ret}</div>
+    </div>`).join('');
+}
+
+function showTileEvent(t, idx) {
+  const pop = document.getElementById('tile-event');
+  const label = currentLang === 'zh' ? t.label_zh : t.label_en;
+  const ev = currentLang === 'zh' ? t.event_zh : t.event_en;
+  if (ev) {
+    pop.innerHTML = '<div class="tile-event-popup">'+t.icon+' <strong>'+label+'</strong><br>'+ev+'</div>';
+  }
+}
+
+function rollDice() {
+  const d1 = Math.ceil(Math.random()*6);
+  const d2 = Math.ceil(Math.random()*6);
+  const total = d1+d2;
+  playerPos = (playerPos+total) % tileData.length;
+  playerPositions['赌徒王'] = (playerPositions['赌徒王']+(Math.ceil(Math.random()*6)+1)) % tileData.length;
+  playerPositions['稳健叔'] = (playerPositions['稳健叔']+(Math.ceil(Math.random()*4)+1)) % tileData.length;
+  playerPositions['量化狐'] = (playerPositions['量化狐']+(Math.ceil(Math.random()*5)+1)) % tileData.length;
+  const tile = tileData[playerPos];
+  const label = currentLang === 'zh' ? tile.label_zh : tile.label_en;
+  
+  if(currentLang === 'zh'){
+     document.getElementById('dice-result').textContent = '🎲 骰子：'+d1+' + '+d2+' = '+total+'  ➜  落在「'+tile.icon+' '+label+'」';
+  } else {
+     document.getElementById('dice-result').textContent = '🎲 Dice: '+d1+' + '+d2+' = '+total+'  ➜  Landed on ['+tile.icon+' '+label+']';
+  }
+  showTileEvent(tile, playerPos);
+  buildBoard();
+}
+
+/* ══ SKILLS ══ */
+const skillBranches = [
+  { title_zh:'📈 交易技能', title_en:'📈 Trading', color:'#22C55E', nodes:[
+    {icon:'👁️', name_zh:'市场感知', name_en:'Sense',  desc_zh:'解锁实时涨跌预警',   desc_en:'Real-time alerts',    cost:1, state:'unlocked'},
+    {icon:'⚡',  name_zh:'闪电下单', name_en:'Blitz',  desc_zh:'每回合可额外交易1次',desc_en:'+1 Trade/Round',     cost:2, state:'available'},
+    {icon:'📊',  name_zh:'量化分析', name_en:'Quant',  desc_zh:'AI实时买卖评分',    desc_en:'AI Buy/Sell Score',   cost:3, state:'locked'},
+    {icon:'🎯',  name_zh:'精准狙击', name_en:'Snipe',  desc_zh:'单笔收益额外+10%',  desc_en:'+10% Profit/Trade',   cost:4, state:'locked'},
+  ]},
+  { title_zh:'🛡️ 风控技能', title_en:'🛡️ Risk Mgt', color:'#3B82F6', nodes:[
+    {icon:'🔒',  name_zh:'止损大师', name_en:'Stop Loss',desc_zh:'自动止损防爆仓',    desc_en:'Auto stop loss',      cost:1, state:'unlocked'},
+    {icon:'🌈',  name_zh:'多元配置', name_en:'Diverse',  desc_zh:'持仓分散降低波动',  desc_en:'Lower Volatility',    cost:2, state:'available'},
+    {icon:'🏦',  name_zh:'对冲策略', name_en:'Hedge',    desc_zh:'做空对冲风险',      desc_en:'Short hedge risks',   cost:3, state:'locked'},
+    {icon:'💎',  name_zh:'价值投资', name_en:'Value',    desc_zh:'长期持有获股息',    desc_en:'Long-term divs',      cost:4, state:'locked'},
+  ]},
+  { title_zh:'🧠 信息技能', title_en:'🧠 Info Tech', color:'#A855F7', nodes:[
+    {icon:'📰',  name_zh:'新闻雷达', name_en:'Radar',    desc_zh:'提前预览市场事件',  desc_en:'Preview next event',  cost:1, state:'unlocked'},
+    {icon:'🔍',  name_zh:'财报解读', name_en:'Earnings', desc_zh:'解锁财报分析',      desc_en:'Unlock deep stats',   cost:2, state:'available'},
+    {icon:'🤝',  name_zh:'内部消息', name_en:'Insider',  desc_zh:'随机获隐藏提示',    desc_en:'Random hidden tips',  cost:3, state:'locked'},
+    {icon:'🌐',  name_zh:'全球视野', name_en:'Global',   desc_zh:'解锁外盘联动数据',  desc_en:'Global market stats', cost:4, state:'locked'},
+  ]},
+];
+
+let skillStates = skillBranches.map(b => b.nodes.map(n => n.state));
+
+function buildSkills() {
+  const col = document.getElementById('skill-cols');
+  col.innerHTML = skillBranches.map((branch, bi) => {
+    const bTitle = currentLang === 'zh' ? branch.title_zh : branch.title_en;
+    return `
+    <div class="skill-branch">
+      <div class="branch-title" style="background:${branch.color}22;color:${branch.color};">${bTitle}</div>
+      ${branch.nodes.map((n,ni) => {
+        const sName = currentLang === 'zh' ? n.name_zh : n.name_en;
+        const sDesc = currentLang === 'zh' ? n.desc_zh : n.desc_en;
+        let costLabel = '';
+        if(skillStates[bi][ni]==='unlocked') costLabel = currentLang==='zh'?'✅ 已解锁':'✅ Unlocked';
+        else costLabel = (currentLang==='zh'?'⚙️ 需':'⚙️ Req ')+n.cost+(currentLang==='zh'?'点':' pt');
+
+        return `
+        ${ni>0?'<div class="skill-connector"></div>':''}
+        <div class="skill-node ${skillStates[bi][ni]}" id="sk-${bi}-${ni}" onclick="upgradeSkill(${bi},${ni})">
+          <div class="sk-icon">${n.icon}</div>
+          <div class="sk-name">${sName}</div>
+          <div class="sk-desc">${sDesc}</div>
+          <div class="sk-cost ${skillStates[bi][ni]==='unlocked'?'green':skillStates[bi][ni]==='available'?'gold':'gray'}" id="skcost-${bi}-${ni}">
+            ${costLabel}
+          </div>
+        </div>`
+      }).join('')}
+    </div>`
+  }).join('');
+}
+
+function upgradeSkill(bi, ni) {
+  const state = skillStates[bi][ni];
+  if (state === 'locked') { showToast(currentLang==='zh'?'🔒 请先解锁上一层技能！':'🔒 Unlock previous tier first!', true); return; }
+  if (state === 'unlocked') { showToast(currentLang==='zh'?'✅ 该技能已经解锁了！':'✅ Already unlocked!'); return; }
+  const cost = skillBranches[bi].nodes[ni].cost;
+  if (spCount < cost) { showToast(currentLang==='zh'?'❌ 技能点不足！':'❌ Not enough points!', true); return; }
+  spCount -= cost;
+  document.getElementById('sp-count').textContent = spCount;
+  skillStates[bi][ni] = 'unlocked';
+  if (ni+1 < skillStates[bi].length) skillStates[bi][ni+1] = 'available';
+  buildSkills();
+  spawnFloat(currentLang==='zh'?'✨ 解锁！':'✨ Unlock!', document.getElementById('sk-'+bi+'-'+ni));
+  
+  const sName = currentLang === 'zh' ? skillBranches[bi].nodes[ni].name_zh : skillBranches[bi].nodes[ni].name_en;
+  showToast((currentLang==='zh'?'🎉 技能「':'🎉 Skill [')+sName+(currentLang==='zh'?'」解锁成功！':'] Unlocked!'));
+}
+
+/* ══ ADS TIER 3 ══ */
+function watchAd() {
+  showToast(currentLang==='zh' ? '📺 正在加载广告...' : '📺 Loading Ad...');
+  setTimeout(() => {
+    showToast(currentLang==='zh' ? '🎁 广告观看完毕！已获得双倍经验奖励！' : '🎁 Ad finished! Double XP granted!');
+    spawnConfetti();
+  }, 1500);
+}
+
+/* ══ CONFETTI ══ */
+function spawnConfetti() {
+  const wrap = document.getElementById('confetti-wrap');
+  wrap.innerHTML = '';
+  const colors = ['#F5C842','#22C55E','#3B82F6','#A855F7','#EC4899','#F97316','#EF4444'];
+  for (let i=0;i<24;i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.style.left = Math.random()*100+'%';
+    el.style.background = colors[i%colors.length];
+    el.style.animationDelay = (Math.random()*1.5)+'s';
+    el.style.animationDuration = (1+Math.random()*0.8)+'s';
+    wrap.appendChild(el);
+  }
+}
+
+/* ══ FLOAT ANIM ══ */
+function spawnFloat(txt, anchor) {
+  if (!anchor) return;
+  const rect = anchor.getBoundingClientRect();
+  const el = document.createElement('div');
+  el.className = 'float-anim';
+  el.textContent = txt;
+  el.style.left = (rect.left+rect.width/2-24)+'px';
+  el.style.top = (rect.top+window.scrollY-8)+'px';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(), 1100);
+}
+
+/* ══ TOAST ══ */
+let toastTimer = null;
+function showToast(msg, isErr=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show'+(isErr?' err-toast':'');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ t.className='toast'; }, 2800);
+}
+
+/* ══ REPLAY ══ */
+function replayGame() {
+  roundIdx=0; day=7; spCount=3; playerPos=2; xp=620;
+  cash=32600; totalAsset=108420; tradeCount=0;
+  currentSel=null; currentSelEl=null;
+  playerPositions['赌徒王']=6; playerPositions['稳健叔']=4; playerPositions['量化狐']=9; playerPositions['你']=2;
+  skillStates = skillBranches.map(b => b.nodes.map(n => n.state));
+  
+  document.getElementById('xp-fill').style.width = '62%';
+  document.getElementById('xp-num').textContent = xp;
+  document.getElementById('sp-count').textContent = spCount;
+  document.getElementById('cash-val').textContent = '¥32,600';
+  document.getElementById('t-result').textContent='';
+  document.getElementById('sel-display').innerHTML=`<span style="font-size:11px;color:var(--text2);font-weight:700;">${currentLang==='zh'?'← 点击左侧股票选择':'← Select stock from left'}</span>`;
+  document.getElementById('dice-result').textContent='';
+  document.getElementById('tile-event').innerHTML='';
+  
+  nextRound(true); // reset topbar events without increment
+  buildBoard();
+  buildSkills();
+  switchTab('market');
+  showToast(currentLang==='zh' ? '🔄 新的一局开始！祝你成为下一个股神！' : '🔄 New game started! Good luck!');
+}
+
+/* ══ INIT ══ */
+buildBoard();
+buildSkills();
+applyLanguage(); // Initialize language correctly
+</script>
+</body>
+</html>
