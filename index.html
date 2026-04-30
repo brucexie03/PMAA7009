@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>💹 投资大富翁 · Investment Monopoly</title>
+<title>💹 Investment Monopoly</title>
 <style>
   :root {
     --bg: #0b0f1a;
@@ -663,14 +663,14 @@
   }
   .pkg-card.hot { border-color: var(--gold); background: linear-gradient(180deg, rgba(255,203,107,.1), var(--panel-2)); }
   .pkg-card.hot::after {
-    content:'🔥 最划算'; position:absolute; top:0; right:0;
+    content:'🔥 Best Value'; position:absolute; top:0; right:0;
     background: linear-gradient(135deg, var(--orange), var(--red));
     color: white; padding: 4px 12px;
     border-radius: 0 14px 0 14px;
     font-size: 11px; font-weight: 700;
   }
   .pkg-card.vip-pkg::after {
-    content:'👑 至尊'; position:absolute; top:0; right:0;
+    content:'👑 VIP'; position:absolute; top:0; right:0;
     background: linear-gradient(135deg, #b06bff, #6aa6ff);
     color: white; padding: 4px 12px;
     border-radius: 0 14px 0 14px;
@@ -814,39 +814,38 @@
     <div class="brand">
       <div class="logo">💹</div>
       <div>
-        <h1>投资大富翁</h1>
-        <small>INVESTMENT MONOPOLY</small>
+        <h1>Investment Monopoly</h1>
+        <small>FINANCIAL EDUCATION GAME</small>
       </div>
     </div>
     <div class="turn-info">
-      <div class="pill" id="roundPill"><span data-i18n="round_x_of">第</span> <b id="dayNum">1</b> <span data-i18n="of">/</span> <b id="dayMax">30</b> <span data-i18n="round_unit">回合</span></div>
+      <div class="pill" id="roundPill"><span data-i18n="round_x_of">Round</span> <b id="dayNum">1</b> <span data-i18n="of">/</span> <b id="dayMax">30</b> <span data-i18n="round_unit"></span></div>
       <div class="pill"><span data-i18n="date">📅</span> <b id="dateStr">2025-01-02</b></div>
       <div class="pill"><span data-i18n="xp_label">XP</span> <b id="xpVal">0</b></div>
-      <div class="level-badge" id="levelBadge">🌱 韭菜 Lv.1</div>
+      <div class="level-badge" id="levelBadge">🌱 Newbie Lv.1</div>
       <div class="lang-switch" id="langSwitch">
-        <button data-lang="zh-CN" class="active">中</button>
-        <button data-lang="en">EN</button>
-        <button data-lang="zh-TW">繁</button>
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="zh-CN">中</button>
       </div>
     </div>
   </div>
 
   <!-- STATS -->
   <div class="stats">
-    <div class="stat" id="statCash"><div class="lab" data-i18n="stat_cash">可用现金</div><div class="val">¥100,000</div></div>
-    <div class="stat" id="statHolding"><div class="lab" data-i18n="stat_holding">持仓市值</div><div class="val">¥0</div></div>
-    <div class="stat" id="statTotal"><div class="lab" data-i18n="stat_total">总资产</div><div class="val">¥100,000</div></div>
-    <div class="stat" id="statDaily"><div class="lab" data-i18n="stat_daily">今日盈亏</div><div class="val pos">+¥0</div></div>
-    <div class="stat" id="statTotalRet"><div class="lab" data-i18n="stat_ret">累计收益率</div><div class="val">0.00%</div></div>
+    <div class="stat" id="statCash"><div class="lab" data-i18n="stat_cash">AVAILABLE CASH</div><div class="val">¥100,000</div></div>
+    <div class="stat" id="statHolding"><div class="lab" data-i18n="stat_holding">HOLDING VALUE</div><div class="val">¥0</div></div>
+    <div class="stat" id="statTotal"><div class="lab" data-i18n="stat_total">TOTAL ASSETS</div><div class="val">¥100,000</div></div>
+    <div class="stat" id="statDaily"><div class="lab" data-i18n="stat_daily">TODAY'S P&L</div><div class="val pos">+¥0</div></div>
+    <div class="stat" id="statTotalRet"><div class="lab" data-i18n="stat_ret">TOTAL RETURN</div><div class="val">0.00%</div></div>
   </div>
 
   <!-- TABS -->
   <div class="tabs">
-    <div class="tab active" data-page="board" data-i18n="tab_board">🎲 棋盘</div>
-    <div class="tab" data-page="market" data-i18n="tab_market">📈 市场</div>
-    <div class="tab" data-page="skill" data-i18n="tab_skill">🌳 技能树</div>
-    <div class="tab" data-page="topup" data-i18n="tab_topup">💎 充值</div>
-    <div class="tab" data-page="settle" data-i18n="tab_settle">🏆 结算</div>
+    <div class="tab active" data-page="board" data-i18n="tab_board">🎲 Board</div>
+    <div class="tab" data-page="market" data-i18n="tab_market">📈 Market</div>
+    <div class="tab" data-page="skill" data-i18n="tab_skill">🌳 Skill Tree</div>
+    <div class="tab" data-page="topup" data-i18n="tab_topup">💎 Top-up</div>
+    <div class="tab" data-page="settle" data-i18n="tab_settle">🏆 Settle</div>
   </div>
 
   <!-- PAGES -->
@@ -858,28 +857,28 @@
 
         <div class="right-rail">
           <div class="rail-card">
-            <h3 data-i18n="rank_title">玩家排名</h3>
+            <h3 data-i18n="rank_title">Player Ranking</h3>
             <div id="rankingList"></div>
           </div>
           <div class="rail-card">
-            <h3 data-i18n="legend_title">格子图例</h3>
+            <h3 data-i18n="legend_title">Square Legend</h3>
             <div class="legend">
-              <span><span class="dot" style="background:#6aa6ff"></span> <span data-i18n="leg_stock">股票</span></span>
-              <span><span class="dot" style="background:#ff6b81"></span> <span data-i18n="leg_event">重大事件</span></span>
-              <span><span class="dot" style="background:#b06bff"></span> <span data-i18n="leg_chance">机会卡</span></span>
-              <span><span class="dot" style="background:#3ddc97"></span> <span data-i18n="leg_bank">银行</span></span>
-              <span><span class="dot" style="background:#ff9b57"></span> <span data-i18n="leg_tax">税务</span></span>
-              <span><span class="dot" style="background:#5ee2e6"></span> <span data-i18n="leg_rest">休息</span></span>
-              <span><span class="dot" style="background:#ffcb6b"></span> <span data-i18n="leg_start">起点</span></span>
+              <span><span class="dot" style="background:#6aa6ff"></span> <span data-i18n="leg_stock">Stock</span></span>
+              <span><span class="dot" style="background:#ff6b81"></span> <span data-i18n="leg_event">Major Event</span></span>
+              <span><span class="dot" style="background:#b06bff"></span> <span data-i18n="leg_chance">Chance</span></span>
+              <span><span class="dot" style="background:#3ddc97"></span> <span data-i18n="leg_bank">Bank</span></span>
+              <span><span class="dot" style="background:#ff9b57"></span> <span data-i18n="leg_tax">Tax</span></span>
+              <span><span class="dot" style="background:#5ee2e6"></span> <span data-i18n="leg_rest">Rest Stop</span></span>
+              <span><span class="dot" style="background:#ffcb6b"></span> <span data-i18n="leg_start">Start</span></span>
             </div>
           </div>
           <div class="rail-card">
-            <h3 data-i18n="tip_title">玩法提示</h3>
+            <h3 data-i18n="tip_title">How to Play</h3>
             <div style="font-size:12px; color:var(--text-2); line-height:1.7;" data-i18n="tip_body">
-              ① 点击「掷骰子」让小人移动<br/>
-              ② 落点弹窗会提示买卖、缴税、领钱或可选小事件<br/>
-              ③ 可以随时切到「📈 市场」主动调整持仓<br/>
-              ④ 重大事件影响全市场价格，机会卡只影响你
+              ① Click "Roll Dice" to move around the board.<br/>
+              ② Landing on a square triggers a modal to trade, pay taxes, or encounter events.<br/>
+              ③ Switch to the "📈 Market" tab anytime to actively manage your portfolio.<br/>
+              ④ Major events affect the whole market; chance cards affect only you.
             </div>
           </div>
         </div>
@@ -891,21 +890,21 @@
       <div class="market-wrap">
         <div class="market-left">
           <div class="market-card" style="flex:1; min-height:0;">
-            <h3 data-i18n="mkt_quote">📊 实时行情（点击选择）</h3>
+            <h3 data-i18n="mkt_quote">📊 Real-time Quotes (click to select)</h3>
             <div id="stockList"></div>
           </div>
           <div class="market-card">
-            <h3 data-i18n="mkt_holdings">💼 我的持仓</h3>
+            <h3 data-i18n="mkt_holdings">💼 My Holdings</h3>
             <div id="holdingsList"></div>
           </div>
         </div>
         <div class="market-right">
           <div class="trade-panel" id="tradePanel">
-            <h3 data-i18n="trade_quick">⚡ 快速交易</h3>
+            <h3 data-i18n="trade_quick">⚡ Quick Trade</h3>
             <div id="tradeContent"></div>
           </div>
           <div class="market-card" style="flex:1; min-height:0; overflow:auto;">
-            <h3 data-i18n="mkt_news">📰 今日市场动态</h3>
+            <h3 data-i18n="mkt_news">📰 Today's Market News</h3>
             <div id="marketNews"></div>
           </div>
         </div>
@@ -916,9 +915,9 @@
     <div class="page" id="page-skill">
       <div class="skill-wrap">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <h2 style="margin:0;" data-i18n="skill_title">🌳 技能树</h2>
+          <h2 style="margin:0;" data-i18n="skill_title">🌳 Skill Tree</h2>
           <div class="pill" style="background:var(--panel); border:1px solid var(--line); padding:6px 14px; border-radius:999px;">
-            <span data-i18n="skill_pts">可用技能点</span>：<b id="spVal" style="color:var(--gold);">0</b>
+            <span data-i18n="skill_pts">Skill Points</span>: <b id="spVal" style="color:var(--gold);">0</b>
           </div>
         </div>
         <div class="skill-grid" id="skillGrid"></div>
@@ -928,83 +927,80 @@
     <!-- TOPUP / 充值 -->
     <div class="page" id="page-topup">
       <div class="topup-wrap">
-
-        <!-- 商业模式展示（给评委看） -->
         <div class="biz-section">
           <div class="biz-head">
-            <h2 data-i18n="topup_biz_title">💼 商业模式 · Business Model</h2>
-            <p data-i18n="topup_biz_desc">投资大富翁如何盈利？四条互补的收入线 + 教育市场 TAM 估算</p>
+            <h2 data-i18n="topup_biz_title">💼 Business Model</h2>
+            <p data-i18n="topup_biz_desc">Four complementary revenue streams + Market TAM sizing.</p>
           </div>
           <div class="biz-grid">
             <div class="biz-card">
               <div class="biz-em">💎</div>
-              <h3 data-i18n="biz_vip">VIP 订阅</h3>
-              <p class="biz-mon">¥30 / 月 · ¥298 / 年</p>
-              <small data-i18n="biz_vip_desc">解锁高级AI对手、双倍XP、专家点评、无广告</small>
-              <div class="biz-share"><span data-i18n="biz_share">预计占总收入</span> <b>45%</b></div>
+              <h3 data-i18n="biz_vip">VIP Subscription</h3>
+              <p class="biz-mon">¥30 / Mo · ¥298 / Yr</p>
+              <small data-i18n="biz_vip_desc">Unlock advanced AI rivals, 2x XP, expert insights, and ad-free experience.</small>
+              <div class="biz-share"><span data-i18n="biz_share">Est. Revenue Share</span> <b>45%</b></div>
             </div>
             <div class="biz-card">
               <div class="biz-em">💰</div>
-              <h3 data-i18n="biz_coins">虚拟金币包</h3>
+              <h3 data-i18n="biz_coins">Virtual Coin Packs</h3>
               <p class="biz-mon">¥6 / ¥30 / ¥98</p>
-              <small data-i18n="biz_coins_desc">体验包到豪华包，提供模拟资金注入和 XP 加成</small>
-              <div class="biz-share"><span data-i18n="biz_share">预计占总收入</span> <b>30%</b></div>
+              <small data-i18n="biz_coins_desc">From starter to ultimate packs, providing simulated cash and XP boosts.</small>
+              <div class="biz-share"><span data-i18n="biz_share">Est. Revenue Share</span> <b>30%</b></div>
             </div>
             <div class="biz-card">
               <div class="biz-em">🎓</div>
-              <h3 data-i18n="biz_course">金融课程内购</h3>
-              <p class="biz-mon">¥49 / 课</p>
-              <small data-i18n="biz_course_desc">跟券商/基金合作出品的进阶课程，按知识点解锁</small>
-              <div class="biz-share"><span data-i18n="biz_share">预计占总收入</span> <b>15%</b></div>
+              <h3 data-i18n="biz_course">Premium Courses</h3>
+              <p class="biz-mon">¥49 / Course</p>
+              <small data-i18n="biz_course_desc">In-depth courses co-produced with leading brokerages and funds.</small>
+              <div class="biz-share"><span data-i18n="biz_share">Est. Revenue Share</span> <b>15%</b></div>
             </div>
             <div class="biz-card">
               <div class="biz-em">📊</div>
-              <h3 data-i18n="biz_data">B 端数据合作</h3>
-              <p class="biz-mon" data-i18n="biz_data_price">机构定制</p>
-              <small data-i18n="biz_data_desc">把脱敏的玩家行为数据卖给券商做投资者画像研究</small>
-              <div class="biz-share"><span data-i18n="biz_share">预计占总收入</span> <b>10%</b></div>
+              <h3 data-i18n="biz_data">B2B Data Partnership</h3>
+              <p class="biz-mon" data-i18n="biz_data_price">Custom Pricing</p>
+              <small data-i18n="biz_data_desc">Selling anonymized behavioral data to brokerages for investor profiling.</small>
+              <div class="biz-share"><span data-i18n="biz_share">Est. Revenue Share</span> <b>10%</b></div>
             </div>
           </div>
 
           <div class="biz-stats">
-            <div class="biz-stat"><div class="lab" data-i18n="tam">中国 18-25 岁人群</div><div class="val">≈ 1.6 亿 (TAM)</div></div>
-            <div class="biz-stat"><div class="lab" data-i18n="sam">有投资意愿</div><div class="val">≈ 2,400 万 (SAM)</div></div>
-            <div class="biz-stat"><div class="lab" data-i18n="som">3 年可达用户</div><div class="val">≈ 50 万 (SOM)</div></div>
-            <div class="biz-stat"><div class="lab" data-i18n="arpu">付费 ARPU</div><div class="val">¥48 / 年</div></div>
-            <div class="biz-stat"><div class="lab" data-i18n="conv">付费转化率</div><div class="val">7.5%</div></div>
-            <div class="biz-stat"><div class="lab" data-i18n="rev3y">3 年预期收入</div><div class="val">¥1,800 万</div></div>
+            <div class="biz-stat"><div class="lab" data-i18n="tam">Population (18-25yo)</div><div class="val">≈ 160M (TAM)</div></div>
+            <div class="biz-stat"><div class="lab" data-i18n="sam">Investment Curious</div><div class="val">≈ 24M (SAM)</div></div>
+            <div class="biz-stat"><div class="lab" data-i18n="som">Reachable in 3Y</div><div class="val">≈ 500k (SOM)</div></div>
+            <div class="biz-stat"><div class="lab" data-i18n="arpu">Paid ARPU</div><div class="val">¥48 / Year</div></div>
+            <div class="biz-stat"><div class="lab" data-i18n="conv">Paid Conversion</div><div class="val">7.5%</div></div>
+            <div class="biz-stat"><div class="lab" data-i18n="rev3y">3-Year Revenue Est.</div><div class="val">¥18 Million</div></div>
           </div>
         </div>
 
-        <!-- 可交互充值面板（玩家用） -->
         <div class="topup-section">
           <div class="topup-head">
-            <h2 data-i18n="topup_play_title">🎁 立即充值 · 提升你的投资体验</h2>
-            <p data-i18n="topup_play_desc">本游戏内充值仅作演示，<b>实际不会扣款</b>，但权益会真实生效到本局游戏中。</p>
+            <h2 data-i18n="topup_play_title">🎁 Top-up Now · Boost your experience</h2>
+            <p data-i18n="topup_play_desc">This in-game top-up is a demo — <b>no real charges will apply</b>, but perks are real in this session.</p>
           </div>
           <div class="vip-banner" id="vipBanner">
             <div class="vip-l">
               <div class="vip-em" id="vipEm">🌱</div>
               <div>
-                <div class="vip-title" id="vipTitle">普通用户</div>
-                <div class="vip-sub" id="vipSub">尚未开通任何特权</div>
+                <div class="vip-title" id="vipTitle">Free User</div>
+                <div class="vip-sub" id="vipSub">No perks activated yet</div>
               </div>
             </div>
             <div class="vip-r">
-              <div class="vip-stat"><span data-i18n="total_spent">累计充值</span><b id="vipSpent">¥0</b></div>
-              <div class="vip-stat"><span data-i18n="bought_count">已购套餐</span><b id="vipCount">0 次</b></div>
+              <div class="vip-stat"><span data-i18n="total_spent">Total Spent</span><b id="vipSpent">¥0</b></div>
+              <div class="vip-stat"><span data-i18n="bought_count">Packs Bought</span><b id="vipCount">0 time(s)</b></div>
             </div>
           </div>
 
           <div class="pkg-grid" id="pkgGrid"></div>
 
           <div class="topup-foot">
-            <h3 data-i18n="vip_status">👜 我的特权状态</h3>
+            <h3 data-i18n="vip_status">👜 My Active Perks</h3>
             <div class="perk-grid" id="perkGrid"></div>
           </div>
 
           <div class="topup-disclaimer" data-i18n="topup_disclaimer">
-            ⚠️ 真实上线后将接入支付宝 / 微信支付 SDK，需要完成 ICP 备案、增值电信业务许可证及未成年人保护合规审查。当前为<strong>课程项目原型演示</strong>。
+            ⚠️ A production launch will integrate payment SDKs and require regulatory compliance. This page is currently a prototype demo.
           </div>
         </div>
       </div>
@@ -1014,8 +1010,8 @@
     <div class="page" id="page-settle">
       <div class="settle-wrap" id="settleWrap">
         <div class="settle-card" style="text-align:center; padding-top:48px;">
-          <h2 style="font-size:22px;">🏁 游戏尚未结束</h2>
-          <p style="color:var(--text-2);">完成 30 回合后将自动跳转到此页面</p>
+          <h2 style="font-size:22px;">🏁 Game is still running</h2>
+          <p style="color:var(--text-2);">The final settlement screen will automatically appear after 30 rounds.</p>
         </div>
       </div>
     </div>
@@ -1031,482 +1027,170 @@
 <div class="toast-host" id="toastHost"></div>
 
 <!-- HELP -->
-<div class="help-pill" id="helpPill" data-i18n="help_pill">❓ 玩法说明</div>
+<div class="help-pill" id="helpPill" data-i18n="help_pill">❓ Help</div>
 
 <script>
 /* ============================================================
-   投资大富翁 · 完整逻辑
-   设计要点：
-   1. 棋盘 / 市场 共享同一份 gameState
-   2. 任何资金/持仓变动都立即调用 render() 同步全屏数据
-   3. 骰子落点必弹窗：股票格→快捷买卖+跳过；事件格→影响全市场；
-      机会格→小事件可选；银行/税/休息→自动结算+科普
-   4. 每个回合（点下一回合或继续掷骰）都会推动股价随机走势
+   Investment Monopoly · NATIVE ENGLISH BASELINE
    ============================================================ */
 
+// 1. All strings are hardcoded in English to guarantee 100% English outputs.
 const STOCKS = [
-  { id:'mt', name:'贵州茅台', emoji:'🍾', sector:'消费白马', basePrice:168, vol:0.022, beta:0.7, s_key:'consume' },
-  { id:'cd', name:'宁德时代', emoji:'🔋', sector:'新能源',     basePrice:215,  vol:0.035, beta:1.4, s_key:'neng' },
-  { id:'by', name:'比亚迪',   emoji:'🚗', sector:'新能源车',   basePrice:248,  vol:0.030, beta:1.2, s_key:'ev' },
-  { id:'hs', name:'沪深300ETF', emoji:'📊', sector:'指数基金', basePrice:4.05, vol:0.014, beta:1.0, s_key:'idx' },
-  { id:'pa', name:'中国平安', emoji:'🛡️', sector:'金融保险',  basePrice:48,   vol:0.022, beta:1.0, s_key:'fin' },
-  { id:'sm', name:'中芯国际', emoji:'💻', sector:'半导体',     basePrice:62,   vol:0.040, beta:1.5, s_key:'chip' },
+  { id:'mt', name:'Kweichow Moutai', emoji:'🍾', sector:'Consumer', basePrice:168, vol:0.022, beta:0.7 },
+  { id:'cd', name:'CATL',            emoji:'🔋', sector:'New Energy', basePrice:215, vol:0.035, beta:1.4 },
+  { id:'by', name:'BYD',             emoji:'🚗', sector:'EV',         basePrice:248, vol:0.030, beta:1.2 },
+  { id:'hs', name:'CSI300 ETF',      emoji:'📊', sector:'Index Fund', basePrice:4.05, vol:0.014, beta:1.0 },
+  { id:'pa', name:'Ping An',         emoji:'🛡️', sector:'Insurance',  basePrice:48, vol:0.022, beta:1.0 },
+  { id:'sm', name:'SMIC',            emoji:'💻', sector:'Semiconductor', basePrice:62, vol:0.040, beta:1.5 },
 ];
 
 const SQUARES = [
-  { type:'start',  emoji:'🏁', name:'起点',         desc:'每经过此格领取 ¥3,000 投资分红', n_key:'sq_start_t' },
+  { type:'start',  emoji:'🏁', name:'Start',         desc:'Collect ¥3,000 dividend when passing here' },
   { type:'stock',  stockId:'mt' },
-  { type:'minor',  emoji:'📰', name:'财经早报',     id:'news_morning', n_key:'sq_minor_t' },
+  { type:'minor',  emoji:'📰', name:'Morning News',  id:'news_morning' },
   { type:'stock',  stockId:'cd' },
-  { type:'event',  emoji:'🦢', name:'黑天鹅',       id:'blackswan', n_key:'sq_event_t' },
+  { type:'event',  emoji:'🦢', name:'Black Swan',    id:'blackswan' },
   { type:'stock',  stockId:'by' },
-  { type:'rest',   emoji:'☕', name:'冥想充能',     desc:'跳过本回合操作，获得 +30 XP', n_key:'sq_rest_t' },
+  { type:'rest',   emoji:'☕', name:'Rest Stop',     desc:'Skip this round\'s action, gain +30 XP' },
   { type:'stock',  stockId:'hs' },
-  { type:'chance', emoji:'🃏', name:'机会卡',       id:'chance_a', n_key:'sq_chance_t' },
+  { type:'chance', emoji:'🃏', name:'Chance Card',   id:'chance_a' },
   { type:'stock',  stockId:'pa' },
-  { type:'bank',   emoji:'💰', name:'分红日',       id:'dividend', n_key:'sq_bank_t' },
+  { type:'bank',   emoji:'💰', name:'Dividend Day',  id:'dividend' },
   { type:'stock',  stockId:'sm' },
-  { type:'event',  emoji:'📉', name:'央行降息',     id:'rate_cut', n_key:'sq_event_t' },
+  { type:'event',  emoji:'📉', name:'Rate Cut',      id:'rate_cut' },
   { type:'stock',  stockId:'mt' },
-  { type:'tax',    emoji:'💸', name:'印花税稽查',   id:'stamp_tax', n_key:'sq_tax_t' },
+  { type:'tax',    emoji:'💸', name:'Tax Audit',     id:'stamp_tax' },
   { type:'stock',  stockId:'cd' },
-  { type:'minor',  emoji:'☎️', name:'内部小道消息', id:'whisper', n_key:'sq_minor_t' },
-  { type:'bank',   emoji:'🏦', name:'融资窗口',     id:'finance', n_key:'sq_bank_t' },
+  { type:'minor',  emoji:'☎️', name:'Insider Rumor', id:'whisper' },
+  { type:'bank',   emoji:'🏦', name:'Margin Window', id:'finance' },
   { type:'stock',  stockId:'by' },
-  { type:'event',  emoji:'⚖️', name:'监管风暴',     id:'regulation', n_key:'sq_event_t' },
+  { type:'event',  emoji:'⚖️', name:'Regulation',    id:'regulation' },
   { type:'stock',  stockId:'hs' },
-  { type:'rest',   emoji:'🧘', name:'休息一回合',   desc:'跳过本回合操作，获得 +30 XP', n_key:'sq_rest_t' },
+  { type:'rest',   emoji:'🧘', name:'Meditation',    desc:'Skip this round\'s action, gain +30 XP' },
   { type:'stock',  stockId:'sm' },
-  { type:'event',  emoji:'🌊', name:'外资流入',     id:'foreign_inflow', n_key:'sq_event_t' },
+  { type:'event',  emoji:'🌊', name:'Foreign Inflow',id:'foreign_inflow' },
 ];
 
-// 7×7 ring positions for the 24 squares (row, col, 0-indexed)
 const RING_POS = [];
-for (let c = 0; c <= 6; c++) RING_POS.push({ r:0, c });          // top: 7
-for (let r = 1; r <= 6; r++) RING_POS.push({ r, c:6 });          // right: 6
-for (let c = 5; c >= 0; c--) RING_POS.push({ r:6, c });          // bottom: 6
-for (let r = 5; r >= 1; r--) RING_POS.push({ r, c:0 });          // left: 5
-// total 24 ✓
+for (let c = 0; c <= 6; c++) RING_POS.push({ r:0, c });
+for (let r = 1; r <= 6; r++) RING_POS.push({ r, c:6 });
+for (let c = 5; c >= 0; c--) RING_POS.push({ r:6, c });
+for (let r = 5; r >= 1; r--) RING_POS.push({ r, c:0 });
 
 const KNOWLEDGE = {
-  rate_cut: { title:'📉 利率与股市的关系', body:'<b>利率下降</b>时，未来现金流折现率降低，<b>科技成长股</b>估值上升；加息时反之。这解释了为何美联储加息会让纳斯达克下跌。' },
-  blackswan:{ title:'🦢 黑天鹅与系统性风险', body:'<b>黑天鹅事件</b>是难以预测、影响巨大的极端事件。投资组合应通过分散化降低单一事件冲击。' },
-  foreign_inflow:{ title:'🌊 北向资金的指示意义', body:'通过<b>沪深港通</b>流入的境外资金往往是 A 股涨跌的重要风向标，可作为辅助判断指标。' },
-  regulation:{ title:'🏛️ 政策风险与 A 股特性', body:'A 股受政策影响显著，监管政策出台往往引发板块波动，是中国投资者必须关注的<b>系统性风险</b>。' },
-  stamp_tax:{ title:'💸 印花税与交易成本', body:'每次股票卖出需缴纳 <b>0.1%</b> 印花税，加佣金合计约 0.2%。频繁交易会侵蚀收益，长期持有更划算。' },
-  dividend:{ title:'💰 分红与股息再投资', body:'<b>股息</b>是公司利润分配，长期持有蓝筹可享受复利。茅台、平安等是知名高股息股。' },
-  finance:{ title:'🏦 融资融券与杠杆', body:'融资买入是借钱炒股，<b>放大收益也放大亏损</b>。新手应远离杠杆，先建立稳定收益。' },
-  diversify:{ title:'🌈 分散投资', body:'不把鸡蛋放在一个篮子里——持有多行业股票，单一暴跌不会拖垮组合。<b>ETF</b> 是最简单的分散工具。' },
-  earnings:{ title:'📊 财报与股价', body:'财报<b>超预期</b>→机构增持→股价上涨。财报不及预期则反之。每季度财报日历是必修课。' },
-  whisper:{ title:'⚠️ 内幕消息的陷阱', body:'真正的内幕消息属于违法行为；流传到散户耳中的"消息"往往是被人<b>反向收割</b>的诱饵。' },
-  news_morning:{ title:'📰 信息差与认知优势', body:'每天看财经早报有助于建立<b>市场感觉</b>，但要警惕"听消息炒股"——信息要内化为自己的判断。' },
-  chance_a:{ title:'🃏 行为金融学', body:'人在不确定情况下容易做出非理性决策。<b>损失厌恶</b>让我们害怕亏，<b>过度自信</b>让我们重仓 All-in。' },
+  rate_cut: { title:'📉 Interest Rates & Stocks', body:'When <b>rates drop</b>, discount rates fall, boosting <b>growth stocks</b>. Explains Nasdaq drops during hikes.' },
+  blackswan:{ title:'🦢 Black Swans & Systemic Risk', body:'<b>Black swans</b> are extreme, unpredictable events. Diversification reduces single-event impact.' },
+  foreign_inflow:{ title:'🌊 Foreign Inflow Signals', body:'Northbound funds via <b>Stock Connect</b> are crucial wind vanes for A-shares momentum.' },
+  regulation:{ title:'🏛️ Policy Risk', body:'Regulatory storms can cause sudden sector volatility. Always factor policy shifts into risk.' },
+  stamp_tax:{ title:'💸 Stamp Tax & Costs', body:'Selling incurs a <b>0.1%</b> tax. Frequent trading severely erodes your profits.' },
+  dividend:{ title:'💰 Dividends & Reinvestment', body:'<b>Dividends</b> are profit distributions. Long-term blue-chip holds yield compound interest.' },
+  finance:{ title:'🏦 Margin & Leverage', body:'Margin <b>amplifies both gains and losses</b>. Beginners should strictly avoid leverage.' },
+  diversify:{ title:'🌈 Diversification', body:'Don\'t put all eggs in one basket. <b>ETFs</b> are the simplest tool to mitigate risk.' },
+  whisper:{ title:'⚠️ Insider Traps', body:'Real insider trading is illegal. Rumors reaching retail investors are usually <b>exit liquidity traps</b>.' },
+  news_morning:{ title:'📰 Information Edge', body:'News helps build <b>market sense</b>, but beware trading solely on news headlines.' },
+  chance_a:{ title:'🃏 Behavioral Finance', body:'Uncertainty breeds irrationality. <b>Loss aversion</b> makes us hold losers; <b>overconfidence</b> makes us all-in.' },
 };
 
-// ----------------- AI 对手 -----------------
 const AI_PLAYERS = [
-  { id:'gambler', name:'赌徒王', emoji:'🎰', style:'激进 · 重仓单股', cash:100000, holdings:{}, position:0, totalAsset:100000, color:'var(--red)' },
-  { id:'steady',  name:'稳健叔', emoji:'🐢', style:'保守 · ETF 为主',  cash:100000, holdings:{}, position:0, totalAsset:100000, color:'var(--green)' },
-  { id:'quant',   name:'量化狐', emoji:'🦊', style:'分散 · 数据驱动',  cash:100000, holdings:{}, position:0, totalAsset:100000, color:'var(--purple)' },
+  { id:'gambler', name:'Gambler King', emoji:'🎰', style:'Aggressive · Single Stock', cash:100000, holdings:{}, position:0, totalAsset:100000, color:'var(--red)' },
+  { id:'steady',  name:'Steady Uncle', emoji:'🐢', style:'Conservative · ETFs',       cash:100000, holdings:{}, position:0, totalAsset:100000, color:'var(--green)' },
+  { id:'quant',   name:'Quant Fox',    emoji:'🦊', style:'Diversified · Data-Driven', cash:100000, holdings:{}, position:0, totalAsset:100000, color:'var(--purple)' },
 ];
 
-// ----------------- 游戏状态 -----------------
+const SKILLS = [
+  { id:'val1', line:'value', em:'📚', name:'Value 101', desc:'Read financial reports — Moutai/Ping An gain +3% return.', cost:1 },
+  { id:'val2', line:'value', em:'🛡️', name:'Defensive Layout', desc:'Halve losses on crashes (one-time effect).', cost:2, req:'val1' },
+  { id:'val3', line:'value', em:'👑', name:"Buffett's Hold", desc:'Every 5 rounds holding ETF: +1% cash bonus.', cost:3, req:'val2' },
+  { id:'gr1',  line:'growth', em:'🔬', name:'Tech Sense', desc:'CATL/SMIC volatility yields +20% returns.', cost:1 },
+  { id:'gr2',  line:'growth', em:'🚀', name:'Wave Riding', desc:'Major bullish events double your holding gains.', cost:2, req:'gr1' },
+  { id:'gr3',  line:'growth', em:'🦄', name:'Growth Hunter', desc:'Auto-flag the strongest stock each round.', cost:3, req:'gr2' },
+  { id:'qt1',  line:'quant', em:'📊', name:'Quant Mindset', desc:'Trading fee drops to 0.01%.', cost:1 },
+  { id:'qt2',  line:'quant', em:'🤖', name:'Algo Timing', desc:'See stocks with 30% rise/fall odds at round start.', cost:2, req:'qt1' },
+  { id:'qt3',  line:'quant', em:'🧠', name:'Quant Master', desc:'Halved stamp tax + extra +20 XP each round.', cost:3, req:'qt2' },
+];
+
+const MAJOR_EVENTS = {
+  blackswan: { title:'🦢 Black Swan Strikes!', desc:'An industry leader is investigated for fraud. The whole market dives.', apply: () => applyMarketShock({mt:-0.04, cd:-0.07, by:-0.06, hs:-0.05, pa:-0.03, sm:-0.08}), knowledge:'blackswan' },
+  rate_cut: { title:'📉 Central Bank Cuts Rates', desc:'A surprise 0.25% rate cut boosts liquidity. Growth stocks soar.', apply: () => applyMarketShock({mt:0.02, cd:0.06, by:0.05, hs:0.03, pa:0.04, sm:0.07}), knowledge:'rate_cut' },
+  foreign_inflow: { title:'🌊 Massive Foreign Inflow', desc:'Foreign capital pours 15.8B in today, favoring blue-chips.', apply: () => applyMarketShock({mt:0.05, cd:0.02, by:0.02, hs:0.03, pa:0.04, sm:0.01}), knowledge:'foreign_inflow' },
+  regulation: { title:'⚖️ Regulatory Storm', desc:'New antitrust and data security probes put pressure on related sectors.', apply: () => applyMarketShock({mt:-0.02, cd:-0.03, by:-0.02, hs:-0.02, pa:-0.04, sm:-0.05}), knowledge:'regulation' },
+};
+
+const MINOR_EVENTS = {
+  news_morning: { title:'📰 Morning Post', desc:'Morning news hints at market volatility; semiconductor sector active.', knowledge:'news_morning' },
+  whisper: { title:'☎️ Insider Whisper', desc:'Someone called to say "Buy Moutai!" — usually a trap for retail investors.', knowledge:'whisper' }
+};
+
 const G = {
-  day: 1,
-  maxDay: 30,
-  date: new Date(2025, 0, 2),
+  day: 1, maxDay: 30, date: new Date(2025, 0, 2),
   player: {
-    id:'me', name:'你', emoji:'😎',
-    cash: 100000, holdings: {}, position: 0,
+    id:'me', name:'You', emoji:'😎', cash: 100000, holdings: {}, position: 0,
     xp: 0, sp: 0, unlockedSkills: new Set(),
     yesterdayAsset: 100000, startAsset: 100000,
-    achievements: new Set(),
-    perks: {                  // 充值带来的特权
-      xpMultiplier: 1,        // XP 倍数
-      adFree: false,          // 去广告
-      analytics: false,       // 数据分析报告
-      hardAi: false,          // 高级AI对手
-      newMap: false,          // 新地图（30格）
-      vipExpire: 0,           // VIP 月卡到期回合（0=未购买）
-    },
-    purchases: [],            // 购买记录
-    spent: 0,                 // 累计充值金额
+    perks: { xpMultiplier: 1, adFree: false, analytics: false, hardAi: false, newMap: false, vipExpire: 0 },
+    purchases: [], spent: 0,
   },
   ai: AI_PLAYERS,
-  stocks: STOCKS.map(s => ({
-    ...s,
-    price: s.basePrice,
-    prevClose: s.basePrice,
-    history: [s.basePrice],
-  })),
-  log: [],
-  selectedStock: STOCKS[0].id,
-  pendingTrigger: false,    // 标记落点已经触发了弹窗，下一次才能再次掷骰
-  diceRolling: false,
-  lang: 'zh-CN',            // 当前语言：zh-CN / en / zh-TW
+  stocks: STOCKS.map(s => ({ ...s, price: s.basePrice, prevClose: s.basePrice, history: [s.basePrice] })),
+  log: [], selectedStock: STOCKS[0].id, pendingTrigger: false, diceRolling: false,
+  lang: 'en', // DEFAULT IS ENGLISH
 };
 
-// ============== 多语言 i18n ==============
-// 注：第一参数为 key，第二参数为简体中文兜底文案；en / zh-TW 在 I18N 中定义
+// 2. We keep a simple I18N dictionary only for translating English back to Chinese IF the user clicks '中'.
+// The application natively runs on the hardcoded English texts if no mapping is found.
 const I18N = {
-  'en': {
-// 在 I18N['en'] 内部添加：
-'ev_blackswan_t': '🦢 Black Swan Event',
-'ev_blackswan_d': 'Industry leader accused of fraud. Market in freefall.',
-'ev_rate_cut_t': '📉 Central Bank Rate Cut',
-'ev_rate_cut_d': 'Interest rates dropped by 0.25%. Growth stocks valuation restored.',
-'ev_foreign_inflow_t': '🌊 Foreign Capital Inflow',
-'ev_foreign_inflow_d': 'Northbound capital net inflow of 15.8B today.',
-'ev_regulation_t': '⚖️ Regulatory Storm',
-'ev_regulation_d': 'Strict antitrust policies announced. Tech sector under pressure.',
-'ch_sm_t': '🎯 Precise Entry Tip',
-'ch_sm_d': 'You got a research report: "SMIC" may surge soon. Risk is yours.',
-'ch_sm_a1': 'Trust it. Buy 200 shares of SMIC.',
-'ch_sm_a2': 'Ignore it.',
-'ch_bonus_t': '🎁 Annual Bonus',
-'ch_bonus_d': 'Year-end bonus has arrived!',
-'ch_bonus_a1': 'Collect ¥5,000 cash',
-'ch_med_t': '🚑 Medical Expense',
-'ch_med_d': 'Emergency medical bill of ¥2,500 (Mandatory deduction).',
-'ch_med_a1': 'Pay ¥2,500',
-'ch_course_t': '🎓 Investment Course',
-'ch_course_d': 'Pay ¥1,000 for pro training? Gain +50 XP and 1 SP.',
-'ch_dip_t': '📈 Buy the Dip',
-'ch_dip_d': 'CSI 300 ETF suddenly dropped 2%. Quick entry?',
-'toast_bonus': '+¥5,000 cash received',
-'toast_med': '-¥2,500 medical expense',
-'toast_course': '+50 XP, +1 Skill Point',
-    // ---- Tabs ----
-    'tab_board':'🎲 Board','tab_market':'📈 Market','tab_skill':'🌳 Skills','tab_topup':'💎 Top-up','tab_settle':'🏆 Settle',
-    // ---- Header ----
-    'round_x_of':'Round','of':'/','date':'📅','xp_label':'XP',
-    'lv1':'🌱 Newbie Lv.1','lv2':'📊 Retail Lv.2','lv3':'⭐ Retail Lv.3','lv4':'💼 Manager Lv.4','lv5':'👑 Stock God Lv.5',
-    // ---- Stats bar ----
-    'stat_cash':'CASH','stat_holding':'HOLDINGS','stat_total':'TOTAL ASSETS','stat_daily':"TODAY'S P&L",'stat_ret':'TOTAL RETURN',
-    // ---- Board ----
-    'btn_roll':'🎲 Roll Dice','btn_next':'Next Round ▶',
-    'center_title':'🎲 ACTION CENTER','center_pos':'Your Position','center_delta':"Today's Avg Move",'center_count':'Holdings',
-    'rank_title':'Player Ranking','legend_title':'Square Legend','tip_title':'How to Play',
-    'leg_stock':'Stock','leg_event':'Event','leg_chance':'Chance','leg_bank':'Bank','leg_tax':'Tax','leg_rest':'Rest','leg_start':'Start',
-    'tip_body':'① Click "Roll Dice" to move<br/>② The landing modal lets you trade, pay tax, collect dividends or skip<br/>③ Switch to "📈 Market" anytime to rebalance<br/>④ Major events shift the whole market; chance cards only affect you',
-    'log_empty':'No events yet, roll the dice to begin.','news_empty':'Awaiting first market headline…',
-    // ---- Market ----
-    'mkt_quote':'📊 Real-time Quotes (click to select)','mkt_holdings':'💼 My Holdings','mkt_news':'📰 Today\'s Market News',
-    'trade_quick':'⚡ Quick Trade','no_holdings':'No holdings yet, buy your first stock!',
-    'qty_full':'All-in','qty_half':'Half','need_buy':'Buy cost (incl. fee)','sell_get':'Sell amount (after tax)','remain_cash':'Remaining cash',
-    'btn_buy':'📥 Buy','btn_sell':'📤 Sell','owned_label':'Currently held','fee_note':'Fee 0.03% · Stamp tax 0.1% on sell (~0.13%)',
-    // ---- Skill ----
-    'skill_title':'🌳 Skill Tree','skill_pts':'Skill points','skill_value':'💎 Value Investing','skill_growth':'🚀 Growth Investing','skill_quant':'🤖 Quant Investing',
-    'unlocked_lab':'✓ Unlocked','points':'pts',
-    // ---- Modal common ----
-    'continue':'Continue','goto_market':'Go to Market →','close':'Close','got_it':'Got it','keep_going':'Keep playing',
-    'pos_skip':'⏭️ Skip / custom trade','quick_buy':'📥 Quick buy',
-    // ---- Stocks ----
-    'st_mt':'Kweichow Moutai','st_cd':'CATL','st_by':'BYD','st_hs':'CSI300 ETF','st_pa':'Ping An','st_sm':'SMIC',
-    'sec_consume':'Consumer','sec_neng':'New Energy','sec_ev':'EV','sec_idx':'Index Fund','sec_fin':'Insurance','sec_chip':'Semiconductor',
-    // ---- Topup ----
-    'topup_biz_title':'💼 Business Model','topup_biz_desc':'How does Investment Monopoly make money? Four complementary revenue streams + market sizing.',
-    'topup_play_title':'🎁 Top-up Now · Boost your experience','topup_play_desc':'In-game top-up is for demo only — <b>no real charge</b>, but perks take effect for this session.',
-    'biz_vip':'VIP Subscription','biz_coins':'Virtual Coin Packs','biz_course':'Premium Courses','biz_data':'B2B Data Partnership',
-    'biz_share':'Est. share of revenue','tam':'18-25 yo population','sam':'Investment-curious','som':'Reachable in 3y','arpu':'Paid ARPU','conv':'Paid conversion','rev3y':'3-yr revenue est.',
-    'pkg_starter':'Starter','pkg_adv':'Pro Pack','pkg_vip':'VIP Monthly','pkg_ultra':'Ultimate Pack',
-    'p_cash5k':'+¥5,000 game cash','p_cash30k':'+¥30,000 cash','p_cash50k':'+¥50,000 cash','p_cash200k':'+¥200,000 cash',
-    'p_xp50':'+50 XP','p_xp200':'+200 XP','p_xp500':'+500 XP','p_xp2x':'Permanent 2× XP',
-    'p_sp2':'+2 skill points','p_sp5':'+5 skill points',
-    'p_hardai':'Unlock advanced AI rivals','p_adfree':'Remove all ads','p_analytics':'Data analytics report','p_newmap':'Unlock new map (coming soon)',
-    'pkg_note_starter':'Best first-buy','pkg_note_adv':'Best value','pkg_note_vip':'30-day full perks','pkg_note_ultra':'The ultimate pack',
-    'buy_now':'Buy now','purchased':'Purchased','already_bought':'Already purchased.','vip_status':'My Perks',
-    'pay_title':'Simulated Payment','pay_desc':'Demo only, no real charge.','pay_scan':'Scan with Alipay/WeChat (demo)',
-    'confirm_pay':'✅ Confirm payment','cancel':'Cancel','purchase_log':'Top-up purchase','purchase_success':' purchased, perks active',
-    'vip_tier_diamond':'Diamond user','vip_tier_gold':'Gold VIP','vip_tier_silver':'Silver member','vip_tier_new':'New player','vip_tier_free':'Free user',
-    'vip_sub_diamond':'Enjoying all premium perks','vip_sub_gold':'2× XP + premium AI rivals','vip_sub_silver':'Enjoying pro-pack perks','vip_sub_new':'Tried the starter pack','vip_sub_free':'No perks yet',
-    'times':'time(s)','perk_xp':'2× XP','perk_ai':'Premium AI rivals','perk_ad':'Ad-free','perk_data':'Data report','active':'Active','inactive':'Inactive','view':'Click to view',
-    'topup_disclaimer':'⚠️ A production launch will integrate Alipay/WeChat Pay SDKs and require ICP filing, telecom permits and minor-protection compliance review. This page is a course-project demo.',
-    'analytics_title':'VIP Analytics Report','analytics_desc':'Generated from your behavior this session',
-    'analytics_trades':'Trade count','analytics_events':'Events encountered','analytics_ret':'Current return','analytics_top':"Session's top stock",
-    'analytics_advice_title':'📈 Behavior insights',
-    'advice_low':'Your trading frequency is low — consider acting decisively after major events. ETFs are great beginner tools.',
-    'advice_mid':'Your trading pace is balanced. Watching for event-driven opportunities can boost returns.',
-    'advice_high':'You trade too often — fees and stamp taxes erode returns. Try lengthening holding periods.',
-    // ---- Help ----
-    'help_title':'How to Play','help_sub':'Reach the highest assets in 30 rounds',
-    'lang_label':'Language','round_unit':'',
-    'biz_vip_desc':'Unlock advanced AI rivals, 2× XP, expert tips, ad-free',
-    'biz_coins_desc':'From starter to ultimate packs — game cash and XP boosts',
-    'biz_course_desc':'Premium courses produced with brokerages/funds',
-    'biz_data_desc':'Anonymized behavioral data for brokerages\' investor profiling',
-    'biz_data_price':'Custom B2B','total_spent':'Total spent','bought_count':'Packs bought',
-    'help_pill':'❓ Help',
-    // ---- Board center / live ----
-    'action_center':'🎲 ACTION CENTER','start_pos':'Start','share_unit':'shares','holding_unit':'stocks','live_events':'🗞️ Live Events',
-    'log_empty_dyn':'No events yet — roll the dice to start.','news_empty_dyn':'Awaiting first market headline…',
-    'me_label':'You','me_role':'Your role',
-    // ---- Holdings ----
-    'no_holdings_dyn':'No holdings yet — buy your first stock!','curr_price':'price','today_pnl':'Today',
-    // ---- Trade panel ----
-    'sum_buy':'Buy cost (incl. fee)','sum_sell':'Sell proceeds (after tax)','sum_remain':'Remaining cash',
-    'btn_buy_dyn':'📥 Buy','btn_sell_dyn':'📤 Sell','curr_owned':'Currently held','fee_note_dyn':'Fee 0.03% · stamp tax 0.1% on sells (~0.13%)',
-    'qty_full_dyn':'All-in','qty_half_dyn':'Half',
-    // ---- Skills ----
-    'skill_value_dyn':'💎 Value Investing','skill_growth_dyn':'🚀 Growth Investing','skill_quant_dyn':'🤖 Quant Investing',
-    'unlocked_dyn':'✓ Unlocked','points_dyn':'pts',
-    'sk_val1_n':'Value 101','sk_val1_d':'Read financial reports — Moutai/Ping An gain +3% holding return',
-    'sk_val2_n':'Defensive Layout','sk_val2_d':'Halve losses on crashes (one-time)',
-    'sk_val3_n':"Buffett's Long Hold",'sk_val3_d':'Every 5 rounds holding ETF: +1% cash bonus',
-    'sk_gr1_n':'Tech Sense','sk_gr1_d':'CATL/SMIC volatility yields +20% returns',
-    'sk_gr2_n':'Wave Riding','sk_gr2_d':'Major bullish events double your holding gains',
-    'sk_gr3_n':'Growth Hunter','sk_gr3_d':'Auto-flag the strongest stock each round',
-    'sk_qt1_n':'Quant Mindset','sk_qt1_d':'Trading fee drops to 0.01%',
-    'sk_qt2_n':'Algo Timing','sk_qt2_d':'See stocks with 30% rise/fall odds at round start',
-    'sk_qt3_n':'Quant Master','sk_qt3_d':'Halved stamp tax + extra +20 XP each round',
-    // ---- Toasts / logs ----
-    'enter_qty':'Enter a quantity','no_cash':'❌ Not enough cash','only_owned':'❌ You only hold {n} shares',
-    'buy_log':'Bought {n} {s} @¥{p}, cost ¥{c}','sell_log':'Sold {n} {s} @¥{p}, received ¥{c}',
-    'buy_toast':'✅ Bought {n} shares of {s}','sell_toast':'✅ Sold {n} shares of {s}',
-    'unlocked_toast':'✨ Unlocked: {n}','unlocked_log':'✨ Skill unlocked: {n}',
-    'sk_already':'Already unlocked','sk_need_prev':'❌ Unlock the prerequisite first','sk_no_pts':'❌ Not enough skill points',
-    'game_over':'Game over — see the settle page','wait_event':'Resolve the current square or click "Next round"',
-    'dice_log':'🎲 You rolled {a} + {b} = {t}','pass_start':'🏁 Passed the start tile, dividend +¥3,000',
-    // ---- Square triggers ----
-    'sq_stock_t':'Stock Square','sq_event_t':'Major Event','sq_chance_t':'Chance Card','sq_minor_t':'Minor Event',
-    'sq_bank_t':'Bank','sq_tax_t':'Tax','sq_rest_t':'Rest Stop','sq_start_t':'Start',
-    'sq_quick_buy':'📥 Quick Buy 100 shares','sq_skip':'⏭️ Skip / custom trade','sq_to_market':'Go to Market →',
-    'sq_apply_now':'Apply effect','buy_again':'Buy again',
-    'rec_pos':'Recommended position: {n} shares · ¥{c}','rec_can_buy':"You can buy up to {n} 100-lot batches",
-    'sq_landed_at':'Landed on','sq_stock_intro':'You landed on a <b>stock square</b> — buy/sell now or skip.',
-    'mkt_val':'Market value','buy_100_cost':'Cost of 100 shares','rec_lots':'Suggested position',
-    'sq_quick_buy_100':'📥 Quick buy 100 shares','sq_buy':'📥 Buy','sq_sell_100':'📤 Sell 100 shares',
-    'low_owned':'❌ Not enough shares to sell',
-    'board_buy_log':'📥 Board-buy {s} ×{n}, paid ¥{c}','board_sell_log':'📤 Board-sell {s} ×{n}, received ¥{c}',
-    'major_sub':'Major market event · affects every stock','today_moves':"Today's price moves:",
-    'go_rebalance':'Go to Market to rebalance →','continue_game':'Keep playing',
-    'chance_sub':'Chance card · affects only you','chance_log':'Chance card',
-    'minor_sub':'Minor event · you can choose to skip',
-    'go_market':'Check the market','hold_still':'Stay put','hold_toast':'+10 XP (restraint is a skill)',
-    'div_title':'Dividends paid!','div_sub':'Bank tile · proportional dividends on holdings',
-    'div_total':'Your total holdings value','div_pay':"This round's dividend:",'div_take':'Collect dividend',
-    'div_log':'💰 Dividend day +¥{n}',
-    'fin_title':'Margin Window','fin_sub':'Use leverage? Amplifies gains AND losses',
-    'fin_offer':'The bank offers ¥10,000 short-term margin (repay ¥10,500 in 3 rounds, 5% rate).',
-    'fin_borrow':'Borrow ¥10,000','fin_decline':'Thanks, no.',
-    'fin_log':'🏦 Borrowed +¥10,000 (repay ¥10,500 by round {d})','fin_toast':'+¥10,000 loan received',
-    'tax_title':'Stamp Tax Audit','tax_sub':'Tax tile · forced deduction',
-    'tax_body':'The tax office withholds 0.5% as a capital-gains audit fee.','tax_amt':'Tax:',
-    'tax_accept':'Accept…','tax_log':'💸 Tax -¥{n}',
-    'rest_sub':'Rest tile · skip your action this round','rest_reward':'Reward','rest_ok':'OK',
-    'curr_price_2':'Current price: ','sq_default':'Triggers an event when landed on.',
-    'sq_n':'Tile','sq_unit':'','close':'Close',
-    'last_day':"It's already the last day — settling now",
-    'repay_log':'🏦 Repaid -¥{n}','repay_toast':'-¥{n} loan due, repaid',
-    'round_start':'📅 Round {d} begins',
-    'settle_pending':'🏁 Game not over yet','settle_progress':'Settle screen unlocks after round {m}. Current progress: {d} / {m}',
-    'back_board':'Back to the board',
-    'settle_round_t':'🏆 Round {m} Final Settlement',
-    'final_asset':'Final assets','total_ret':'Total return','best_hold':'Top holding','none':'None','final_rank':'Final rank',
-    'rank_n':'#{n}','play_again':'🔄 Play again','all_players':'📊 All players','learnings':'📚 Knowledge points triggered this game',
-    'reset_toast':'🔄 Game reset',
-    'help_body':"<b>1. Board Play</b><br/>Click 'Roll Dice' to move your pawn around the 24-tile board. <b>Every landing tile pops a dialog</b>:<br/>• <b style='color:#6aa6ff;'>Stock tile</b>: shows the stock and lets you quick-buy 100 shares, custom-trade or skip<br/>• <b style='color:#ff6b81;'>Major event</b>: hits the whole market — black swans, rate cuts, etc.<br/>• <b style='color:#b06bff;'>Chance card</b>: a random mini-event you can opt into<br/>• <b style='color:#3ddc97;'>Bank tile</b>: dividends or short-term margin offer<br/>• <b style='color:#ff9b57;'>Tax tile</b>: auto-deducts a small tax + teaches you the concept<br/>• <b style='color:#5ee2e6;'>Rest tile</b>: skip your action, gain XP<br/><br/><b>2. Market Page</b><br/>Switch to '📈 Market' anytime to actively rebalance — <b>holdings / cash / total / today's P&L</b> all refresh in real time.<br/><br/><b>3. Round flow</b><br/>After resolving the tile, click 'Next Round ▶' to advance prices and AI moves. After 30 rounds the game settles automatically.<br/><br/><b>4. Skill Tree</b><br/>Each round earns 1 skill point. Three lines (value / growth / quant) shape your style.",
-    'welcome_title':'Welcome to Investment Monopoly!','welcome_sub':'A board × real-market financial education game',
-    'welcome_body':"v2.2 highlights:<br/>✅ <b>Landing-tile dialogs</b>: every tile pops a tailored trade/event window<br/>✅ <b>Live market updates</b>: top stats sync the moment you trade<br/>✅ <b>Board events shift the market</b>: black swans / rate cuts rewrite all prices<br/>✅ <b>Minor events allow no-action</b>: hold still and still earn XP<br/>✅ <b>💎 Top-up tab</b>: business model + 4 packs <b>repurchasable</b>, every buy adds real cash<br/>✅ <b>Multi-language</b>: 中 / EN / 繁 toggle in the header, syncs the whole UI",
-    'start_play':'Start playing 🎲',
-    'welcome_log':'🎮 Welcome to Investment Monopoly — starting cash ¥100,000','first_roll':"🎲 Click 'Roll Dice' to start round 1",
-    // ---- Settle ----
-    'settle_title':'🏁 Final Results',
-    'settle_you':'You',
-    'settle_won':'🎉 Champion! You ranked #{n}',
-    'settle_lost':'You ranked #{n} — try again!',
-    'settle_again':'Play again','settle_close':'Close',
-    'settle_xp':'Total XP','settle_ret':'Total Return','settle_unl':'Skills Unlocked',
-    'settle_advice_t':'📚 Knowledge insights',
-  },
-  'zh-TW': {
-    'tab_board':'🎲 棋盤','tab_market':'📈 市場','tab_skill':'🌳 技能樹','tab_topup':'💎 充值','tab_settle':'🏆 結算',
+  'zh-CN': {
+    'tab_board':'🎲 棋盘','tab_market':'📈 市场','tab_skill':'🌳 技能树','tab_topup':'💎 充值','tab_settle':'🏆 结算',
     'round_x_of':'第','of':'/','date':'📅','xp_label':'XP',
-    'lv1':'🌱 韭菜 Lv.1','lv2':'📊 散戶 Lv.2','lv3':'⭐ 散戶 Lv.3','lv4':'💼 基金經理 Lv.4','lv5':'👑 股神 Lv.5',
-    'stat_cash':'可用現金','stat_holding':'持倉市值','stat_total':'總資產','stat_daily':'今日盈虧','stat_ret':'累計收益率',
-    'btn_roll':'🎲 擲骰子','btn_next':'下一回合 ▶',
-    'center_title':'🎲 行動中心','center_pos':'你的位置','center_delta':'本日股票變動','center_count':'持倉數量',
-    'rank_title':'玩家排名','legend_title':'格子圖例','tip_title':'玩法提示',
-    'leg_stock':'股票','leg_event':'重大事件','leg_chance':'機會卡','leg_bank':'銀行','leg_tax':'稅務','leg_rest':'休息','leg_start':'起點',
-    'tip_body':'① 點擊「擲骰子」讓小人移動<br/>② 落點彈窗會提示買賣、繳稅、領錢或可選小事件<br/>③ 可隨時切到「📈 市場」主動調整持倉<br/>④ 重大事件影響全市場價格，機會卡只影響你',
-    'log_empty':'暫無事件，擲骰子開始遊戲','news_empty':'等待第一條市場動態…',
-    'mkt_quote':'📊 即時行情（點擊選擇）','mkt_holdings':'💼 我的持倉','mkt_news':'📰 今日市場動態',
-    'trade_quick':'⚡ 快速交易','no_holdings':'暫無持倉，去買入第一隻股票吧',
-    'qty_full':'全倉','qty_half':'半倉','need_buy':'買入需 (含佣金)','sell_get':'賣出可得 (扣稅)','remain_cash':'剩餘現金',
-    'btn_buy':'📥 買入','btn_sell':'📤 賣出','owned_label':'目前持倉','fee_note':'佣金 0.03% · 賣出印花稅 0.1%（合計約 0.13%）',
-    'skill_title':'🌳 技能樹','skill_pts':'可用技能點','skill_value':'💎 價值投資線','skill_growth':'🚀 成長投資線','skill_quant':'🤖 量化投資線',
-    'unlocked_lab':'✓ 已解鎖','points':'點',
-    'continue':'繼續遊戲','goto_market':'前往市場 →','close':'關閉','got_it':'明白了','keep_going':'繼續',
-    'pos_skip':'⏭️ 跳過 / 自訂交易','quick_buy':'📥 快速買入',
-    'st_mt':'貴州茅台','st_cd':'寧德時代','st_by':'比亞迪','st_hs':'滬深300ETF','st_pa':'中國平安','st_sm':'中芯國際',
-    'sec_consume':'消費白馬','sec_neng':'新能源','sec_ev':'新能源車','sec_idx':'指數基金','sec_fin':'金融保險','sec_chip':'半導體',
-    'topup_biz_title':'💼 商業模式 · Business Model','topup_biz_desc':'投資大富翁如何盈利？四條互補的收入線 + 教育市場 TAM 估算',
-    'topup_play_title':'🎁 立即充值 · 提升你的投資體驗','topup_play_desc':'本遊戲內充值僅作演示，<b>實際不會扣款</b>，但權益會真實生效到本局遊戲中。',
-    'biz_vip':'VIP 訂閱','biz_coins':'虛擬金幣包','biz_course':'金融課程內購','biz_data':'B 端數據合作',
-    'biz_share':'預計占總收入','tam':'中國 18-25 歲人群','sam':'有投資意願','som':'3 年可達用戶','arpu':'付費 ARPU','conv':'付費轉化率','rev3y':'3 年預期收入',
-    'pkg_starter':'體驗包','pkg_adv':'進階包','pkg_vip':'VIP 月卡','pkg_ultra':'至尊包',
-    'p_cash5k':'+¥5,000 遊戲現金','p_cash30k':'+¥30,000 現金','p_cash50k':'+¥50,000 現金','p_cash200k':'+¥200,000 現金',
-    'p_xp50':'+50 XP','p_xp200':'+200 XP','p_xp500':'+500 XP','p_xp2x':'永久雙倍 XP',
-    'p_sp2':'+2 技能點','p_sp5':'+5 技能點',
-    'p_hardai':'解鎖高級 AI 對手','p_adfree':'去除全部廣告','p_analytics':'數據分析報告','p_newmap':'解鎖新地圖（待開放）',
-    'pkg_note_starter':'新手首充推薦','pkg_note_adv':'性價比最高','pkg_note_vip':'30 天內全部福利','pkg_note_ultra':'至尊享受',
-    'buy_now':'立即購買','purchased':'已購買','already_bought':'本套餐已購買過','vip_status':'我的特權狀態',
-    'pay_title':'模擬支付','pay_desc':'演示支付流程，不會實際扣款','pay_scan':'請使用支付寶/微信掃碼（演示）',
-    'confirm_pay':'✅ 確認支付','cancel':'取消','purchase_log':'充值購買','purchase_success':'購買成功，權益已生效',
-    'vip_tier_diamond':'鑽石用戶','vip_tier_gold':'黃金 VIP','vip_tier_silver':'白銀會員','vip_tier_new':'新手玩家','vip_tier_free':'普通用戶',
-    'vip_sub_diamond':'享受全部至尊特權','vip_sub_gold':'雙倍XP + 高級AI對手','vip_sub_silver':'已享受進階福利','vip_sub_new':'已嘗試體驗包','vip_sub_free':'尚未開通任何特權',
-    'times':'次','perk_xp':'雙倍 XP','perk_ai':'高級 AI 對手','perk_ad':'去除廣告','perk_data':'數據分析報告','active':'已激活','inactive':'未激活','view':'點擊查看',
-    'topup_disclaimer':'⚠️ 真實上線後將接入支付寶 / 微信支付 SDK，需要完成 ICP 備案、增值電信業務許可證及未成年人保護合規審查。當前為<strong>課程項目原型演示</strong>。',
-    'analytics_title':'VIP 數據分析報告','analytics_desc':'基於你本局行為生成',
-    'analytics_trades':'交易次數','analytics_events':'遭遇事件','analytics_ret':'當前收益率','analytics_top':'本局最強股',
-    'analytics_advice_title':'📈 行為畫像建議',
-    'advice_low':'你的交易頻率偏低，可以考慮在重大事件後果斷布局；ETF 是新手的好工具。',
-    'advice_mid':'你的交易節奏適中，關注事件型機會能進一步提升收益。',
-    'advice_high':'你的交易過於頻繁，每次買賣都會被佣金和印花稅侵蝕收益。試著拉長持有週期。',
-    'help_title':'玩法說明','help_sub':'30 回合內挑戰最高資產',
-    'lang_label':'語言','round_unit':'回合',
-    'biz_vip_desc':'解鎖高級AI對手、雙倍XP、專家點評、無廣告',
-    'biz_coins_desc':'體驗包到豪華包，提供模擬資金注入和 XP 加成',
-    'biz_course_desc':'跟券商/基金合作出品的進階課程，按知識點解鎖',
-    'biz_data_desc':'把脫敏的玩家行為數據賣給券商做投資者畫像研究',
-    'biz_data_price':'機構定制','total_spent':'累計充值','bought_count':'已購套餐',
-    'help_pill':'❓ 玩法說明',
-    'action_center':'🎲 行動中心','start_pos':'起點','share_unit':'股','holding_unit':'隻','live_events':'🗞️ 即時事件流',
-    'log_empty_dyn':'暫無事件，擲骰子開始遊戲','news_empty_dyn':'等待第一條市場動態…',
-    'me_label':'你','me_role':'你的角色',
-    'no_holdings_dyn':'暫無持倉，去買入第一隻股票吧','curr_price':'現價','today_pnl':'今日',
-    'sum_buy':'買入需 (含佣金)','sum_sell':'賣出可得 (扣稅)','sum_remain':'剩餘現金',
-    'btn_buy_dyn':'📥 買入','btn_sell_dyn':'📤 賣出','curr_owned':'目前持倉','fee_note_dyn':'佣金 0.03% · 賣出印花稅 0.1%（合計約 0.13%）',
-    'qty_full_dyn':'全倉','qty_half_dyn':'半倉',
-    'skill_value_dyn':'💎 價值投資線','skill_growth_dyn':'🚀 成長投資線','skill_quant_dyn':'🤖 量化投資線',
-    'unlocked_dyn':'✓ 已解鎖','points_dyn':'點',
-    'sk_val1_n':'價值入門','sk_val1_d':'解鎖財報閱讀，茅台、平安持有期收益 +3%',
-    'sk_val2_n':'防禦型佈局','sk_val2_d':'下跌時持倉損失減半（一次性）',
-    'sk_val3_n':'巴菲特式長持','sk_val3_d':'每持有 ETF 滿 5 回合，獎勵 1% 現金',
-    'sk_gr1_n':'科技嗅覺','sk_gr1_d':'寧德、中芯波動幅度增加 +20% 收益',
-    'sk_gr2_n':'風口衝浪','sk_gr2_d':'重大利好事件中持倉收益翻倍',
-    'sk_gr3_n':'成長股獵手','sk_gr3_d':'每回合自動識別本日最強勢股，給出提示',
-    'sk_qt1_n':'量化思維','sk_qt1_d':'交易佣金降至 0.01%',
-    'sk_qt2_n':'演算法擇時','sk_qt2_d':'每回合開始可看到本日 30% 概率漲跌的股票',
-    'sk_qt3_n':'量化大師','sk_qt3_d':'解鎖後印花稅減半，每回合多獲得 +20 XP',
-    'enter_qty':'請輸入數量','no_cash':'❌ 現金不足','only_owned':'❌ 持倉只有 {n} 股',
-    'buy_log':'買入 {s} {n} 股 @¥{p}，花費 ¥{c}','sell_log':'賣出 {s} {n} 股 @¥{p}，到帳 ¥{c}',
-    'buy_toast':'✅ 買入 {s} {n} 股','sell_toast':'✅ 賣出 {s} {n} 股',
-    'unlocked_toast':'✨ 解鎖：{n}','unlocked_log':'✨ 解鎖技能：{n}',
-    'sk_already':'已解鎖過了','sk_need_prev':'❌ 需要先解鎖前置技能','sk_no_pts':'❌ 技能點不足',
-    'game_over':'遊戲已結束，請查看結算','wait_event':'先處理上一格事件，或點「下一回合」',
-    'dice_log':'🎲 你擲出 {a} + {b} = {t}','pass_start':'🏁 經過起點，分紅 +¥3,000',
-    'sq_stock_t':'股票格','sq_event_t':'重大事件','sq_chance_t':'機會卡','sq_minor_t':'小事件',
-    'sq_bank_t':'銀行','sq_tax_t':'稅務','sq_rest_t':'休息','sq_start_t':'起點',
-    'sq_quick_buy':'📥 快速買入 100 股','sq_skip':'⏭️ 跳過 / 自訂交易','sq_to_market':'前往市場 →',
-    'sq_apply_now':'套用效果','buy_again':'再次購買',
-    'rec_pos':'推薦持倉：{n} 股 · ¥{c}','rec_can_buy':'你最多可分 {n} 個 100 股批次買入',
-    'sq_landed_at':'停在','sq_stock_intro':'落點為<b>股票格</b>，可以選擇立刻買入/賣出，或者跳過本次操作。',
-    'mkt_val':'市值','buy_100_cost':'買 100 股需','rec_lots':'建議倉位',
-    'sq_quick_buy_100':'📥 快速買入 100 股','sq_buy':'📥 買入','sq_sell_100':'📤 賣出 100 股',
-    'low_owned':'❌ 持倉不足',
-    'board_buy_log':'📥 棋盤買入 {s} {n} 股 ¥{c}','board_sell_log':'📤 棋盤賣出 {s} {n} 股 ¥{c}',
-    'major_sub':'重大市場事件 · 影響全部股票','today_moves':'本日股價變動：',
-    'go_rebalance':'前往市場調倉 →','continue_game':'繼續遊戲',
-    'chance_sub':'機會卡 · 僅影響你','chance_log':'機會卡',
-    'minor_sub':'小事件 · 你可以選擇不操作',
-    'go_market':'去市場看看行情','hold_still':'按兵不動','hold_toast':'+10 XP（克制也是能力）',
-    'div_title':'分紅到帳！','div_sub':'銀行格 · 持倉股票按比例分紅',
-    'div_total':'你的持倉總市值','div_pay':'本次股息分紅：','div_take':'收下分紅',
-    'div_log':'💰 分紅日 +¥{n}',
-    'fin_title':'融資窗口','fin_sub':'是否使用槓桿？放大收益也放大風險',
-    'fin_offer':'銀行願意給你 ¥10,000 短期融資額度（三回合後歸還 ¥10,500，利率 5%）。',
-    'fin_borrow':'借 ¥10,000','fin_decline':'謝謝，不用了',
-    'fin_log':'🏦 借款 +¥10,000（{d} 回合歸還 ¥10,500）','fin_toast':'+¥10,000 借款到帳',
-    'tax_title':'印花稅稽查','tax_sub':'稅務格 · 強制扣款',
-    'tax_body':'稅務部門按 0.5% 抽取一次資本利得稽查稅。','tax_amt':'扣稅：',
-    'tax_accept':'認了…','tax_log':'💸 繳稅 -¥{n}',
-    'rest_sub':'休息格 · 跳過本回合操作','rest_reward':'獎勵','rest_ok':'好的',
-    'curr_price_2':'當前價：','sq_default':'在棋盤格上著陸時會觸發對應事件。',
-    'sq_n':'第','sq_unit':'格','close':'關閉',
-    'last_day':'已經是最後一天，進入結算',
-    'repay_log':'🏦 還款 -¥{n}','repay_toast':'-¥{n} 借款到期歸還',
-    'round_start':'📅 第 {d} 回合開始',
-    'settle_pending':'🏁 遊戲尚未結束','settle_progress':'完成 {m} 回合後將自動跳轉到此頁面，目前進度 {d} / {m}',
-    'back_board':'返回棋盤',
-    'settle_round_t':'🏆 第 {m} 回合結算',
-    'final_asset':'最終資產','total_ret':'總收益率','best_hold':'最佳持倉','none':'無','final_rank':'最終排名',
-    'rank_n':'第 {n} 名','play_again':'🔄 再玩一局','all_players':'📊 全部玩家','learnings':'📚 本局觸發的金融知識點',
-    'reset_toast':'🔄 遊戲已重置',
-    'help_body':'<b>1. 棋盤玩法</b><br/>點「擲骰子」讓你的小人在 24 格棋盤上移動。<b>每個落點都會彈出對應視窗</b>：<br/>• <b style="color:#6aa6ff;">股票格</b>：彈出該股行情，可一鍵買入 100 股 / 自訂倉位 / 跳過<br/>• <b style="color:#ff6b81;">重大事件</b>：影響全部股票價格，例如黑天鵝、降息<br/>• <b style="color:#b06bff;">機會卡</b>：隨機的小劇情，可以選擇是否參與<br/>• <b style="color:#3ddc97;">銀行格</b>：分紅到帳或融資借款<br/>• <b style="color:#ff9b57;">稅務格</b>：自動扣稅並顯示知識點<br/>• <b style="color:#5ee2e6;">休息格</b>：跳過本格操作，獎勵 XP<br/><br/><b>2. 市場玩法</b><br/>切到「📈 市場」可以隨時主動買賣任意股票，所有<b>持倉 / 現金 / 總資產 / 今日盈虧</b>會即時刷新。<br/><br/><b>3. 回合推進</b><br/>做完所有操作後點「下一回合 ▶」推動股價、AI 行動並進入下一天。30 回合後自動結算。<br/><br/><b>4. 技能樹</b><br/>每完成一回合獲得 1 技能點，三條技能線分別對應價值/成長/量化策略。',
-    'welcome_title':'歡迎來到投資大富翁！','welcome_sub':'融合棋盤 × 真實市場的金融教育遊戲',
-    'welcome_body':'本次更新（v2.2）的關鍵改動：<br/>✅ <b>骰子落點彈窗</b>：每個棋盤格都會彈出對應交易/事件視窗<br/>✅ <b>市場操作即時刷新</b>：買賣股票後頂部指標立刻同步<br/>✅ <b>棋盤事件直接影響行情</b>：黑天鵝、降息會改寫全市場價格<br/>✅ <b>小事件可不操作</b>：早報 / 內幕消息允許「按兵不動」獎勵 XP<br/>✅ <b>💎 充值Tab</b>：商業模式展示 + 4 套餐<b>可重複購買</b>，每次都會真實加現金<br/>✅ <b>多語言切換</b>：右上角 中 / EN / 繁，全屏 UI 同步切換',
-    'start_play':'開始遊戲 🎲',
-    'welcome_log':'🎮 歡迎來到投資大富翁，初始資金 ¥100,000','first_roll':'🎲 點擊「擲骰子」開始第 1 回合',
-    'settle_title':'🏁 最終結算','settle_you':'你',
-    'settle_won':'🎉 冠軍！你排第 {n} 名','settle_lost':'你排第 {n} 名 — 再來一局！',
-    'settle_again':'再玩一局','settle_close':'關閉',
-    'settle_xp':'累計 XP','settle_ret':'總收益率','settle_unl':'已解鎖技能',
-    'settle_advice_t':'📚 知識點建議',
-  },
+    'stat_cash':'可用现金','stat_holding':'持仓市值','stat_total':'总资产','stat_daily':"今日盈亏",'stat_ret':'累计收益率',
+    'rank_title':'玩家排名','legend_title':'格子图例','tip_title':'玩法提示',
+    'leg_stock':'股票','leg_event':'重大事件','leg_chance':'机会卡','leg_bank':'银行','leg_tax':'税务','leg_rest':'休息','leg_start':'起点',
+    'tip_body':'① 点击「掷骰子」让小人移动<br/>② 落点弹窗会提示买卖、缴税、领钱或可选小事件<br/>③ 可以随时切到「📈 市场」主动调整持仓<br/>④ 重大事件影响全市场价格，机会卡只影响你',
+    'mkt_quote':'📊 实时行情（点击选择）','mkt_holdings':'💼 我的持仓','mkt_news':'📰 今日市场动态',
+    'trade_quick':'⚡ 快速交易',
+    'skill_title':'🌳 技能树','skill_pts':'可用技能点',
+    'topup_biz_title':'💼 商业模式 · Business Model', 'topup_biz_desc':'投资大富翁如何盈利？四条互补的收入线 + 教育市场 TAM 估算',
+    'biz_vip':'VIP 订阅','biz_coins':'虚拟金币包','biz_course':'金融课程内购','biz_data':'B 端数据合作',
+    'biz_share':'预计占总收入','tam':'中国 18-25 岁人群','sam':'有投资意愿','som':'3 年可达用户','arpu':'付费 ARPU','conv':'付费转化率','rev3y':'3 年预期收入',
+    'topup_play_title':'🎁 立即充值 · 提升你的投资体验', 'topup_play_desc':'本游戏内充值仅作演示，<b>实际不会扣款</b>，但权益会真实生效到本局游戏中。',
+    'total_spent':'累计充值', 'bought_count':'已购套餐', 'vip_status':'👜 我的特权状态',
+    'topup_disclaimer':'⚠️ 真实上线后将接入支付宝 / 微信支付 SDK，需要完成 ICP 备案、增值电信业务许可证及未成年人保护合规审查。当前为<strong>课程项目原型演示</strong>。',
+    'help_pill':'❓ 玩法说明',
+  }
 };
 
-function t(key, defZh) {
-  if (!key) return defZh || '';
-  const lang = (G && G.lang) || 'zh-CN';
-  if (lang === 'zh-CN') return defZh != null ? defZh : key;
+function t(key, fallbackText) {
+  if (!key) return fallbackText || '';
+  const lang = (G && G.lang) || 'en';
+  if (lang === 'en') return fallbackText != null ? fallbackText : key; // Native English bypasses the dictionary
   const tab = I18N[lang];
   if (tab && tab[key] != null) return tab[key];
-  return defZh != null ? defZh : key;  // fallback
+  return fallbackText != null ? fallbackText : key;
 }
 
-// 把页面里所有 [data-i18n="key"] 按当前语言替换
-// 第一次执行时把原始中文缓存到 dataset.zh，避免来回切换时 textContent 已被覆盖
 function applyI18nToStaticHtml() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     if (!key) return;
-    if (el.dataset.zh == null) el.dataset.zh = el.innerHTML;
-    el.innerHTML = t(key, el.dataset.zh);
+    if (el.dataset.en == null) el.dataset.en = el.innerHTML;
+    el.innerHTML = t(key, el.dataset.en);
   });
 }
 
 function setLang(lang) {
   G.lang = lang;
   applyI18nToStaticHtml();
-  // 重新渲染 PACKAGES 因为它的 perks 字符串在创建时就已绑定
-  rebuildPackages();
   render();
   if ($('#page-topup').classList.contains('active')) renderTopup();
-  toast(lang === 'en' ? '🌐 Language: English' : lang === 'zh-TW' ? '🌐 語言：繁體中文' : '🌐 语言：简体中文', 'blue');
+  toast(lang === 'en' ? '🌐 Language: English' : '🌐 语言已切换为：中文', 'blue');
 }
 
-// 因为 PACKAGES 的字符串在初始化时调用 t() 求值，切换语言后需要重新构建
-// 重要：fallback 必须永远是简体中文原文，否则切回 zh-CN 会显示前一次切换后的语言
-function rebuildPackages() {
-  PACKAGES.forEach(pkg => {
-    if (pkg.id === 'starter') {
-      pkg.perks = [ t('p_cash5k','+¥5,000 游戏现金'), t('p_xp50','+50 XP') ];
-      pkg.name = t('pkg_starter','体验包');
-      pkg.note = t('pkg_note_starter','新手首充推荐');
-    } else if (pkg.id === 'advanced') {
-      pkg.perks = [ t('p_cash30k','+¥30,000 现金'), t('p_xp200','+200 XP'), t('p_sp2','+2 技能点') ];
-      pkg.name = t('pkg_adv','进阶包');
-      pkg.note = t('pkg_note_adv','性价比最高');
-    } else if (pkg.id === 'vip') {
-      pkg.perks = [ t('p_cash50k','+¥50,000 现金'), t('p_xp2x','永久双倍 XP'), t('p_hardai','解锁高级 AI 对手'), t('p_adfree','去除全部广告') ];
-      pkg.name = t('pkg_vip','VIP 月卡');
-      pkg.note = t('pkg_note_vip','30 天内全部福利');
-    } else if (pkg.id === 'ultra') {
-      pkg.perks = [ t('p_cash200k','+¥200,000 现金'), t('p_xp500','+500 XP'), t('p_sp5','+5 技能点'), t('p_analytics','数据分析报告'), t('p_newmap','解锁新地图（待开放）'), t('p_adfree','永久去广告') ];
-      pkg.name = t('pkg_ultra','至尊包');
-      pkg.note = t('pkg_note_ultra','至尊享受');
-    }
-  });
-}
-
-// ----------------- 工具 -----------------
 const $ = sel => document.querySelector(sel);
 const $$ = sel => document.querySelectorAll(sel);
 
 function fmt(n, dec=0) {
   if (n === undefined || n === null || isNaN(n)) return '—';
-  const s = Math.abs(n).toLocaleString('zh-CN', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  const s = Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
   return (n < 0 ? '-' : '') + s;
 }
 function pct(n, dec=2) { return (n>=0?'+':'') + n.toFixed(dec) + '%'; }
@@ -1519,12 +1203,7 @@ function totalAsset(player, stocks=G.stocks) {
   }
   return v;
 }
-function holdingValue(player) {
-  return totalAsset(player) - player.cash;
-}
-function dailyPnl() {
-  return totalAsset(G.player) - G.player.yesterdayAsset;
-}
+function holdingValue(player) { return totalAsset(player) - player.cash; }
 
 function log(msg, type='') {
   G.log.unshift({ msg, type, day: G.day });
@@ -1546,31 +1225,9 @@ function toast(msg, kind='') {
   setTimeout(() => el.remove(), 3000);
 }
 
-function floatText(elem, text, color) {
-  const r = elem.getBoundingClientRect();
-  const span = document.createElement('div');
-  span.className = 'float-text';
-  span.style.color = color;
-  span.style.left = (r.left + r.width/2 - 30) + 'px';
-  span.style.top = (r.top + 10) + 'px';
-  span.style.position = 'fixed';
-  span.style.zIndex = 999;
-  span.textContent = text;
-  document.body.appendChild(span);
-  setTimeout(() => span.remove(), 1400);
-}
-
-// ============== 渲染 ==============
 function render() {
-  renderHeader();
-  renderStats();
-  renderBoard();
-  renderRanking();
-  renderMarket();
-  renderHoldings();
-  renderTradePanel();
-  renderSkill();
-  renderMarketNews();
+  renderHeader(); renderStats(); renderBoard(); renderRanking();
+  renderMarket(); renderHoldings(); renderTradePanel(); renderSkill(); renderMarketNews();
 }
 
 function renderHeader() {
@@ -1583,11 +1240,11 @@ function renderHeader() {
 }
 
 function levelLabel(xp) {
-  if (xp >= 950) return t('lv5','👑 股神 Lv.5');
-  if (xp >= 800) return t('lv4','💼 基金经理 Lv.4');
-  if (xp >= 500) return t('lv3','⭐ 散户 Lv.3');
-  if (xp >= 200) return t('lv2','📊 散户 Lv.2');
-  return t('lv1','🌱 韭菜 Lv.1');
+  if (xp >= 950) return '👑 Stock God Lv.5';
+  if (xp >= 800) return '💼 Manager Lv.4';
+  if (xp >= 500) return '⭐ Retail Lv.3';
+  if (xp >= 200) return '📊 Retail Lv.2';
+  return '🌱 Newbie Lv.1';
 }
 
 function renderStats() {
@@ -1609,17 +1266,13 @@ function renderStats() {
 
 function pulseStat(id) {
   const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.remove('flash');
-  void el.offsetWidth;
-  el.classList.add('flash');
+  if (!el) return; el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
 }
 
-// -------- 棋盘 --------
+// -------- 棋盘 (Board) --------
 function renderBoard() {
   const grid = $('#boardGrid');
   grid.innerHTML = '';
-  // squares
   SQUARES.forEach((sq, idx) => {
     const pos = RING_POS[idx];
     const div = document.createElement('div');
@@ -1627,12 +1280,10 @@ function renderBoard() {
     if (idx === G.player.position) div.classList.add('current');
     div.style.gridRow = (pos.r+1);
     div.style.gridColumn = (pos.c+1);
-    let emoji, name;
+    let emoji = sq.emoji, name = sq.name;
     if (sq.type === 'stock') {
       const st = STOCKS.find(s => s.id === sq.stockId);
       emoji = st.emoji; name = st.name;
-    } else {
-      emoji = sq.emoji; name = sq.name;
     }
     div.innerHTML = `
       <div class="sq-idx">${idx}</div>
@@ -1643,32 +1294,31 @@ function renderBoard() {
     div.onclick = () => showSquareInfo(idx);
     grid.appendChild(div);
   });
-  // center
+  
   const center = document.createElement('div');
   center.className = 'board-center';
   center.style.gridRow = '2 / 7';
   center.style.gridColumn = '2 / 7';
   center.innerHTML = `
-    <div class="center-title">${t('action_center','🎲 行动中心')}</div>
+    <div class="center-title">🎲 ACTION CENTER</div>
     <div class="dice-area">
       <div class="die" id="die1">?</div>
       <div class="die" id="die2">?</div>
-      <button class="btn" id="rollBtn">${t('btn_roll','🎲 掷骰子')}</button>
-      <button class="btn ghost" id="nextBtn">${t('btn_next','下一回合 ▶')}</button>
+      <button class="btn" id="rollBtn">🎲 Roll Dice</button>
+      <button class="btn ghost" id="nextBtn">Next Round ▶</button>
     </div>
     <div class="center-status">
-      <div class="row"><span>${t('center_pos','你的位置')}</span><b id="centerPos">${t('start_pos','起点')}</b></div>
-      <div class="row"><span>${t('center_delta','本日股票变动')}</span><b id="centerDelta">—</b></div>
-      <div class="row"><span>${t('center_count','持仓数量')}</span><b id="centerHoldCount">0 ${t('holding_unit','只')}</b></div>
+      <div class="row"><span>Your Position</span><b id="centerPos">Start</b></div>
+      <div class="row"><span>Today's Avg Move</span><b id="centerDelta">—</b></div>
+      <div class="row"><span>Active Holdings</span><b id="centerHoldCount">0 stocks</b></div>
     </div>
     <div class="news-box">
-      <h4>${t('live_events','🗞️ 实时事件流')}</h4>
+      <h4>🗞️ Live Event Log</h4>
       <div id="logBox"></div>
     </div>
   `;
   grid.appendChild(center);
 
-  // place pawns
   const allPlayers = [G.player, ...G.ai];
   allPlayers.forEach(p => {
     const slot = document.querySelector(`[data-pawns="${p.position}"]`);
@@ -1681,12 +1331,11 @@ function renderBoard() {
     }
   });
 
-  // wire up
   $('#rollBtn').onclick = rollDice;
   $('#nextBtn').onclick = endTurn;
   $('#centerPos').textContent = squareDisplayName(G.player.position);
   $('#centerDelta').innerHTML = todayDeltaText();
-  $('#centerHoldCount').textContent = Object.values(G.player.holdings).filter(v => v > 0).length + ' ' + t('holding_unit','只');
+  $('#centerHoldCount').textContent = Object.values(G.player.holdings).filter(v => v > 0).length + ' stocks';
   renderLog();
 }
 
@@ -1700,7 +1349,6 @@ function squareDisplayName(idx) {
 }
 
 function todayDeltaText() {
-  // average daily move of all stocks
   const moves = G.stocks.map(s => (s.price - s.prevClose)/s.prevClose * 100);
   const avg = moves.reduce((a,b)=>a+b,0)/moves.length;
   return `<span class="${avg>=0?'pos':'neg'}">${pct(avg)}</span>`;
@@ -1711,27 +1359,23 @@ function renderLog() {
   if (!box) return;
   box.innerHTML = G.log.slice(0, 30).map(l =>
     `<div class="log-item ${l.type}"><span class="time">D${l.day}</span><span>${l.msg}</span></div>`
-  ).join('') || `<div class="log-item"><span>${t('log_empty_dyn','暂无事件，掷骰子开始游戏')}</span></div>`;
+  ).join('') || `<div class="log-item"><span>No events yet — roll the dice to start.</span></div>`;
 }
 
-// -------- 排名 --------
+// -------- 排名 (Ranking) --------
 function renderRanking() {
-  const all = [
-    { ...G.player, label:t('me_label','你'), isMe:true },
-    ...G.ai.map(a => ({ ...a, label:a.name }))
-  ].map(p => ({ ...p, ta: totalAsset(p) }))
-   .sort((a,b) => b.ta - a.ta);
+  const all = [ { ...G.player, isMe:true }, ...G.ai ].map(p => ({ ...p, ta: totalAsset(p) })).sort((a,b) => b.ta - a.ta);
   const html = all.map((p, i) => `
     <div class="ranking-row ${p.isMe?'me':''}">
       <div class="av">${i===0?'🥇':i===1?'🥈':i===2?'🥉':'🏅'}</div>
-      <div class="nm">${p.emoji} ${p.label}<small>${p.style||t('me_role','你的角色')}</small></div>
+      <div class="nm">${p.emoji} ${p.name}<small>${p.style||'You'}</small></div>
       <div class="vl">¥${fmt(p.ta,0)}</div>
     </div>
   `).join('');
   $('#rankingList').innerHTML = html;
 }
 
-// -------- 市场 --------
+// -------- 市场 (Market) --------
 function renderMarket() {
   const list = $('#stockList');
   if (!list) return;
@@ -1743,9 +1387,7 @@ function renderMarket() {
       <div class="stock-row ${sel}" data-stock="${s.id}">
         <div class="sym">${s.emoji}</div>
         <div class="nm">${s.name}<small>${s.sector}</small></div>
-        <svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none">
-          ${sparkline(s.history)}
-        </svg>
+        <svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none">${sparkline(s.history)}</svg>
         <div class="pr">¥${fmt(s.price, s.price<10?2:1)}<small class="${cls}">${pct(change)}</small></div>
       </div>
     `;
@@ -1783,14 +1425,14 @@ function renderHoldings() {
     items.push(`
       <div class="holdings-row">
         <span style="font-size:18px;">${s.emoji}</span>
-        <div>${s.name}<small style="color:var(--text-2); display:block; font-size:11px;">${qty} ${t('share_unit','股')} · ${t('curr_price','现价')} ¥${fmt(s.price, s.price<10?2:1)}</small></div>
+        <div>${s.name}<small style="color:var(--text-2); display:block; font-size:11px;">${qty} shares · price ¥${fmt(s.price, s.price<10?2:1)}</small></div>
         <div style="font-variant-numeric:tabular-nums;">¥${fmt(mv,0)}</div>
-        <div class="pnl ${change>=0?'pos':'neg'}">${pct(change)}<small style="color:var(--text-2); display:block; font-weight:500;">${t('today_pnl','今日')}${dailyPnl>=0?'+':'-'}¥${fmt(Math.abs(dailyPnl),0)}</small></div>
+        <div class="pnl ${change>=0?'pos':'neg'}">${pct(change)}<small style="color:var(--text-2); display:block; font-weight:500;">Today ${dailyPnl>=0?'+':'-'}¥${fmt(Math.abs(dailyPnl),0)}</small></div>
       </div>
     `);
   }
   box.innerHTML = items.length ? items.join('') :
-    `<div style="padding:20px; text-align:center; color:var(--text-2); font-size:12px;">${t('no_holdings_dyn','暂无持仓，去买入第一只股票吧')}</div>`;
+    `<div style="padding:20px; text-align:center; color:var(--text-2); font-size:12px;">No holdings yet — buy your first stock!</div>`;
 }
 
 function renderTradePanel() {
@@ -1816,17 +1458,17 @@ function renderTradePanel() {
       <button data-q="100">100</button>
       <button data-q="500">500</button>
       <button data-q="1000">1000</button>
-      <button data-max>${t('qty_full_dyn','全仓')}</button>
-      <button data-half>${t('qty_half_dyn','半仓')}</button>
+      <button data-max>All-in</button>
+      <button data-half>Half</button>
     </div>
     <div class="trade-summary" id="summary"></div>
     <div class="trade-buttons">
-      <button class="btn green" id="buyBtn">${t('btn_buy_dyn','📥 买入')}</button>
-      <button class="btn red"   id="sellBtn">${t('btn_sell_dyn','📤 卖出')}</button>
+      <button class="btn green" id="buyBtn">📥 Buy</button>
+      <button class="btn red"   id="sellBtn">📤 Sell</button>
     </div>
     <div style="font-size:11px; color:var(--text-2); margin-top:8px;">
-      ${t('curr_owned','当前持仓')}：<b style="color:var(--text);">${owned}</b> ${t('share_unit','股')}<br/>
-      ${t('fee_note_dyn','佣金 0.03% · 卖出印花税 0.1%（合计约 0.13%）')}
+      Currently Held: <b style="color:var(--text);">${owned}</b> shares<br/>
+      Fee 0.03% · stamp tax 0.1% on sells (~0.13% total)
     </div>
   `;
   const qty = $('#qty');
@@ -1838,7 +1480,6 @@ function renderTradePanel() {
     b.onclick = () => {
       if (b.dataset.q) qty.value = b.dataset.q;
       else if (b.dataset.max !== undefined) {
-        // max buy 100-share lots
         const lots = Math.floor(G.player.cash / (s.price * 1.0003) / 100);
         qty.value = Math.max(100, lots * 100);
       } else if (b.dataset.half !== undefined) {
@@ -1858,43 +1499,34 @@ function updateTradeSummary(s) {
   const buyCost = q * s.price * 1.0003;
   const sellGet = q * s.price * 0.9987;
   $('#summary').innerHTML = `
-    <div class="row"><span>${t('sum_buy','买入需 (含佣金)')}</span><b>¥${fmt(buyCost,2)}</b></div>
-    <div class="row"><span>${t('sum_sell','卖出可得 (扣税)')}</span><b>¥${fmt(sellGet,2)}</b></div>
-    <div class="row"><span>${t('sum_remain','剩余现金')}</span><b>¥${fmt(G.player.cash,0)}</b></div>
+    <div class="row"><span>Buy Cost (incl. fee)</span><b>¥${fmt(buyCost,2)}</b></div>
+    <div class="row"><span>Sell Proceeds (after tax)</span><b>¥${fmt(sellGet,2)}</b></div>
+    <div class="row"><span>Remaining Cash</span><b>¥${fmt(G.player.cash,0)}</b></div>
   `;
 }
 
-// 简易模板：把 {x} 替换为 args[x]
-function fmtT(key, defZh, args) {
-  let s = t(key, defZh);
-  if (args) for (const k in args) s = s.split('{'+k+'}').join(args[k]);
-  return s;
-}
-
 function doTrade(action, stock, qty) {
-  if (!qty || qty <= 0) { toast(t('enter_qty','请输入数量'), 'red'); return; }
+  if (!qty || qty <= 0) { toast('❌ Enter a valid quantity', 'red'); return; }
   qty = Math.floor(qty);
   if (action === 'buy') {
     const cost = qty * stock.price * 1.0003;
-    if (cost > G.player.cash) { toast(t('no_cash','❌ 现金不足'), 'red'); return; }
+    if (cost > G.player.cash) { toast('❌ Not enough cash', 'red'); return; }
     G.player.cash -= cost;
     G.player.holdings[stock.id] = (G.player.holdings[stock.id] || 0) + qty;
     addXp(15);
-    log(fmtT('buy_log','买入 {s} {n} 股 @¥{p}，花费 ¥{c}',{s:stock.name,n:qty,p:fmt(stock.price,2),c:fmt(cost,0)}), 'up');
-    toast(fmtT('buy_toast','✅ 买入 {s} {n} 股',{s:stock.name,n:qty}), 'green');
-    pulseStat('statCash'); pulseStat('statHolding');
+    log(`📥 Bought ${qty} shares of ${stock.name} @¥${fmt(stock.price,2)}, cost ¥${fmt(cost,0)}`, 'up');
+    toast(`✅ Bought ${qty} shares of ${stock.name}`, 'green');
   } else {
     const owned = G.player.holdings[stock.id] || 0;
-    if (qty > owned) { toast(fmtT('only_owned','❌ 持仓只有 {n} 股',{n:owned}), 'red'); return; }
+    if (qty > owned) { toast(`❌ You only hold ${owned} shares`, 'red'); return; }
     const get = qty * stock.price * 0.9987;
     G.player.cash += get;
     G.player.holdings[stock.id] = owned - qty;
     addXp(15);
-    log(fmtT('sell_log','卖出 {s} {n} 股 @¥{p}，到账 ¥{c}',{s:stock.name,n:qty,p:fmt(stock.price,2),c:fmt(get,0)}), 'down');
-    toast(fmtT('sell_toast','✅ 卖出 {s} {n} 股',{s:stock.name,n:qty}), 'blue');
-    pulseStat('statCash'); pulseStat('statHolding');
+    log(`📤 Sold ${qty} shares of ${stock.name} @¥${fmt(stock.price,2)}, received ¥${fmt(get,0)}`, 'down');
+    toast(`✅ Sold ${qty} shares of ${stock.name}`, 'blue');
   }
-  // 立即同步全屏
+  pulseStat('statCash'); pulseStat('statHolding');
   render();
 }
 
@@ -1903,37 +1535,15 @@ function renderMarketNews() {
   if (!box) return;
   box.innerHTML = G.log.filter(l => l.type==='event' || l.type==='up' || l.type==='down').slice(0, 20).map(l =>
     `<div class="log-item ${l.type}"><span class="time">D${l.day}</span><span>${l.msg}</span></div>`
-  ).join('') || `<div class="log-item"><span>${t('news_empty_dyn','等待第一条市场动态…')}</span></div>`;
+  ).join('') || `<div class="log-item"><span>Awaiting first market headline…</span></div>`;
 }
 
-// ============== 技能树 ==============
-const SKILLS = [
-  // 价值线
-  { id:'val1', line:'value', em:'📚', name:'价值入门', desc:'解锁财报阅读，茅台、平安持有期收益 +3%', cost:1 },
-  { id:'val2', line:'value', em:'🛡️', name:'防御型布局', desc:'下跌时持仓损失减半（一次性）', cost:2, req:'val1' },
-  { id:'val3', line:'value', em:'👑', name:'巴菲特式长持', desc:'每持有 ETF 满 5 回合，奖励 1% 现金', cost:3, req:'val2' },
-  // 成长线
-  { id:'gr1',  line:'growth', em:'🔬', name:'科技嗅觉', desc:'宁德、中芯波动幅度增加 +20% 收益', cost:1 },
-  { id:'gr2',  line:'growth', em:'🚀', name:'风口冲浪', desc:'重大利好事件中持仓收益翻倍', cost:2, req:'gr1' },
-  { id:'gr3',  line:'growth', em:'🦄', name:'成长股猎手', desc:'每回合自动识别本日最强势股，给出提示', cost:3, req:'gr2' },
-  // 量化线
-  { id:'qt1',  line:'quant', em:'📊', name:'量化思维', desc:'交易佣金降至 0.01%', cost:1 },
-  { id:'qt2',  line:'quant', em:'🤖', name:'算法择时', desc:'每回合开始可看到本日 30% 概率涨跌的股票', cost:2, req:'qt1' },
-  { id:'qt3',  line:'quant', em:'🧠', name:'量化大师', desc:'解锁后印花税减半，每回合多获得 +20 XP', cost:3, req:'qt2' },
-];
-
+// ============== 技能树 (Skill Tree) ==============
 function renderSkill() {
   $('#spVal').textContent = G.player.sp;
   const grid = $('#skillGrid');
   if (!grid) return;
-  const lines = {
-    value: t('skill_value_dyn','💎 价值投资线'),
-    growth: t('skill_growth_dyn','🚀 成长投资线'),
-    quant: t('skill_quant_dyn','🤖 量化投资线'),
-  };
-  // 技能名/描述都按 id 走 i18n
-  const skillLabel = id => t('sk_'+id+'_n', SKILLS.find(x=>x.id===id).name);
-  const skillDesc = id => t('sk_'+id+'_d', SKILLS.find(x=>x.id===id).desc);
+  const lines = { value: '💎 Value Investing', growth: '🚀 Growth Investing', quant: '🤖 Quant Investing' };
   grid.innerHTML = Object.entries(lines).map(([key, label]) => {
     const skills = SKILLS.filter(s => s.line === key);
     return `
@@ -1945,51 +1555,48 @@ function renderSkill() {
           const cls = unlocked ? 'unlocked' : (reqOk ? 'available' : 'locked');
           return `<div class="skill-node ${cls}" data-skill="${sk.id}">
             <span class="em">${sk.em}</span>
-            <div class="nm">${skillLabel(sk.id)}<small>${skillDesc(sk.id)}</small></div>
-            <span class="cost">${unlocked?t('unlocked_dyn','✓ 已解锁'):sk.cost+' '+t('points_dyn','点')}</span>
+            <div class="nm">${sk.name}<small>${sk.desc}</small></div>
+            <span class="cost">${unlocked?'✓ Unlocked':sk.cost+' pts'}</span>
           </div>`;
         }).join('')}
       </div>
     `;
   }).join('');
-  grid.querySelectorAll('[data-skill]').forEach(el => {
-    el.onclick = () => unlockSkill(el.dataset.skill);
-  });
+  grid.querySelectorAll('[data-skill]').forEach(el => { el.onclick = () => unlockSkill(el.dataset.skill); });
 }
 
 function unlockSkill(id) {
   const sk = SKILLS.find(x => x.id === id);
-  const skName = t('sk_'+id+'_n', sk.name);
-  if (G.player.unlockedSkills.has(id)) { toast(t('sk_already','已解锁过了'), 'blue'); return; }
-  if (sk.req && !G.player.unlockedSkills.has(sk.req)) { toast(t('sk_need_prev','❌ 需要先解锁前置技能'), 'red'); return; }
-  if (G.player.sp < sk.cost) { toast(t('sk_no_pts','❌ 技能点不足'), 'red'); return; }
+  if (G.player.unlockedSkills.has(id)) { toast('Already unlocked', 'blue'); return; }
+  if (sk.req && !G.player.unlockedSkills.has(sk.req)) { toast('❌ Unlock the prerequisite first', 'red'); return; }
+  if (G.player.sp < sk.cost) { toast('❌ Not enough skill points', 'red'); return; }
   G.player.sp -= sk.cost;
   G.player.unlockedSkills.add(id);
   addXp(20);
-  log(fmtT('unlocked_log','✨ 解锁技能：{n}',{n:skName}), 'event');
-  toast(fmtT('unlocked_toast','✨ 解锁：{n}',{n:skName}), 'green');
+  log(`✨ Skill unlocked: ${sk.name}`, 'event');
+  toast(`✨ Unlocked: ${sk.name}`, 'green');
   render();
 }
 
-// ============== 棋盘交互（核心） ==============
+// ============== 棋盘交互 (Board Interaction) ==============
 function rollDice() {
   if (G.diceRolling) return;
-  if (G.day > G.maxDay) { toast(t('game_over','游戏已结束，请查看结算'), 'blue'); return; }
-  if (G.pendingTrigger) { toast(t('wait_event','先处理上一格事件，或点「下一回合」'), 'blue'); return; }
+  if (G.day > G.maxDay) { toast('Game over — see the settle page', 'blue'); return; }
+  if (G.pendingTrigger) { toast('Resolve the current square or click "Next round"', 'blue'); return; }
   G.diceRolling = true;
   const die1 = $('#die1'), die2 = $('#die2');
   if (die1) { die1.classList.add('rolling'); die2.classList.add('rolling'); }
   const r1 = 1 + Math.floor(Math.random()*6);
   const r2 = 1 + Math.floor(Math.random()*6);
   let n = 0;
-  const t = setInterval(() => {
+  const timer = setInterval(() => {
     n++;
     if (die1) { die1.textContent = 1 + Math.floor(Math.random()*6); die2.textContent = 1 + Math.floor(Math.random()*6); }
     if (n >= 8) {
-      clearInterval(t);
+      clearInterval(timer);
       if (die1) { die1.textContent = r1; die2.textContent = r2; die1.classList.remove('rolling'); die2.classList.remove('rolling'); }
       const total = r1 + r2;
-      log(fmtT('dice_log','🎲 你掷出 {a} + {b} = {t}',{a:r1,b:r2,t:total}), '');
+      log(`🎲 You rolled ${r1} + ${r2} = ${total}`, '');
       movePlayer(G.player, total, true);
       G.diceRolling = false;
     }
@@ -2003,7 +1610,7 @@ function movePlayer(player, steps, triggerSquare) {
     pos = (pos + 1) % SQUARES.length;
     if (pos === 0 && player.id === 'me') {
       player.cash += 3000;
-      log(t('pass_start','🏁 经过起点，分红 +¥3,000'), 'up');
+      log('🏁 Passed the start tile, dividend +¥3,000', 'up');
       pulseStat('statCash');
     }
   }
@@ -2042,11 +1649,7 @@ function showModal(html, actions) {
   });
 }
 function hideModal() { $('#modalBack').classList.remove('show'); }
-
-function closeModalAndContinue() {
-  G.pendingTrigger = false;
-  // 不自动结束回合，玩家可以决定继续掷骰还是去市场操作
-}
+function closeModalAndContinue() { G.pendingTrigger = false; }
 
 // 股票格 - 弹窗买卖
 function triggerStockSquare(sq) {
@@ -2054,30 +1657,29 @@ function triggerStockSquare(sq) {
   const change = (s.price - s.prevClose) / s.prevClose * 100;
   const owned = G.player.holdings[s.id] || 0;
   const lots = Math.floor(G.player.cash / (s.price * 1.0003) / 100);
-  const recommend = Math.max(100, Math.floor(lots / 4) * 100); // 推荐买入 1/4 仓
+  const recommend = Math.max(100, Math.floor(lots / 4) * 100);
+  
+  const kn = KNOWLEDGE.diversify;
   const html = `
-    <div class="head"><span class="em">${s.emoji}</span><div><h2>${t('sq_landed_at','停在')} ${s.name}</h2><p>${s.sector} · ${t('curr_price','现价')} ¥${fmt(s.price, s.price<10?2:1)} <span class="${change>=0?'pos':'neg'}">${pct(change)}</span></p></div></div>
+    <div class="head"><span class="em">${s.emoji}</span><div><h2>Landed on ${s.name}</h2><p>${s.sector} · Price ¥${fmt(s.price, s.price<10?2:1)} <span class="${change>=0?'pos':'neg'}">${pct(change)}</span></p></div></div>
     <div class="body">
-      ${t('sq_stock_intro','落点为<b>股票格</b>，可以选择立刻买入/卖出，或者跳过本次操作。')}<br/><br/>
+      You landed on a <b>stock square</b> — buy/sell now or skip.<br/><br/>
       <div class="price-list">
-        <div class="item"><span>${t('curr_owned','当前持仓')}</span><b>${owned} ${t('share_unit','股')}</b></div>
-        <div class="item"><span>${t('mkt_val','市值')}</span><b>¥${fmt(owned*s.price,0)}</b></div>
-        <div class="item"><span>${t('buy_100_cost','买 100 股需')}</span><b>¥${fmt(100*s.price*1.0003,0)}</b></div>
-        <div class="item"><span>${t('rec_lots','建议仓位')}</span><b>${Math.floor(recommend)} ${t('share_unit','股')}</b></div>
+        <div class="item"><span>Currently held</span><b>${owned} shares</b></div>
+        <div class="item"><span>Market value</span><b>¥${fmt(owned*s.price,0)}</b></div>
+        <div class="item"><span>Cost of 100 shares</span><b>¥${fmt(100*s.price*1.0003,0)}</b></div>
+        <div class="item"><span>Suggested pos.</span><b>${Math.floor(recommend)} shares</b></div>
       </div>
-      <div class="knowledge"><b>${KNOWLEDGE.diversify.title}</b><br/>${KNOWLEDGE.diversify.body}</div>
+      <div class="knowledge"><b>${kn.title}</b><br/>${kn.body}</div>
     </div>
   `;
   const buyAmt = Math.max(100, Math.floor(recommend/100)*100);
   showModal(html, [
-    { label:`${t('sq_quick_buy_100','📥 快速买入 100 股')} (¥${fmt(100*s.price*1.0003,0)})`, cls:'green', fn:() => { quickTrade('buy', s, 100); closeModalAndContinue(); } },
-    { label:`${t('sq_buy','📥 买入')} ${buyAmt} ${t('share_unit','股')} (¥${fmt(buyAmt*s.price*1.0003,0)})`, cls:'green', fn:() => { quickTrade('buy', s, buyAmt); closeModalAndContinue(); } },
-    ...(owned>=100 ? [{ label:`${t('sq_sell_100','📤 卖出 100 股')}`, cls:'red', fn:() => { quickTrade('sell', s, 100); closeModalAndContinue(); } }] : []),
-    { label:t('sq_skip','⏭️ 跳过 / 自定义交易'), cls:'ghost', fn:() => {
-        closeModalAndContinue();
-        G.selectedStock = s.id;
-        switchTab('market');
-        renderMarket(); renderTradePanel();
+    { label:`📥 Quick Buy 100 shares (¥${fmt(100*s.price*1.0003,0)})`, cls:'green', fn:() => { quickTrade('buy', s, 100); closeModalAndContinue(); } },
+    { label:`📥 Buy ${buyAmt} shares (¥${fmt(buyAmt*s.price*1.0003,0)})`, cls:'green', fn:() => { quickTrade('buy', s, buyAmt); closeModalAndContinue(); } },
+    ...(owned>=100 ? [{ label:`📤 Sell 100 shares`, cls:'red', fn:() => { quickTrade('sell', s, 100); closeModalAndContinue(); } }] : []),
+    { label:'⏭️ Skip / custom trade', cls:'ghost', fn:() => {
+        closeModalAndContinue(); G.selectedStock = s.id; switchTab('market'); renderMarket(); renderTradePanel();
       } },
   ]);
 }
@@ -2085,53 +1687,25 @@ function triggerStockSquare(sq) {
 function quickTrade(action, stock, qty) {
   if (action === 'buy') {
     const cost = qty * stock.price * 1.0003;
-    if (cost > G.player.cash) { toast(t('no_cash','❌ 现金不足'), 'red'); return; }
+    if (cost > G.player.cash) { toast('❌ Not enough cash', 'red'); return; }
     G.player.cash -= cost;
     G.player.holdings[stock.id] = (G.player.holdings[stock.id] || 0) + qty;
     addXp(15);
-    log(fmtT('board_buy_log','📥 棋盘买入 {s} {n} 股 ¥{c}',{s:stock.name,n:qty,c:fmt(cost,0)}), 'up');
-    toast(fmtT('buy_toast','✅ 买入 {s} {n} 股',{s:stock.name,n:qty}), 'green');
+    log(`📥 Board-buy ${stock.name} ×${qty}, paid ¥${fmt(cost,0)}`, 'up');
+    toast(`✅ Bought ${qty} shares of ${stock.name}`, 'green');
   } else {
     const owned = G.player.holdings[stock.id] || 0;
-    if (qty > owned) { toast(t('low_owned','❌ 持仓不足'), 'red'); return; }
+    if (qty > owned) { toast('❌ Not enough shares to sell', 'red'); return; }
     const get = qty * stock.price * 0.9987;
     G.player.cash += get;
     G.player.holdings[stock.id] = owned - qty;
     addXp(15);
-    log(fmtT('board_sell_log','📤 棋盘卖出 {s} {n} 股 ¥{c}',{s:stock.name,n:qty,c:fmt(get,0)}), 'down');
-    toast(fmtT('sell_toast','✅ 卖出 {s} {n} 股',{s:stock.name,n:qty}), 'blue');
+    log(`📤 Board-sell ${stock.name} ×${qty}, received ¥${fmt(get,0)}`, 'down');
+    toast(`✅ Sold ${qty} shares of ${stock.name}`, 'blue');
   }
   pulseStat('statCash'); pulseStat('statHolding');
   render();
 }
-
-// 重大事件 - 影响全市场
-const MAJOR_EVENTS = {
-  blackswan: {
-    title:'🦢 黑天鹅突袭！',
-    desc:'某行业龙头突发财务造假被立案调查，A 股全面跳水。',
-    apply: () => applyMarketShock({mt:-0.04, cd:-0.07, by:-0.06, hs:-0.05, pa:-0.03, sm:-0.08}),
-    knowledge:'blackswan'
-  },
-  rate_cut: {
-    title:'📉 央行宣布降息',
-    desc:'隔夜央行突然降准 0.25%，市场流动性宽松，成长股迎来估值修复。',
-    apply: () => applyMarketShock({mt:0.02, cd:0.06, by:0.05, hs:0.03, pa:0.04, sm:0.07}),
-    knowledge:'rate_cut'
-  },
-  foreign_inflow: {
-    title:'🌊 北向资金大举流入',
-    desc:'今日北向资金净流入 158 亿，外资偏爱大消费蓝筹和金融股。',
-    apply: () => applyMarketShock({mt:0.05, cd:0.02, by:0.02, hs:0.03, pa:0.04, sm:0.01}),
-    knowledge:'foreign_inflow'
-  },
-  regulation: {
-    title:'⚖️ 监管风暴来袭',
-    desc:'监管部门加强行业反垄断与数据安全审查，相关板块承压。',
-    apply: () => applyMarketShock({mt:-0.02, cd:-0.03, by:-0.02, hs:-0.02, pa:-0.04, sm:-0.05}),
-    knowledge:'regulation'
-  },
-};
 
 function triggerMajorEvent(sq) {
   const ev = MAJOR_EVENTS[sq.id];
@@ -2141,17 +1715,18 @@ function triggerMajorEvent(sq) {
     const c = (s.price - s.prevClose)/s.prevClose * 100;
     return `<div class="item"><span>${s.emoji} ${s.name}</span><b class="${c>=0?'pos':'neg'}">${pct(c)}</b></div>`;
   }).join('');
+  
   showModal(`
-    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${ev.title}</h2><p>${t('major_sub','重大市场事件 · 影响全部股票')}</p></div></div>
+    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${ev.title}</h2><p>Major market event · affects every stock</p></div></div>
     <div class="body">
       ${ev.desc}<br/><br/>
-      <b>${t('today_moves','本日股价变动：')}</b>
+      <b>Today's price moves:</b>
       <div class="price-list">${priceChanges}</div>
       <div class="knowledge"><b>${k.title}</b><br/>${k.body}</div>
     </div>
   `, [
-    { label:t('go_rebalance','前往市场调仓 →'), cls:'blue', fn:() => { switchTab('market'); closeModalAndContinue(); }},
-    { label:t('continue_game','继续游戏'), cls:'ghost', fn: closeModalAndContinue },
+    { label:'Go to Market to rebalance →', cls:'blue', fn:() => { switchTab('market'); closeModalAndContinue(); }},
+    { label:'Keep playing', cls:'ghost', fn: closeModalAndContinue },
   ]);
   log(`⚡ ${ev.title}`, 'event');
 }
@@ -2165,145 +1740,124 @@ function applyMarketShock(shocks) {
   }
 }
 
-// 机会卡 - 玩家专属事件
-const CHANCE_CARDS = [
-  { weight:2, title:'🎯 精准入场提示',  desc:'你拿到了一份券商研报，提示「中芯国际」短期可能拉升，但风险自担。',
-    actions:(close)=>[
-      { label:'信它一把，自动买入 200 股中芯', cls:'green', fn:()=>{ const s=G.stocks.find(x=>x.id==='sm'); quickTrade('buy', s, 200); close(); } },
-      { label:'我不信小道消息，跳过', cls:'ghost', fn: close }
-    ]},
-  { weight:2, title:'🎁 公司年终奖',  desc:'年终奖到账！',
-    actions:(close)=>[
-      { label:'领取 ¥5,000 现金', cls:'green', fn:()=>{ G.player.cash += 5000; toast('+¥5,000 现金到账','green'); pulseStat('statCash'); close(); } },
-    ]},
-  { weight:1, title:'🚑 突发医疗费',  desc:'家人生病需要支付医疗费用 ¥2,500（强制扣款）。',
-    actions:(close)=>[
-      { label:'确认支付 ¥2,500', cls:'red', fn:()=>{ G.player.cash -= 2500; toast('-¥2,500 现金支出','red'); pulseStat('statCash'); close(); } },
-    ]},
-  { weight:1, title:'🎓 投资课程优惠', desc:'是否花 ¥1,000 报名「证券投资分析师」课程？完成后获得 +50 XP 并获 1 技能点。',
-    actions:(close)=>[
-      { label:'报名 ¥1,000', cls:'blue', fn:()=>{ if(G.player.cash<1000){ toast('现金不足','red'); close(); return;} G.player.cash-=1000; addXp(50); G.player.sp+=1; toast('+50 XP, +1 技能点','green'); close(); } },
-      { label:'下次再说', cls:'ghost', fn: close }
-    ]},
-  { weight:2, title:'📈 抄底机会', desc:'盘中突发，沪深300ETF 短时跳水 2%，是否抄底？',
-    actions:(close)=>[
-      { label:'抄底 1000 股 ETF', cls:'green', fn:()=>{ const s=G.stocks.find(x=>x.id==='hs'); s.price = +(s.price*0.98).toFixed(2); quickTrade('buy', s, 1000); close(); } },
-      { label:'再观察一下，跳过', cls:'ghost', fn: close }
-    ]},
-];
-
-function triggerChance(sq) {
-  // 加权随机
-  const total = CHANCE_CARDS.reduce((a,c)=>a+c.weight,0);
-  let r = Math.random()*total;
-  let card = CHANCE_CARDS[0];
-  for (const c of CHANCE_CARDS) { if ((r-=c.weight) <= 0) { card = c; break; } }
-  showModal(`
-    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${card.title}</h2><p>${t('chance_sub','机会卡 · 仅影响你')}</p></div></div>
-    <div class="body">
-      ${card.desc}
-      <div class="knowledge"><b>${KNOWLEDGE.chance_a.title}</b><br/>${KNOWLEDGE.chance_a.body}</div>
-    </div>
-  `, card.actions(closeModalAndContinue));
-  log(`🃏 ${t('chance_log','机会卡')}：${card.title}`, 'event');
+function getChanceCards(close) {
+  return [
+    { weight:2, id: 'tip', title: '🎯 Precision Entry Tip', desc: 'A leaked report suggests SMIC will surge. Risk is yours.',
+      actions: [
+        { label: 'Auto-buy 200 shares SMIC', cls:'green', fn:()=>{ const s=G.stocks.find(x=>x.id==='sm'); quickTrade('buy', s, 200); close(); } },
+        { label: 'Ignore rumors', cls:'ghost', fn: close }
+      ]},
+    { weight:2, id: 'bonus', title: '🎁 Annual Bonus', desc: 'Your annual bonus arrived!',
+      actions: [ { label: 'Claim ¥5,000 cash', cls:'green', fn:()=>{ G.player.cash += 5000; toast('+¥5,000','green'); pulseStat('statCash'); close(); } } ]},
+    { weight:1, id: 'med', title: '🚑 Medical Emergency', desc: 'Family emergency requires a ¥2,500 payment (mandatory).',
+      actions: [ { label: 'Pay ¥2,500', cls:'red', fn:()=>{ G.player.cash -= 2500; toast('-¥2,500','red'); pulseStat('statCash'); close(); } } ]},
+    { weight:1, id: 'course', title: '🎓 Investment Course', desc: 'Pay ¥1,000 for an analyst course? Earn +50 XP and 1 Skill Point.',
+      actions: [
+        { label: 'Enroll for ¥1,000', cls:'blue', fn:()=>{ if(G.player.cash<1000){ toast('Not enough cash','red'); close(); return;} G.player.cash-=1000; addXp(50); G.player.sp+=1; toast('+50 XP, +1 PTS','green'); close(); } },
+        { label: 'Next time', cls:'ghost', fn: close }
+      ]},
+    { weight:2, id: 'dip', title: '📈 Buy the Dip', desc: 'Intraday flash crash: ETF drops 2%. Buy the dip?',
+      actions: [
+        { label: 'Buy 1000 shares ETF', cls:'green', fn:()=>{ const s=G.stocks.find(x=>x.id==='hs'); s.price = +(s.price*0.98).toFixed(2); quickTrade('buy', s, 1000); close(); } },
+        { label: 'Wait and see', cls:'ghost', fn: close }
+      ]},
+  ];
 }
 
-// 小事件 - 可选不行动
-const MINOR_EVENTS = {
-  news_morning: {
-    title:'📰 财经早报',
-    desc:'早间财经新闻提示：今日市场预计震荡偏强，半导体板块或有异动。',
-    knowledge:'news_morning'
-  },
-  whisper: {
-    title:'☎️ 内幕小道消息',
-    desc:'有人给你打电话说"赶紧买茅台"——这种"消息"往往让散户当韭菜。',
-    knowledge:'whisper'
-  }
-};
+function triggerChance(sq) {
+  const cards = getChanceCards(closeModalAndContinue);
+  const total = cards.reduce((a,c)=>a+c.weight,0);
+  let r = Math.random()*total;
+  let card = cards[0];
+  for (const c of cards) { if ((r-=c.weight) <= 0) { card = c; break; } }
+  
+  const kn = KNOWLEDGE.chance_a;
+  showModal(`
+    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${card.title}</h2><p>Chance card · affects only you</p></div></div>
+    <div class="body">
+      ${card.desc}
+      <div class="knowledge"><b>${kn.title}</b><br/>${kn.body}</div>
+    </div>
+  `, card.actions);
+  log(`🃏 Chance card: ${card.title}`, 'event');
+}
 
 function triggerMinor(sq) {
   const ev = MINOR_EVENTS[sq.id];
   const k = KNOWLEDGE[ev.knowledge];
   showModal(`
-    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${ev.title}</h2><p>${t('minor_sub','小事件 · 你可以选择不操作')}</p></div></div>
+    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${ev.title}</h2><p>Minor event · you can choose to skip</p></div></div>
     <div class="body">
       ${ev.desc}<br/><br/>
       <div class="knowledge"><b>${k.title}</b><br/>${k.body}</div>
     </div>
   `, [
-    { label:t('go_market','去市场看看行情'), cls:'blue', fn:()=>{ switchTab('market'); closeModalAndContinue(); }},
-    { label:t('hold_still','按兵不动'), cls:'ghost', fn:()=>{ addXp(10); toast(t('hold_toast','+10 XP（克制也是能力）'),'blue'); closeModalAndContinue(); }},
+    { label:'Check the market', cls:'blue', fn:()=>{ switchTab('market'); closeModalAndContinue(); }},
+    { label:'Stay put', cls:'ghost', fn:()=>{ addXp(10); toast('+10 XP (restraint is a skill)','blue'); closeModalAndContinue(); }},
   ]);
   log(`💬 ${ev.title}`, '');
 }
 
-// 银行格
 function triggerBank(sq) {
   if (sq.id === 'dividend') {
-    // 分红 = 持仓总市值 0.5%
     const hv = holdingValue(G.player);
     const div = Math.floor(hv * 0.005);
     G.player.cash += div;
+    const k = KNOWLEDGE.dividend;
     showModal(`
-      <div class="head"><span class="em">💰</span><div><h2>${t('div_title','分红到账！')}</h2><p>${t('div_sub','银行格 · 持仓股票按比例分红')}</p></div></div>
+      <div class="head"><span class="em">💰</span><div><h2>Dividends paid!</h2><p>Bank tile · proportional dividends on holdings</p></div></div>
       <div class="body">
-        ${t('div_total','你的持仓总市值')} ¥${fmt(hv,0)}<br/>
-        ${t('div_pay','本次股息分红：')}<b style="color:var(--green)">+¥${fmt(div,0)}</b>
-        <div class="knowledge"><b>${KNOWLEDGE.dividend.title}</b><br/>${KNOWLEDGE.dividend.body}</div>
+        Your total holdings value ¥${fmt(hv,0)}<br/>
+        This round's dividend: <b style="color:var(--green)">+¥${fmt(div,0)}</b>
+        <div class="knowledge"><b>${k.title}</b><br/>${k.body}</div>
       </div>
-    `, [{ label:t('div_take','收下分红'), cls:'green', fn: closeModalAndContinue }]);
-    log(fmtT('div_log','💰 分红日 +¥{n}',{n:fmt(div,0)}), 'up');
+    `, [{ label:'Collect dividend', cls:'green', fn: closeModalAndContinue }]);
+    log(`💰 Dividend day +¥${fmt(div,0)}`, 'up');
     pulseStat('statCash');
   } else if (sq.id === 'finance') {
+    const k = KNOWLEDGE.finance;
     showModal(`
-      <div class="head"><span class="em">🏦</span><div><h2>${t('fin_title','融资窗口')}</h2><p>${t('fin_sub','是否使用杠杆？放大收益也放大风险')}</p></div></div>
+      <div class="head"><span class="em">🏦</span><div><h2>Margin Window</h2><p>Use leverage? Amplifies gains AND losses</p></div></div>
       <div class="body">
-        ${t('fin_offer','银行愿意给你 ¥10,000 短期融资额度（三回合后归还 ¥10,500，利率 5%）。')}<br/><br/>
-        <div class="knowledge"><b>${KNOWLEDGE.finance.title}</b><br/>${KNOWLEDGE.finance.body}</div>
+        The bank offers ¥10,000 short-term margin (repay ¥10,500 in 3 rounds, 5% rate).<br/><br/>
+        <div class="knowledge"><b>${k.title}</b><br/>${k.body}</div>
       </div>
     `, [
-      { label:t('fin_borrow','借 ¥10,000'), cls:'blue', fn:()=>{
-        G.player.cash += 10000;
-        G.player._loan = { principal: 10500, due: G.day + 3 };
-        log(fmtT('fin_log','🏦 借款 +¥10,000（{d} 回合归还 ¥10,500）',{d:G.day+3}), 'event');
-        toast(t('fin_toast','+¥10,000 借款到账'),'blue');
-        pulseStat('statCash');
-        closeModalAndContinue();
+      { label:'Borrow ¥10,000', cls:'blue', fn:()=>{
+        G.player.cash += 10000; G.player._loan = { principal: 10500, due: G.day + 3 };
+        log(`🏦 Borrowed +¥10,000 (repay ¥10,500 by round ${G.day+3})`, 'event');
+        toast('+¥10,000 loan received','blue'); pulseStat('statCash'); closeModalAndContinue();
       }},
-      { label:t('fin_decline','谢谢，不用了'), cls:'ghost', fn: closeModalAndContinue },
+      { label:'Thanks, no.', cls:'ghost', fn: closeModalAndContinue },
     ]);
   }
 }
 
-// 税务格
 function triggerTax(sq) {
-  // 印花税：本回合按现金 0.5% 缴税
   const tax = Math.floor(G.player.cash * 0.005);
   G.player.cash -= tax;
+  const k = KNOWLEDGE.stamp_tax;
   showModal(`
-    <div class="head"><span class="em">💸</span><div><h2>${t('tax_title','印花税稽查')}</h2><p>${t('tax_sub','税务格 · 强制扣款')}</p></div></div>
+    <div class="head"><span class="em">💸</span><div><h2>Stamp Tax Audit</h2><p>Tax tile · forced deduction</p></div></div>
     <div class="body">
-      ${t('tax_body','税务部门按 0.5% 抽取一次资本利得稽查税。')}<br/>
-      ${t('tax_amt','扣税：')}<b style="color:var(--red)">-¥${fmt(tax,0)}</b>
-      <div class="knowledge"><b>${KNOWLEDGE.stamp_tax.title}</b><br/>${KNOWLEDGE.stamp_tax.body}</div>
+      The tax office withholds 0.5% as a capital-gains audit fee.<br/>
+      Tax: <b style="color:var(--red)">-¥${fmt(tax,0)}</b>
+      <div class="knowledge"><b>${k.title}</b><br/>${k.body}</div>
     </div>
-  `, [{ label:t('tax_accept','认了…'), cls:'ghost', fn: closeModalAndContinue }]);
-  log(fmtT('tax_log','💸 缴税 -¥{n}',{n:fmt(tax,0)}), 'down');
+  `, [{ label:'Accept…', cls:'ghost', fn: closeModalAndContinue }]);
+  log(`💸 Tax -¥${fmt(tax,0)}`, 'down');
   pulseStat('statCash');
 }
 
-// 休息格
 function triggerRest(sq) {
   addXp(30);
   showModal(`
-    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${sq.name}</h2><p>${t('rest_sub','休息格 · 跳过本回合操作')}</p></div></div>
-    <div class="body">${sq.desc}<br/><br/>${t('rest_reward','奖励')} <b style="color:var(--gold);">+30 XP</b></div>
-  `, [{ label:t('rest_ok','好的'), cls:'green', fn: closeModalAndContinue }]);
+    <div class="head"><span class="em">${sq.emoji}</span><div><h2>${sq.name}</h2><p>Rest tile · skip your action this round</p></div></div>
+    <div class="body">${sq.desc}<br/><br/>Reward: <b style="color:var(--gold);">+30 XP</b></div>
+  `, [{ label:'OK', cls:'green', fn: closeModalAndContinue }]);
   log(`☕ ${sq.name} +30 XP`, '');
 }
 
-// 点击格子查看说明（不触发交易）
 function showSquareInfo(idx) {
   const sq = SQUARES[idx];
   let title, em, body;
@@ -2311,18 +1865,17 @@ function showSquareInfo(idx) {
     const s = G.stocks.find(x => x.id === sq.stockId);
     em = s.emoji; title = s.name;
     const change = (s.price - s.prevClose)/s.prevClose * 100;
-    body = `${s.sector}<br/>${t('curr_price_2','当前价：')}¥${fmt(s.price, s.price<10?2:1)} <span class="${change>=0?'pos':'neg'}">${pct(change)}</span><br/>${t('curr_owned','当前持仓')}：${G.player.holdings[s.id]||0} ${t('share_unit','股')}`;
+    body = `${s.sector}<br/>Current price: ¥${fmt(s.price, s.price<10?2:1)} <span class="${change>=0?'pos':'neg'}">${pct(change)}</span><br/>Currently held: ${G.player.holdings[s.id]||0} shares`;
   } else {
     em = sq.emoji; title = sq.name;
-    body = sq.desc || t('sq_default','在棋盘格上着陆时会触发对应事件。');
+    body = sq.desc || 'Triggers an event when landed on.';
   }
   showModal(`
-    <div class="head"><span class="em">${em}</span><div><h2>${title}</h2><p>${t('sq_n','第')} ${idx} ${t('sq_unit','格')}</p></div></div>
+    <div class="head"><span class="em">${em}</span><div><h2>${title}</h2><p>Tile ${idx}</p></div></div>
     <div class="body">${body}</div>
-  `, [{ label:t('close','关闭'), cls:'ghost', fn:() => {} }]);
+  `, [{ label:'Close', cls:'ghost', fn:() => {} }]);
 }
 
-// 切换 Tab
 function switchTab(name) {
   $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.page === name));
   $$('.page').forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
@@ -2330,86 +1883,27 @@ function switchTab(name) {
   if (name === 'topup') renderTopup();
 }
 
-// ============== 充值套餐 ==============
+// ============== 充值套餐 (Topup) ==============
 const PACKAGES = [
-  {
-    id:'starter', em:'🌱', name:t('pkg_starter','体验包'),
-    price:6, original:12,
-    perks:[ t('p_cash5k','+¥5,000 游戏现金'), t('p_xp50','+50 XP') ],
-    apply: () => { G.player.cash += 5000; addXp(50); },
-    note: t('pkg_note_starter','新手首充推荐'),
-  },
-  {
-    id:'advanced', em:'💰', name:t('pkg_adv','进阶包'), hot:true,
-    price:30, original:48,
-    perks:[ t('p_cash30k','+¥30,000 现金'), t('p_xp200','+200 XP'), t('p_sp2','+2 技能点') ],
-    apply: () => { G.player.cash += 30000; addXp(200); G.player.sp += 2; },
-    note: t('pkg_note_adv','性价比最高'),
-  },
-  {
-    id:'vip', em:'👑', name:t('pkg_vip','VIP 月卡'), vip:true,
-    price:98, original:158,
-    perks:[
-      t('p_cash50k','+¥50,000 现金'),
-      t('p_xp2x','永久双倍 XP'),
-      t('p_hardai','解锁高级 AI 对手'),
-      t('p_adfree','去除全部广告'),
-    ],
-    apply: () => {
-      G.player.cash += 50000;
-      G.player.perks.xpMultiplier = 2;
-      G.player.perks.hardAi = true;
-      G.player.perks.adFree = true;
-      G.player.perks.vipExpire = G.day + 30;
-      // 升级 AI 对手能力
-      G.ai.forEach(a => a.cash = Math.max(a.cash, 120000));
-    },
-    note: t('pkg_note_vip','30 天内全部福利'),
-  },
-  {
-    id:'ultra', em:'💎', name:t('pkg_ultra','至尊包'),
-    price:298, original:498,
-    perks:[
-      t('p_cash200k','+¥200,000 现金'),
-      t('p_xp500','+500 XP'),
-      t('p_sp5','+5 技能点'),
-      t('p_analytics','数据分析报告'),
-      t('p_newmap','解锁新地图（待开放）'),
-      t('p_adfree','永久去广告'),
-    ],
-    apply: () => {
-      G.player.cash += 200000;
-      addXp(500);
-      G.player.sp += 5;
-      G.player.perks.analytics = true;
-      G.player.perks.newMap = true;
-      G.player.perks.adFree = true;
-      G.player.perks.xpMultiplier = Math.max(G.player.perks.xpMultiplier, 2);
-    },
-    note: t('pkg_note_ultra','至尊享受'),
-  },
+  { id:'starter', name:'Starter Pack', em:'🌱', price:6, original:12, perks:['+¥5,000 game cash','+50 XP'], note:'Best first-buy', apply: () => { G.player.cash += 5000; addXp(50); } },
+  { id:'advanced', name:'Pro Pack', em:'💰', hot:true, price:30, original:48, perks:['+¥30,000 cash','+200 XP','+2 skill points'], note:'Best value', apply: () => { G.player.cash += 30000; addXp(200); G.player.sp += 2; } },
+  { id:'vip', name:'VIP Monthly', em:'👑', vip:true, price:98, original:158, perks:['+¥50,000 cash','Permanent 2× XP','Unlock advanced AI rivals','Remove all ads'], note:'30-day full perks', apply: () => { G.player.cash += 50000; G.player.perks.xpMultiplier = 2; G.player.perks.hardAi = true; G.player.perks.adFree = true; G.player.perks.vipExpire = G.day + 30; G.ai.forEach(a => a.cash = Math.max(a.cash, 120000)); } },
+  { id:'ultra', name:'Ultimate Pack', em:'💎', price:298, original:498, perks:['+¥200,000 cash','+500 XP','+5 skill points','Data analytics report','Unlock new map','Permanent ad-free'], note:'The ultimate pack', apply: () => { G.player.cash += 200000; addXp(500); G.player.sp += 5; G.player.perks.analytics = true; G.player.perks.newMap = true; G.player.perks.adFree = true; G.player.perks.xpMultiplier = Math.max(G.player.perks.xpMultiplier, 2); } },
 ];
 
 function renderTopup() {
   const grid = $('#pkgGrid');
   if (!grid) return;
-  // VIP banner
   const spent = G.player.spent || 0;
-  const tier = spent >= 298 ? { em:'💎', t:t('vip_tier_diamond','钻石用户'), s:t('vip_sub_diamond','享受全部至尊特权') }
-    : spent >= 98 ? { em:'👑', t:t('vip_tier_gold','黄金 VIP'), s:t('vip_sub_gold','双倍XP + 高级AI对手') }
-    : spent >= 30 ? { em:'⭐', t:t('vip_tier_silver','白银会员'), s:t('vip_sub_silver','已享受进阶福利') }
-    : spent > 0  ? { em:'🌱', t:t('vip_tier_new','新手玩家'), s:t('vip_sub_new','已尝试体验包') }
-    :              { em:'🌱', t:t('vip_tier_free','普通用户'), s:t('vip_sub_free','尚未开通任何特权') };
-  $('#vipEm').textContent = tier.em;
-  $('#vipTitle').textContent = tier.t;
-  $('#vipSub').textContent = tier.s;
-  $('#vipSpent').textContent = '¥' + fmt(spent, 0);
-  $('#vipCount').textContent = (G.player.purchases?.length || 0) + ' ' + t('times','次');
+  const tier = spent >= 298 ? { em:'💎', t:'Diamond user', s:'Enjoying all premium perks' }
+    : spent >= 98 ? { em:'👑', t:'Gold VIP', s:'2× XP + premium AI rivals' }
+    : spent >= 30 ? { em:'⭐', t:'Silver member', s:'Enjoying pro-pack perks' }
+    : spent > 0  ? { em:'🌱', t:'New player', s:'Tried the starter pack' }
+    :              { em:'🌱', t:'Free User', s:'No perks activated yet' };
+  $('#vipEm').textContent = tier.em; $('#vipTitle').textContent = tier.t; $('#vipSub').textContent = tier.s;
+  $('#vipSpent').textContent = '¥' + fmt(spent, 0); $('#vipCount').textContent = (G.player.purchases?.length || 0) + ' time(s)';
 
-  // packages（允许多次重复购买，每次都生效）
-  const fakeStatZh = ['今日已售 1.2k','今日已售 8.7k','今日已售 2.4k','今日已售 384'];
   const fakeStatEn = ['Sold today 1.2k','Sold today 8.7k','Sold today 2.4k','Sold today 384'];
-  const fakeStat = (G.lang === 'en') ? fakeStatEn : fakeStatZh;
   grid.innerHTML = PACKAGES.map((p, idx) => {
     const cls = p.hot ? 'hot' : (p.vip ? 'vip-pkg' : '');
     const myCnt = (G.player.purchases || []).filter(x => x === p.id).length;
@@ -2417,156 +1911,111 @@ function renderTopup() {
       <div class="pkg-card ${cls}">
         <div class="pkg-em">${p.em}</div>
         <div class="pkg-name">${p.name}${myCnt ? ` <small style="color:#9ca0ad; font-weight:500;">×${myCnt}</small>` : ''}</div>
-        <div class="pkg-price">
-          <span class="now">¥${p.price}</span>
-          <span class="org">¥${p.original}</span>
-        </div>
-        <ul class="pkg-perks">
-          ${p.perks.map(pp => `<li>${pp}</li>`).join('')}
-        </ul>
-        <button class="pkg-buy" data-pkg="${p.id}">
-          ${myCnt > 0 ? t('buy_again','再次购买') : t('buy_now','立即购买')}&nbsp;¥${p.price}
-        </button>
-        <div class="pkg-stats">${fakeStat[idx]||''}</div>
-      </div>
-    `;
+        <div class="pkg-price"><span class="now">¥${p.price}</span><span class="org">¥${p.original}</span></div>
+        <ul class="pkg-perks">${p.perks.map(pp => `<li>${pp}</li>`).join('')}</ul>
+        <button class="pkg-buy" data-pkg="${p.id}">${myCnt > 0 ? 'Buy again' : 'Buy now'}&nbsp;¥${p.price}</button>
+        <div class="pkg-stats">${fakeStatEn[idx]||''}</div>
+      </div>`;
   }).join('');
-  grid.querySelectorAll('[data-pkg]').forEach(b => {
-    b.onclick = () => startPay(b.dataset.pkg);
-  });
+  grid.querySelectorAll('[data-pkg]').forEach(b => { b.onclick = () => startPay(b.dataset.pkg); });
 
-  // perks
   const pk = G.player.perks || {};
   const perks = [
-    { on: pk.xpMultiplier > 1, em:'⚡', name:t('perk_xp','双倍 XP'), stat: pk.xpMultiplier > 1 ? t('active','已激活') : t('inactive','未激活')},
-    { on: pk.hardAi, em:'🤖', name:t('perk_ai','高级 AI 对手'), stat: pk.hardAi ? t('active','已激活') : t('inactive','未激活')},
-    { on: pk.adFree, em:'🚫', name:t('perk_ad','去除广告'), stat: pk.adFree ? t('active','已激活') : t('inactive','未激活')},
-    { on: pk.analytics, em:'📊', name:t('perk_data','数据分析报告'), stat: pk.analytics ? t('view','点击查看') : t('inactive','未激活')},
+    { on: pk.xpMultiplier > 1, em:'⚡', name:'2× XP', stat: pk.xpMultiplier > 1 ? 'Active' : 'Inactive'},
+    { on: pk.hardAi, em:'🤖', name:'Premium AI rivals', stat: pk.hardAi ? 'Active' : 'Inactive'},
+    { on: pk.adFree, em:'🚫', name:'Ad-free', stat: pk.adFree ? 'Active' : 'Inactive'},
+    { on: pk.analytics, em:'📊', name:'Data report', stat: pk.analytics ? 'Click to view' : 'Inactive'},
   ];
   $('#perkGrid').innerHTML = perks.map(p => `
-    <div class="perk-item ${p.on?'on':''}" ${p.name===t('perk_data','数据分析报告') && p.on?'data-analytics="1"':''}>
+    <div class="perk-item ${p.on?'on':''}" ${p.name==='Data report' && p.on?'data-analytics="1"':''}>
       <span class="perk-em">${p.em}</span>
-      <div>
-        <div class="perk-name">${p.name}</div>
-        <div class="perk-stat">${p.stat}</div>
-      </div>
-    </div>
-  `).join('');
-  // 数据分析报告点击事件
-  $('#perkGrid').querySelectorAll('[data-analytics]').forEach(el => {
-    el.style.cursor = 'pointer';
-    el.onclick = showAnalyticsReport;
-  });
+      <div><div class="perk-name">${p.name}</div><div class="perk-stat">${p.stat}</div></div>
+    </div>`).join('');
+  $('#perkGrid').querySelectorAll('[data-analytics]').forEach(el => { el.style.cursor = 'pointer'; el.onclick = showAnalyticsReport; });
 }
 
-// 模拟支付流程（每个套餐都允许重复购买，每次都生效）
 function startPay(pkgId) {
   const p = PACKAGES.find(x => x.id === pkgId);
   if (!p) return;
   showModal(`
-    <div class="head"><span class="em">💳</span><div><h2>${t('pay_title','模拟支付')}</h2><p>${t('pay_desc','演示支付流程，不会实际扣款')}</p></div></div>
+    <div class="head"><span class="em">💳</span><div><h2>Simulated Payment</h2><p>Demo only, no real charge.</p></div></div>
     <div class="pay-anim">
       <div class="qr">📱</div>
       <div class="pay-amt">¥${p.price.toFixed(2)}</div>
-      <div class="pay-tip">${t('pay_scan','请使用支付宝/微信扫码（演示）')}</div>
+      <div class="pay-tip">Scan with Alipay/WeChat (demo)</div>
       <div class="pay-tip" style="margin-top:8px;">${p.em} ${p.name}</div>
     </div>
   `, [
-    { label:t('confirm_pay','✅ 确认支付'), cls:'green', fn: () => completePay(p) },
-    { label:t('cancel','取消'), cls:'ghost' },
+    { label:'✅ Confirm payment', cls:'green', fn: () => completePay(p) },
+    { label:'Cancel', cls:'ghost' },
   ]);
 }
 
 function completePay(p) {
-  // 应用权益
   if (p.apply) p.apply();
   G.player.purchases = (G.player.purchases || []).concat([p.id]);
   G.player.spent = (G.player.spent || 0) + p.price;
-  log(`💎 ${t('purchase_log','充值购买')}：${p.name} ¥${p.price}`, 'event');
-  toast(`✅ ${p.name} ${t('purchase_success','购买成功，权益已生效')}`, 'green');
-  pulseStat('statCash');
-  hideModal();
-  render();
-  // 跳到棋盘让玩家立刻看到效果
-  switchTab('topup');
-  renderTopup();
+  log(`💎 Top-up purchase: ${p.name} ¥${p.price}`, 'event');
+  toast(`✅ ${p.name} purchased, perks active`, 'green');
+  pulseStat('statCash'); hideModal(); render(); switchTab('topup'); renderTopup();
 }
 
-// 数据分析报告（VIP特权）
 function showAnalyticsReport() {
-  const trades = G.log.filter(l => l.msg.includes('买入') || l.msg.includes('卖出') || l.msg.includes('Buy') || l.msg.includes('Sell')).length;
+  const trades = G.log.filter(l => l.msg.includes('Bought') || l.msg.includes('Sold') || l.msg.includes('Board-buy') || l.msg.includes('Board-sell')).length;
   const events = G.log.filter(l => l.type === 'event').length;
   const totalRet = ((totalAsset(G.player) - 100000) / 100000 * 100).toFixed(2);
   const stockTop = [...G.stocks].sort((a,b) => (b.price/b.basePrice) - (a.price/a.basePrice))[0];
   showModal(`
-    <div class="head"><span class="em">📊</span><div><h2>${t('analytics_title','VIP 数据分析报告')}</h2><p>${t('analytics_desc','基于你本局行为生成')}</p></div></div>
+    <div class="head"><span class="em">📊</span><div><h2>VIP Analytics Report</h2><p>Generated from your behavior this session</p></div></div>
     <div class="body" style="font-size:13px; line-height:1.7;">
       <div class="price-list" style="grid-template-columns: 1fr 1fr;">
-        <div class="item"><span>${t('analytics_trades','交易次数')}</span><b>${trades}</b></div>
-        <div class="item"><span>${t('analytics_events','遭遇事件')}</span><b>${events}</b></div>
-        <div class="item"><span>${t('analytics_ret','当前收益率')}</span><b>${totalRet}%</b></div>
-        <div class="item"><span>${t('analytics_top','本局最强股')}</span><b>${stockTop.name}</b></div>
+        <div class="item"><span>Trade count</span><b>${trades}</b></div>
+        <div class="item"><span>Events encountered</span><b>${events}</b></div>
+        <div class="item"><span>Current return</span><b>${totalRet}%</b></div>
+        <div class="item"><span>Session's top stock</span><b>${stockTop.name}</b></div>
       </div>
-      <div class="knowledge"><b>${t('analytics_advice_title','📈 行为画像建议')}</b><br/>
-      ${trades < 5 ? t('advice_low','你的交易频率偏低，可以考虑在重大事件后果断布局；ETF 是新手的好工具。') :
-        trades > 20 ? t('advice_high','你的交易过于频繁，每次买卖都会被佣金和印花税侵蚀收益。试着拉长持有周期。') :
-        t('advice_mid','你的交易节奏适中，关注事件型机会能进一步提升收益。')}
+      <div class="knowledge"><b>📈 Behavior insights</b><br/>
+      ${trades < 5 ? 'Your trading frequency is low — consider acting decisively after major events. ETFs are great beginner tools.' :
+        trades > 20 ? 'You trade too often — fees and stamp taxes erode returns. Try lengthening holding periods.' :
+        'Your trading pace is balanced. Watching for event-driven opportunities can boost returns.'}
       </div>
     </div>
-  `, [{ label: t('got_it','明白了'), cls:'green' }]);
+  `, [{ label: 'Got it', cls:'green' }]);
 }
 
-// ============== 回合结束 / 股价更新 ==============
 function endTurn() {
   if (G.diceRolling) return;
-  if (G.day >= G.maxDay) { toast(t('last_day','已经是最后一天，进入结算'),'blue'); switchTab('settle'); return; }
-  // 关闭弹窗，记录昨日资产
+  if (G.day >= G.maxDay) { toast('It\'s already the last day — settling now','blue'); switchTab('settle'); return; }
   hideModal();
   G.pendingTrigger = false;
   G.player.yesterdayAsset = totalAsset(G.player);
-  // 推动 AI 决策
-  aiTurn();
-  // 推动股价随机走势
-  advancePriceDay();
-  // 检查贷款到期
+  aiTurn(); advancePriceDay();
   if (G.player._loan && G.day >= G.player._loan.due) {
     const owe = G.player._loan.principal;
     G.player.cash -= owe;
-    log(fmtT('repay_log','🏦 还款 -¥{n}',{n:fmt(owe,0)}), 'down');
-    toast(fmtT('repay_toast','-¥{n} 借款到期归还',{n:fmt(owe,0)}),'red');
+    log(`🏦 Repaid -¥${fmt(owe,0)}`, 'down');
+    toast(`-¥${fmt(owe,0)} loan due, repaid`,'red');
     G.player._loan = null;
   }
-  // 推进日期
-  G.day++;
-  G.date = new Date(G.date.getTime() + 86400*1000);
-  G.player.sp += 1;
-  addXp(45);
-  log(fmtT('round_start','📅 第 {d} 回合开始',{d:G.day}), '');
-  if (G.day > G.maxDay) {
-    setTimeout(() => switchTab('settle'), 600);
-  }
+  G.day++; G.date = new Date(G.date.getTime() + 86400*1000); G.player.sp += 1; addXp(45);
+  log(`📅 Round ${G.day} begins`, '');
+  if (G.day > G.maxDay) { setTimeout(() => switchTab('settle'), 600); }
   render();
 }
 
 function advancePriceDay() {
-  // 每日基础随机走势
   for (const s of G.stocks) {
     s.prevClose = s.price;
-    const drift = 0.0005;
-    const noise = (Math.random() - 0.5) * 2 * s.vol;
+    const drift = 0.0005; const noise = (Math.random() - 0.5) * 2 * s.vol;
     s.price = +(s.price * (1 + drift + noise)).toFixed(s.price<10?3:2);
-    s.history.push(s.price);
-    if (s.history.length > 30) s.history.shift();
+    s.history.push(s.price); if (s.history.length > 30) s.history.shift();
   }
 }
 
-// AI 简单决策
 function aiTurn() {
   for (const ai of G.ai) {
-    // 随机走 2-12 步
     const steps = 2 + Math.floor(Math.random()*11);
     movePlayer(ai, steps, false);
-    // 不同风格不同行为
     const cashUse = ai.id === 'gambler' ? 0.5 : ai.id === 'steady' ? 0.2 : 0.3;
     const focus = ai.id === 'gambler' ? ['cd','sm'] : ai.id === 'steady' ? ['hs','pa'] : ['mt','cd','by','hs','pa','sm'];
     const pickId = focus[Math.floor(Math.random()*focus.length)];
@@ -2574,164 +2023,128 @@ function aiTurn() {
     if (Math.random() < 0.6 && ai.cash > stock.price * 100) {
       const budget = ai.cash * cashUse * Math.random();
       const qty = Math.floor(budget / (stock.price * 1.0003) / 100) * 100;
-      if (qty > 0) {
-        ai.cash -= qty * stock.price * 1.0003;
-        ai.holdings[pickId] = (ai.holdings[pickId]||0) + qty;
-      }
+      if (qty > 0) { ai.cash -= qty * stock.price * 1.0003; ai.holdings[pickId] = (ai.holdings[pickId]||0) + qty; }
     } else if (Math.random() < 0.3 && ai.holdings[pickId] > 0) {
       const qty = Math.min(ai.holdings[pickId], 100 * (1 + Math.floor(Math.random()*3)));
-      ai.cash += qty * stock.price * 0.9987;
-      ai.holdings[pickId] -= qty;
+      ai.cash += qty * stock.price * 0.9987; ai.holdings[pickId] -= qty;
     }
   }
 }
 
-// ============== 结算页 ==============
 function renderSettle() {
   const wrap = $('#settleWrap');
   if (!wrap) return;
   if (G.day <= G.maxDay) {
     wrap.innerHTML = `
       <div class="settle-card" style="text-align:center; padding-top:48px;">
-        <h2 style="font-size:22px;">${t('settle_pending','🏁 游戏尚未结束')}</h2>
-        <p style="color:var(--text-2);">${fmtT('settle_progress','完成 {m} 回合后将自动跳转到此页面，目前进度 {d} / {m}',{m:G.maxDay,d:G.day})}</p>
-        <button class="btn ghost" onclick="switchTab('board')">${t('back_board','返回棋盘')}</button>
+        <h2 style="font-size:22px;">🏁 Game not over yet</h2>
+        <p style="color:var(--text-2);">Settle screen unlocks after round ${G.maxDay}. Current progress: ${G.day} / ${G.maxDay}</p>
+        <button class="btn ghost" onclick="switchTab('board')">Back to the board</button>
       </div>`;
     return;
   }
-  const all = [
-    { ...G.player, label:t('me_label','你'), isMe:true },
-    ...G.ai.map(a => ({ ...a, label:a.name }))
-  ].map(p => ({ ...p, ta: totalAsset(p) }))
-   .sort((a,b) => b.ta - a.ta);
+  const all = [ { ...G.player, isMe:true, name:'You' }, ...G.ai ].map(p => ({ ...p, ta: totalAsset(p) })).sort((a,b) => b.ta - a.ta);
   const me = all.find(p => p.isMe);
   const myRank = all.findIndex(p => p.isMe) + 1;
   const ret = (me.ta - 100000) / 100000 * 100;
   const bestStock = Object.entries(G.player.holdings).map(([id, qty]) => {
-    const s = G.stocks.find(x => x.id === id);
-    return { name: s?s.name:id, value: qty * (s?s.price:0) };
+    const s = G.stocks.find(x => x.id === id); return { name: s?s.name:id, value: qty * (s?s.price:0) };
   }).sort((a,b)=>b.value-a.value)[0];
+
   wrap.innerHTML = `
     <div class="settle-card" style="text-align:center; background: linear-gradient(135deg, rgba(255,203,107,.1), rgba(106,166,255,.1));">
-      <h2 style="font-size:26px;">${fmtT('settle_round_t','🏆 第 {m} 回合结算',{m:G.maxDay})}</h2>
+      <h2 style="font-size:26px;">🏆 Round ${G.maxDay} Final Settlement</h2>
       <div class="settle-grid">
-        <div class="item"><div class="lab">${t('final_asset','最终资产')}</div><div class="val">¥${fmt(me.ta,0)}</div></div>
-        <div class="item"><div class="lab">${t('total_ret','总收益率')}</div><div class="val ${ret>=0?'pos':'neg'}">${pct(ret)}</div></div>
-        <div class="item"><div class="lab">${t('best_hold','最佳持仓')}</div><div class="val" style="font-size:16px;">${bestStock?bestStock.name:t('none','无')}</div></div>
-        <div class="item"><div class="lab">${t('final_rank','最终排名')}</div><div class="val">${fmtT('rank_n','第 {n} 名',{n:myRank})}</div></div>
+        <div class="item"><div class="lab">Final assets</div><div class="val">¥${fmt(me.ta,0)}</div></div>
+        <div class="item"><div class="lab">Total return</div><div class="val ${ret>=0?'pos':'neg'}">${pct(ret)}</div></div>
+        <div class="item"><div class="lab">Top holding</div><div class="val" style="font-size:16px;">${bestStock?bestStock.name:'None'}</div></div>
+        <div class="item"><div class="lab">Final rank</div><div class="val">#${myRank}</div></div>
       </div>
-      <button class="btn" onclick="resetGame()">${t('play_again','🔄 再玩一局')}</button>
+      <button class="btn" onclick="resetGame()">🔄 Play again</button>
     </div>
     <div class="settle-card">
-      <h2>${t('all_players','📊 全部玩家')}</h2>
+      <h2>📊 All players</h2>
       ${all.map((p,i)=>`
         <div class="ranking-row ${p.isMe?'me':''}">
           <div class="av">${i===0?'🥇':i===1?'🥈':i===2?'🥉':'🏅'}</div>
-          <div class="nm">${p.emoji} ${p.label}<small>${p.style||t('me_role','你的角色')}</small></div>
+          <div class="nm">${p.emoji} ${p.name}<small>${p.style||'Your role'}</small></div>
           <div class="vl">¥${fmt(p.ta,0)} (${pct((p.ta-100000)/1000)})</div>
         </div>
       `).join('')}
     </div>
     <div class="settle-card">
-      <h2>${t('learnings','📚 本局触发的金融知识点')}</h2>
+      <h2>📚 Knowledge points triggered this game</h2>
       <div class="knowledge-grid">
-        ${Object.values(KNOWLEDGE).slice(0,8).map(k => `
-          <div class="know-card"><h4>${k.title}</h4>${k.body}</div>
-        `).join('')}
+        ${Object.values(KNOWLEDGE).slice(0,8).map(k => `<div class="know-card"><h4>${k.title}</h4>${k.body}</div>`).join('')}
       </div>
     </div>
   `;
 }
 
 function resetGame() {
-  // 重置全部状态
-  G.day = 1;
-  G.date = new Date(2025, 0, 2);
+  G.day = 1; G.date = new Date(2025, 0, 2);
   G.player = {
-    id:'me', name:'你', emoji:'😎',
-    cash: 100000, holdings: {}, position: 0,
-    xp: 0, sp: 0, unlockedSkills: new Set(),
-    yesterdayAsset: 100000, startAsset: 100000,
-    achievements: new Set(),
+    id:'me', name:'You', emoji:'😎', cash: 100000, holdings: {}, position: 0,
+    xp: 0, sp: 0, unlockedSkills: new Set(), yesterdayAsset: 100000, startAsset: 100000,
     perks: { xpMultiplier:1, adFree:false, analytics:false, hardAi:false, newMap:false, vipExpire:0 },
-    purchases: [],
-    spent: 0,
+    purchases: [], spent: 0,
   };
   G.ai = JSON.parse(JSON.stringify(AI_PLAYERS));
   G.stocks = STOCKS.map(s => ({ ...s, price: s.basePrice, prevClose: s.basePrice, history: [s.basePrice] }));
-  G.log = [];
-  G.pendingTrigger = false;
-  G.diceRolling = false;
-  switchTab('board');
-  render();
-  toast(t('reset_toast','🔄 游戏已重置'),'green');
+  G.log = []; G.pendingTrigger = false; G.diceRolling = false;
+  switchTab('board'); render(); toast('🔄 Game reset','green');
 }
 
-// ============== 帮助 ==============
 function showHelp() {
-  // help 内容简化为按 i18n key 渲染整体段落（保持简体内容做兜底）
-  const helpHtmlZh = `
-    <b>1. 棋盘玩法</b><br/>
-    点「掷骰子」让你的小人在 24 格棋盘上移动。<b>每个落点都会弹出对应窗口</b>：<br/>
-    • <b style="color:#6aa6ff;">股票格</b>：弹出该股行情，可一键买入 100 股 / 自定义仓位 / 跳过<br/>
-    • <b style="color:#ff6b81;">重大事件</b>：影响全部股票价格，例如黑天鹅、降息<br/>
-    • <b style="color:#b06bff;">机会卡</b>：随机的小剧情，可以选择是否参与<br/>
-    • <b style="color:#3ddc97;">银行格</b>：分红到账或融资借款<br/>
-    • <b style="color:#ff9b57;">税务格</b>：自动扣税并显示知识点<br/>
-    • <b style="color:#5ee2e6;">休息格</b>：跳过本格操作，奖励 XP<br/><br/>
-    <b>2. 市场玩法</b><br/>
-    切到「📈 市场」可以随时主动买卖任意股票，所有<b>持仓 / 现金 / 总资产 / 今日盈亏</b>会实时刷新。<br/><br/>
-    <b>3. 回合推进</b><br/>
-    做完所有操作后点「下一回合 ▶」推动股价、AI 行动并进入下一天。30 回合后自动结算。<br/><br/>
-    <b>4. 技能树</b><br/>
-    每完成一回合获得 1 技能点，三条技能线分别对应价值/成长/量化策略。`;
+  const helpHtmlEn = `
+    <b>1. Board Play</b><br/>Click 'Roll Dice' to move your pawn around the 24-tile board. <b>Every landing tile pops a dialog</b>:<br/>
+    • <b style="color:#6aa6ff;">Stock tile</b>: shows the stock and lets you quick-buy 100 shares, custom-trade or skip<br/>
+    • <b style="color:#ff6b81;">Major event</b>: hits the whole market — black swans, rate cuts, etc.<br/>
+    • <b style="color:#b06bff;">Chance card</b>: a random mini-event you can opt into<br/>
+    • <b style="color:#3ddc97;">Bank tile</b>: dividends or short-term margin offer<br/>
+    • <b style="color:#ff9b57;">Tax tile</b>: auto-deducts a small tax + teaches you the concept<br/>
+    • <b style="color:#5ee2e6;">Rest tile</b>: skip your action, gain XP<br/><br/>
+    <b>2. Market Page</b><br/>Switch to '📈 Market' anytime to actively rebalance — <b>holdings / cash / total / today's P&L</b> all refresh in real time.<br/><br/>
+    <b>3. Round flow</b><br/>After resolving the tile, click 'Next Round ▶' to advance prices and AI moves. After 30 rounds the game settles automatically.<br/><br/>
+    <b>4. Skill Tree</b><br/>Each round earns 1 skill point. Three lines (value / growth / quant) shape your style.`;
   showModal(`
-    <div class="head"><span class="em">🎓</span><div><h2>${t('help_title','玩法说明')}</h2><p>${t('help_sub','30 回合内挑战最高资产')}</p></div></div>
-    <div class="body" style="font-size:13px; line-height:1.8;">${t('help_body', helpHtmlZh)}</div>
-  `, [{ label:t('got_it','明白了'), cls:'green' }]);
+    <div class="head"><span class="em">🎓</span><div><h2>How to Play</h2><p>Reach the highest assets in 30 rounds</p></div></div>
+    <div class="body" style="font-size:13px; line-height:1.8;">${helpHtmlEn}</div>
+  `, [{ label:'Got it', cls:'green' }]);
 }
 
-// 初始化
 function init() {
-  // 选项卡
   $$('.tab').forEach(tab => tab.onclick = () => switchTab(tab.dataset.page));
   $('#helpPill').onclick = showHelp;
-  // 关闭按钮：点击背景
   $('#modalBack').onclick = e => { if (e.target.id === 'modalBack') hideModal(); };
-  // 语言切换
   $('#langSwitch').querySelectorAll('button').forEach(b => {
     b.onclick = () => {
       $('#langSwitch').querySelectorAll('button').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      setLang(b.dataset.lang);
+      b.classList.add('active'); setLang(b.dataset.lang);
     };
   });
   applyI18nToStaticHtml();
-  rebuildPackages();
-  log(t('welcome_log','🎮 欢迎来到投资大富翁，初始资金 ¥100,000'), '');
-  log(t('first_roll','🎲 点击「掷骰子」开始第 1 回合'), '');
+  log('🎮 Welcome to Investment Monopoly — starting cash ¥100,000', '');
+  log('🎲 Click "Roll Dice" to start round 1', '');
   render();
-  // 第一次提示
   setTimeout(() => {
-    const welcomeBodyZh = `
-      本次更新（v2.2）的关键改动：<br/>
-      ✅ <b>骰子落点弹窗</b>：每个棋盘格都会弹出对应交易/事件窗口<br/>
-      ✅ <b>市场操作即时刷新</b>：买卖股票后顶部指标立刻同步<br/>
-      ✅ <b>棋盘事件直接影响行情</b>：黑天鹅、降息会改写全市场价格<br/>
-      ✅ <b>小事件可不操作</b>：早报 / 内幕消息允许"按兵不动"奖励 XP<br/>
-      ✅ <b>💎 充值Tab</b>：商业模式展示 + 4 套餐<b>可重复购买</b>，每次都会真实加现金<br/>
-      ✅ <b>多语言切换</b>：右上角 中 / EN / 繁，全屏 UI 同步切换`;
+    const welcomeBodyEn = `
+      v2.2 highlights:<br/>
+      ✅ <b>Landing-tile dialogs</b>: every tile pops a tailored trade/event window<br/>
+      ✅ <b>Live market updates</b>: top stats sync the moment you trade<br/>
+      ✅ <b>Board events shift the market</b>: black swans / rate cuts rewrite all prices<br/>
+      ✅ <b>Minor events allow no-action</b>: hold still and still earn XP<br/>
+      ✅ <b>💎 Top-up tab</b>: business model + 4 packs <b>repurchasable</b>, every buy adds real cash<br/>
+      ✅ <b>Native English base</b>: 100% hardcoded English foundation to prevent any translation leakage.`;
     showModal(`
-      <div class="head"><span class="em">👋</span><div><h2>${t('welcome_title','欢迎来到投资大富翁！')}</h2><p>${t('welcome_sub','融合棋盘 × 真实市场的金融教育游戏')}</p></div></div>
-      <div class="body" style="font-size:13px; line-height:1.7;">${t('welcome_body', welcomeBodyZh)}</div>
-    `, [{ label:t('start_play','开始游戏 🎲'), cls:'green' }]);
+      <div class="head"><span class="em">👋</span><div><h2>Welcome to Investment Monopoly!</h2><p>A board × real-market financial education game</p></div></div>
+      <div class="body" style="font-size:13px; line-height:1.7;">${welcomeBodyEn}</div>
+    `, [{ label:'Start playing 🎲', cls:'green' }]);
   }, 300);
 }
 
-// 暴露给全局便于内联 onclick
 window.switchTab = switchTab;
 window.resetGame = resetGame;
-
 document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
